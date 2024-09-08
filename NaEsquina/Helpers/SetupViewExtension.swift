@@ -7,9 +7,8 @@
 
 import Foundation
 
-protocol ViewCode {
+protocol SetupView {
     func setup()
     func addSubviews()
     func setupConstraints()
-    func setupStyle()
 }

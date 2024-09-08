@@ -23,26 +23,68 @@ class InputWithDescriptionView: UIView {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textColor = ColorsExtension.lightGray
-        textField.backgroundColor = .lightGray // Adicione uma cor de fundo temporária
-        textField.borderStyle = .roundedRect // Adicione um estilo de borda para melhor visualização
+        textField.backgroundColor = ColorsExtension.lightGrayBackground
+        textField.layer.borderWidth = 1.5
+        textField.layer.borderColor = ColorsExtension.lightGray?.cgColor
+        textField.layer.cornerRadius = 9
         return textField
     }()
     
     //MARK: Initializers
     
-    init(descriptionText: String, inputLabelPlaceholder: String) {
+    init(descriptionText: String, inputLabelPlaceholder: String, isPassword: Bool, iconName: String, iconSize: CGSize, isLeftView: Bool, horizontalRotation: Bool) {
         super.init(frame: .zero)
         descriptionLabel.text = descriptionText
         inputLabel.placeholder = inputLabelPlaceholder
+        let icon = UIImage(systemName: iconName) ?? UIImage()
+        let iconColor = ColorsExtension.lightGray ?? UIColor()
+        print(iconSize)
+        inputLabel.addPaddingAndIcon(icon, iconColor, iconSize: iconSize, leftPadding: 15, rightPadding: 12, isLeftView: isLeftView, horizontalRotation: horizontalRotation)
+        if isPassword {
+            setupPasswordVisibilityToggle()
+        }
         setup()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: Functions
+    
+    //TODO REVISAR ESSA LÓGICA DE EXIBIR TOOGLE E PLACEHOLDER DO CAMPO NÃO APARECE
+    private func setupPasswordVisibilityToggle() {
+        let toggleButton = UIButton(type: .system)
+        toggleButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        toggleButton.tintColor = .gray
+        toggleButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        
+        toggleButton.imageView?.contentMode = .scaleAspectFit
+        toggleButton.frame.size = CGSize(width: 16, height: 16)
+        
+        let rightViewContainer = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        rightViewContainer.addSubview(toggleButton)
+        
+        toggleButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            toggleButton.centerYAnchor.constraint(equalTo: rightViewContainer.centerYAnchor),
+            toggleButton.trailingAnchor.constraint(equalTo: rightViewContainer.trailingAnchor, constant: -8)
+        ])
+        
+        inputLabel.rightView = rightViewContainer
+        inputLabel.rightViewMode = .always
+    }
+    
+    @objc private func togglePasswordVisibility() {
+        inputLabel.isSecureTextEntry.toggle()
+        
+        let button = inputLabel.rightView?.subviews.first as? UIButton
+        let imageName = inputLabel.isSecureTextEntry ? "eye" : "eye.slash"
+        button?.setImage(UIImage(systemName: imageName), for: .normal)
+    }
 }
 
-extension InputWithDescriptionView: ViewCode {
+extension InputWithDescriptionView: SetupView {
     func setup() {
         addSubviews()
         setupConstraints()
@@ -60,12 +102,12 @@ extension InputWithDescriptionView: ViewCode {
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             inputLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
+            inputLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            inputLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             inputLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            inputLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+            inputLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            inputLabel.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
-    
-    func setupStyle() {
-        
-    }
+
 }

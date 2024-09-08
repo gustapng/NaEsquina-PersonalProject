@@ -9,18 +9,21 @@
 /* Begin PBXBuildFile section */
 		EC3AB3612C8A75A100DEDC44 /* ColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */; };
 		EC3AB3632C8A7D1700DEDC44 /* InputWithDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3AB3622C8A7D1700DEDC44 /* InputWithDescriptionView.swift */; };
-		EC821F6D2C8A6ACA00F35B96 /* ViewCodeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC821F6C2C8A6ACA00F35B96 /* ViewCodeExtension.swift */; };
+		EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */; };
 		EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14EF2C87D22C007A9F88 /* AppDelegate.swift */; };
 		EC9E14F22C87D22C007A9F88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14F12C87D22C007A9F88 /* SceneDelegate.swift */; };
 		EC9E14F42C87D22C007A9F88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14F32C87D22C007A9F88 /* ViewController.swift */; };
 		EC9E14F92C87D22D007A9F88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC9E14F82C87D22D007A9F88 /* Assets.xcassets */; };
 		EC9E14FC2C87D22D007A9F88 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EC9E14FB2C87D22D007A9F88 /* Base */; };
+		ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919232C8E31C00094B898 /* UITextField+Extension.swift */; };
+		ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */; };
+		ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919282C8E66150094B898 /* RecoveryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsExtension.swift; sourceTree = "<group>"; };
 		EC3AB3622C8A7D1700DEDC44 /* InputWithDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputWithDescriptionView.swift; sourceTree = "<group>"; };
-		EC821F6C2C8A6ACA00F35B96 /* ViewCodeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodeExtension.swift; sourceTree = "<group>"; };
+		EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewExtension.swift; sourceTree = "<group>"; };
 		EC9E14EC2C87D22C007A9F88 /* NaEsquina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaEsquina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC9E14EF2C87D22C007A9F88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC9E14F12C87D22C007A9F88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +31,9 @@
 		EC9E14F82C87D22D007A9F88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC9E14FB2C87D22D007A9F88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC9E14FD2C87D22D007A9F88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECE919232C8E31C00094B898 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewDescriptionView.swift; sourceTree = "<group>"; };
+		ECE919282C8E66150094B898 /* RecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				EC3AB3622C8A7D1700DEDC44 /* InputWithDescriptionView.swift */,
+				ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -60,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				EC9E14F32C87D22C007A9F88 /* ViewController.swift */,
+				ECE919282C8E66150094B898 /* RecoveryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -74,8 +82,9 @@
 		EC821F6A2C8A6A1E00F35B96 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				EC821F6C2C8A6ACA00F35B96 /* ViewCodeExtension.swift */,
+				EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */,
 				EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */,
+				ECE919232C8E31C00094B898 /* UITextField+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -192,7 +201,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC9E14F42C87D22C007A9F88 /* ViewController.swift in Sources */,
-				EC821F6D2C8A6ACA00F35B96 /* ViewCodeExtension.swift in Sources */,
+				EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */,
+				ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */,
+				ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */,
+				ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */,
 				EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */,
 				EC9E14F22C87D22C007A9F88 /* SceneDelegate.swift in Sources */,
 				EC3AB3632C8A7D1700DEDC44 /* InputWithDescriptionView.swift in Sources */,
