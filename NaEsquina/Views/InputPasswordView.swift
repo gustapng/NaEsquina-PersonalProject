@@ -1,16 +1,14 @@
 //
-//  LabelButton.swift
+//  InputPasswordView.swift
 //  NaEsquina
 //
-//  Created by Gustavo Ferreira dos Santos on 05/09/24.
+//  Created by Gustavo Ferreira dos Santos on 09/09/24.
 //
 
 import UIKit
 
-class InputWithDescriptionView: UIView {
+class InputPasswordView: UIView {
 
-    //MARK: UI Components
-    
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -27,22 +25,29 @@ class InputWithDescriptionView: UIView {
         textField.layer.borderWidth = 1.5
         textField.layer.borderColor = ColorsExtension.lightGray?.cgColor
         textField.layer.cornerRadius = 9
+        textField.isSecureTextEntry = true
         return textField
+    }()
+    
+    // Botão para alternar a visibilidade da senha
+    private lazy var toggleButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "eye.slash.fill"), for: .selected)
+        button.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        return button
     }()
     
     //MARK: Initializers
     
-    init(descriptionText: String, inputLabelPlaceholder: String, isPassword: Bool, iconName: String, iconSize: CGSize, isLeftView: Bool, horizontalRotation: Bool) {
+    init(descriptionText: String, inputLabelPlaceholder: String, iconSize: CGSize) {
         super.init(frame: .zero)
         descriptionLabel.text = descriptionText
         inputLabel.placeholder = inputLabelPlaceholder
-        let icon = UIImage(systemName: iconName) ?? UIImage()
+        let icon = UIImage(systemName: "key.horizontal") ?? UIImage()
         let iconColor = ColorsExtension.lightGray ?? UIColor()
-        print(iconSize)
-        inputLabel.addPaddingAndIcon(icon, iconColor, iconSize: iconSize, leftPadding: 15, rightPadding: 12, isLeftView: isLeftView, horizontalRotation: horizontalRotation)
-        if isPassword {
-            setupPasswordVisibilityToggle()
-        }
+        inputLabel.addPaddingAndIcon(icon, iconColor, iconSize: iconSize, leftPadding: 15, rightPadding: 12, isLeftView: true, horizontalRotation: true)
+        configurePasswordVisibility()
         setup()
     }
     
@@ -52,39 +57,19 @@ class InputWithDescriptionView: UIView {
     
     //MARK: Functions
     
-    //TODO REVISAR ESSA LÓGICA DE EXIBIR TOOGLE E PLACEHOLDER DO CAMPO NÃO APARECE
-    private func setupPasswordVisibilityToggle() {
-        let toggleButton = UIButton(type: .system)
-        toggleButton.setImage(UIImage(systemName: "eye"), for: .normal)
-        toggleButton.tintColor = .gray
-        toggleButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
-        
-        toggleButton.imageView?.contentMode = .scaleAspectFit
-        toggleButton.frame.size = CGSize(width: 16, height: 16)
-        
-        let rightViewContainer = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        rightViewContainer.addSubview(toggleButton)
-        
-        toggleButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            toggleButton.centerYAnchor.constraint(equalTo: rightViewContainer.centerYAnchor),
-            toggleButton.trailingAnchor.constraint(equalTo: rightViewContainer.trailingAnchor, constant: -8)
-        ])
-        
-        inputLabel.rightView = rightViewContainer
+    private func configurePasswordVisibility() {
+        toggleButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        inputLabel.rightView = toggleButton
         inputLabel.rightViewMode = .always
     }
     
     @objc private func togglePasswordVisibility() {
         inputLabel.isSecureTextEntry.toggle()
-        
-        let button = inputLabel.rightView?.subviews.first as? UIButton
-        let imageName = inputLabel.isSecureTextEntry ? "eye" : "eye.slash"
-        button?.setImage(UIImage(systemName: imageName), for: .normal)
+        toggleButton.isSelected.toggle()
     }
 }
 
-extension InputWithDescriptionView: SetupView {
+extension InputPasswordView: SetupView {
     func setup() {
         addSubviews()
         setupConstraints()

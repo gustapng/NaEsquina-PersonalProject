@@ -1,0 +1,59 @@
+# Ativa as regras que você deseja usar
+opt_in_rules:
+  - empty_count
+  - missing_docs
+
+# Desativa as regras que você não deseja usar
+disabled_rules:
+  - force_cast
+  - force_unwrapping
+
+# Configura a largura máxima de linha
+line_length:
+  warning: 120
+  error: 150
+
+# Configura a complexidade ciclomática
+cyclomatic_complexity:
+  warning: 10
+  error: 15
+
+# Configura a indentação
+indentation_width:
+  width: 4
+  warning: true
+
+# Configura o comprimento máximo do corpo da função
+function_body_length:
+  warning: 40
+  error: 60
+
+# Configura o comprimento máximo do nome da variável
+variable_name:
+  min_length: 3
+  max_length: 30
+
+# Configura espaços em branco à direita
+trailing_whitespace:
+  warning: true
+
+# Configura o uso de chaves em estruturas de controle
+control_statement:
+  required: true
+
+# Especifica quais diretórios ou arquivos devem ser incluídos ou excluídos
+included:
+  - Source
+  - Tests
+
+excluded:
+  - Carthage
+  - Pods
+  - Vendor
+
+# Configura a lista de arquivos para aplicar as regras
+file_header:
+  enabled: true
+  text: |
+    //  @file: SwiftLint
+    //  @description: SwiftLint configuration

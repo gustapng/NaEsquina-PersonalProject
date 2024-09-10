@@ -15,6 +15,10 @@
 		EC9E14F42C87D22C007A9F88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14F32C87D22C007A9F88 /* ViewController.swift */; };
 		EC9E14F92C87D22D007A9F88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC9E14F82C87D22D007A9F88 /* Assets.xcassets */; };
 		EC9E14FC2C87D22D007A9F88 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EC9E14FB2C87D22D007A9F88 /* Base */; };
+		ECABB0522C8FB0740030042E /* InputPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0512C8FB0740030042E /* InputPasswordView.swift */; };
+		ECABB0542C8FC6C20030042E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0532C8FC6C20030042E /* RegisterViewController.swift */; };
+		ECABB0562C8FC97D0030042E /* mainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0552C8FC97D0030042E /* mainMenuViewController.swift */; };
+		ECABB05B2C8FCDCA0030042E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = ECABB05A2C8FCDCA0030042E /* .swiftlint.yml */; };
 		ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919232C8E31C00094B898 /* UITextField+Extension.swift */; };
 		ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */; };
 		ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919282C8E66150094B898 /* RecoveryViewController.swift */; };
@@ -31,6 +35,10 @@
 		EC9E14F82C87D22D007A9F88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC9E14FB2C87D22D007A9F88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC9E14FD2C87D22D007A9F88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECABB0512C8FB0740030042E /* InputPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordView.swift; sourceTree = "<group>"; };
+		ECABB0532C8FC6C20030042E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		ECABB0552C8FC97D0030042E /* mainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainMenuViewController.swift; sourceTree = "<group>"; };
+		ECABB05A2C8FCDCA0030042E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		ECE919232C8E31C00094B898 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewDescriptionView.swift; sourceTree = "<group>"; };
 		ECE919282C8E66150094B898 /* RecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				EC3AB3622C8A7D1700DEDC44 /* InputWithDescriptionView.swift */,
+				ECABB0512C8FB0740030042E /* InputPasswordView.swift */,
 				ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */,
 			);
 			path = Views;
@@ -68,6 +77,8 @@
 			children = (
 				EC9E14F32C87D22C007A9F88 /* ViewController.swift */,
 				ECE919282C8E66150094B898 /* RecoveryViewController.swift */,
+				ECABB0532C8FC6C20030042E /* RegisterViewController.swift */,
+				ECABB0552C8FC97D0030042E /* mainMenuViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -126,6 +137,7 @@
 				EC9E14F12C87D22C007A9F88 /* SceneDelegate.swift */,
 				EC9E14FA2C87D22D007A9F88 /* LaunchScreen.storyboard */,
 				EC9E14FD2C87D22D007A9F88 /* Info.plist */,
+				ECABB05A2C8FCDCA0030042E /* .swiftlint.yml */,
 			);
 			path = NaEsquina;
 			sourceTree = "<group>";
@@ -174,6 +186,9 @@
 				Base,
 			);
 			mainGroup = EC9E14E32C87D22C007A9F88;
+			packageReferences = (
+				ECABB0572C8FCD400030042E /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+			);
 			productRefGroup = EC9E14ED2C87D22C007A9F88 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -188,6 +203,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECABB05B2C8FCDCA0030042E /* .swiftlint.yml in Resources */,
 				EC9E14F92C87D22D007A9F88 /* Assets.xcassets in Resources */,
 				EC9E14FC2C87D22D007A9F88 /* Base in Resources */,
 			);
@@ -200,11 +216,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECABB0522C8FB0740030042E /* InputPasswordView.swift in Sources */,
 				EC9E14F42C87D22C007A9F88 /* ViewController.swift in Sources */,
 				EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */,
 				ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */,
+				ECABB0562C8FC97D0030042E /* mainMenuViewController.swift in Sources */,
 				ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */,
 				ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */,
+				ECABB0542C8FC6C20030042E /* RegisterViewController.swift in Sources */,
 				EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */,
 				EC9E14F22C87D22C007A9F88 /* SceneDelegate.swift in Sources */,
 				EC3AB3632C8A7D1700DEDC44 /* InputWithDescriptionView.swift in Sources */,
@@ -421,6 +440,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ECABB0572C8FCD400030042E /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.57.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = EC9E14E42C87D22C007A9F88 /* Project object */;
 }
