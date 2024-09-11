@@ -8,33 +8,33 @@
 import UIKit.UITextField
 
 extension UITextField {
-    func addPaddingAndIcon(_ image: UIImage, _ color: UIColor, iconSize: CGSize, leftPadding: CGFloat, rightPadding: CGFloat, isLeftView: Bool, horizontalRotation: Bool) {
-        let totalPadding = leftPadding + rightPadding
-        let frame = CGRect(x: 0, y: 0, width: image.size.width + totalPadding, height: image.size.height)
+    func addPaddingAndIcon(_ img: UIImage, _ color: UIColor, iconSize: CGSize, leftPad: CGFloat, rightPad: CGFloat, isLeftView: Bool, horRotation: Bool)
+ {
+        let totalPadding = leftPad + rightPad
+        let frame = CGRect(x: 0, y: 0, width: img.size.width + totalPadding, height: img.size.height)
 
         let outerView = UIView(frame: frame)
-        
-        let iconView  = UIImageView(image: image)
+
+        let iconView  = UIImageView(image: img)
         iconView.tintColor = color
         iconView.contentMode = .center
-        
-        iconView.frame = CGRect(x: leftPadding, y: 0, width: iconSize.width, height: iconSize.height)
 
-        if horizontalRotation {
+        iconView.frame = CGRect(x: leftPad, y: 0, width: iconSize.width, height: iconSize.height)
+
+        if horRotation {
             iconView.transform = CGAffineTransform(scaleX: -1, y: 1)
         }
-        
+
         if isLeftView {
-            iconView.frame = CGRect(x: leftPadding, y: 0, width: image.size.width, height: image.size.height)
+            iconView.frame = CGRect(x: leftPad, y: 0, width: img.size.width, height: img.size.height)
             outerView.addSubview(iconView)
             leftViewMode = .always
             leftView = outerView
         } else {
-            iconView.frame = CGRect(x: rightPadding, y: 0, width: image.size.width, height: image.size.height)
+            iconView.frame = CGRect(x: rightPad, y: 0, width: img.size.width, height: img.size.height)
             outerView.addSubview(iconView)
             rightViewMode = .always
             rightView = outerView
         }
     }
 }
-
