@@ -82,14 +82,11 @@ class ViewController: UIViewController {
         return button
     }()
 
-    // MARK: Initializers
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
-    }
-
     // MARK: Functions
+
+    @objc func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
 
     @objc private func goToRecoverView() {
         let recoveryViewController = RecoveryViewController()
@@ -102,8 +99,16 @@ class ViewController: UIViewController {
     }
 
     @objc private func goToMainMenuView() {
+        // TODO - Lógica de login
         let mainMenuViewController = MainMenuViewController()
         navigationController?.pushViewController(mainMenuViewController, animated: true)
+    }
+
+    // MARK: Initializers
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
     }
 }
 
