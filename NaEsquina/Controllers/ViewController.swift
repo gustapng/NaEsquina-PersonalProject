@@ -18,13 +18,13 @@ class ViewController: UIViewController {
     }()
 
     private lazy var emailInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", isPassword: false, icon: "envelope", iconSize: CGSize(width: 20, height: 20), leftView: true, horRotation: false)
+        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", isPassword: false, icon: "envelope", leftView: true, horRotation: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private lazy var passwordInputWithDescriptionView: InputPasswordView = {
-        let view = InputPasswordView(descriptionText: "Senha", inputLabelPlaceholder: "Sua senha", iconSize: CGSize(width: 20, height: 20))
+        let view = InputPasswordView(descriptionText: "Senha", inputLabelPlaceholder: "Sua senha")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

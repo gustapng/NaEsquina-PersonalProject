@@ -21,6 +21,8 @@ class RecoveryViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    // MARK: Initializers
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()

@@ -22,25 +22,25 @@ class RegisterViewController: UIViewController {
     }()
 
     private lazy var userInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Nome de usuário", inputPlaceholder: "Seu nome", isPassword: false, icon: "person", iconSize: CGSize(width: 20, height: 20), leftView: true, horRotation: false)
+        let view = InputWithDescriptionView(descriptionText: "Nome de usuário", inputPlaceholder: "Seu nome", isPassword: false, icon: "person", leftView: true, horRotation: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private lazy var emailInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", isPassword: false, icon: "envelope", iconSize: CGSize(width: 20, height: 20), leftView: true, horRotation: false)
+        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", isPassword: false, icon: "envelope", leftView: true, horRotation: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private lazy var passwordInputWithDescriptionView: InputPasswordView = {
-        let view = InputPasswordView(descriptionText: "Senha", inputLabelPlaceholder: "Sua senha", iconSize: CGSize(width: 20, height: 20))
+        let view = InputPasswordView(descriptionText: "Senha", inputLabelPlaceholder: "Sua senha")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private lazy var rePasswordInputWithDescriptionView: InputPasswordView = {
-        let view = InputPasswordView(descriptionText: "Confirmar senha", inputLabelPlaceholder: "Confirme sua senha", iconSize: CGSize(width: 20, height: 20))
+        let view = InputPasswordView(descriptionText: "Confirmar senha", inputLabelPlaceholder: "Confirme sua senha")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

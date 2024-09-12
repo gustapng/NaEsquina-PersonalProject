@@ -28,10 +28,10 @@ class CurrentViewDescriptionView: UIView {
     }()
 
     // MARK: Initializers
-    init(ViewTitle: String, ViewDescription: String) {
+    init(viewTitle: String, viewDescription: String) {
         super.init(frame: .zero)
-        viewTitleLabel.text = ViewTitle
-        viewDescriptionLabel.text = ViewDescription
+        viewTitleLabel.text = viewTitle
+        viewDescriptionLabel.text = viewDescription
         setup()
     }
 
@@ -59,7 +59,7 @@ extension CurrentViewDescriptionView: SetupView {
 
             viewDescriptionLabel.topAnchor.constraint(equalTo: viewTitleLabel.bottomAnchor, constant: 12),
             viewDescriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            viewDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 30),
+            viewDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 30)
         ])
     }
 }

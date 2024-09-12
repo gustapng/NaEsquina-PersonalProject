@@ -55,7 +55,7 @@ class InputPasswordView: UIView {
 
     // MARK: Initializers
 
-    init(descriptionText: String, inputLabelPlaceholder: String, iconSize: CGSize) {
+    init(descriptionText: String, inputLabelPlaceholder: String) {
         super.init(frame: .zero)
         descriptionLabel.text = descriptionText
         inputLabel.placeholder = inputLabelPlaceholder

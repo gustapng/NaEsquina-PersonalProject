@@ -31,14 +31,14 @@ class InputWithDescriptionView: UIView {
 
     // MARK: Initializers
 
-    init(descriptionText: String, inputPlaceholder: String, isPassword: Bool, icon: String, iconSize: CGSize, leftView: Bool, horRotation: Bool) {
+    init(descriptionText: String, inputPlaceholder: String, isPassword: Bool, icon: String, leftView: Bool, horRotation: Bool) {
         super.init(frame: .zero)
         descriptionLabel.text = descriptionText
         inputLabel.placeholder = inputPlaceholder
         let icon = UIImage(systemName: icon) ?? UIImage()
         let iconColor = ColorsExtension.lightGray ?? UIColor()
-        print(iconSize)
-        inputLabel.addPaddingAndIcon(icon, iconColor, iconSize: iconSize, leftPad: 15, rightPad: 12, isLeftView: leftView, horRotation: horRotation)
+
+        inputLabel.addPaddingAndIcon(icon, iconColor, leftPad: 15, rightPad: 12, isLeftView: leftView, horRotation: horRotation)
         if isPassword {
             setupPasswordVisibilityToggle()
         }
