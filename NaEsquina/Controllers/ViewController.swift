@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     // MARK: UI Components
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
-        let view = CurrentViewDescriptionView(ViewTitle: "Login", ViewDescription: "Faça login para continuar usando o aplicativo")
+        let view = CurrentViewDescriptionView(viewTitle: "Login", viewDescription: "Faça login para continuar usando o aplicativo")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

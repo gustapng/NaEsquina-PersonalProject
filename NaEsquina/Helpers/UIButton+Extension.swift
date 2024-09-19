@@ -8,17 +8,18 @@
 import UIKit.UIButton
 
 extension UIButton {
-    static func createCustomBackButton(target: Any?, action: Selector, borderColor: UIColor = .black, borderWidth: CGFloat = 1.5, cornerRadius: CGFloat = 9, imageSize: CGFloat = 12) -> UIButton {
+    static func createCustomBackButton(target: Any?, action: Selector, borderColor: UIColor = .black,
+                                       borderWidth: CGFloat = 1.5, cornerRadius: CGFloat = 9, imageSize: CGFloat = 12) -> UIButton {
 
         let backButton = UIButton(type: .system)
 
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: imageSize, weight: .regular) // Reduz o tamanho da imagem
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: imageSize, weight: .regular)
         let resizedImage = UIImage(systemName: "arrow.backward", withConfiguration: imageConfig)
 
         var config = UIButton.Configuration.plain()
         config.image = resizedImage
-        config.baseForegroundColor = .black // Cor do ícone
-        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0) // Remove padding interno
+        config.baseForegroundColor = .black
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
 
         backButton.configuration = config
         backButton.layer.borderColor = borderColor.cgColor

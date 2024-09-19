@@ -8,11 +8,28 @@
 import UIKit
 
 class MainMenuViewController: UIViewController {
-    
+
     // MARK: UI Components
 
     private lazy var backButton: UIButton = {
-        return UIButton.createCustomBackButton(target: self, action: #selector(backButtonTapped), borderColor: ColorsExtension.lightGray ?? .black)
+        return UIButton.createCustomBackButton(target: self, action: #selector(backButtonTapped),
+                                               borderColor: ColorsExtension.lightGray ?? .black)
+    }()
+    
+    private lazy var bottomBar: UITabBar = {
+        let tabBar = UITabBar()
+        tabBar.translatesAutoresizingMaskIntoConstraints = false
+        tabBar.unselectedItemTintColor = ColorsExtension.purpleMedium
+        tabBar.tintColor = ColorsExtension.purpleMedium
+        tabBar.barTintColor = .white
+        tabBar.delegate = self
+        
+        let homeItem = UITabBarItem(title: "Início", image: UIImage(systemName: "house"), tag: 0)
+        let filterItem = UITabBarItem(title: "Filtro", image: UIImage(systemName: "line.3.horizontal.decrease.circle"), tag: 1)
+        let perfilItem = UITabBarItem(title: "Perfil", image: UIImage(systemName: "person"), tag: 2)
+
+        tabBar.items = [homeItem, filterItem, perfilItem]
+        return tabBar
     }()
 
     // MARK: Functions
@@ -21,11 +38,48 @@ class MainMenuViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    @objc func goToHome() {
+        let alert = UIAlertController(title: "Home", message: "Volta para home", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
+    @objc func openSheet() {
+        let sheetViewController = FilterView()
+        if let sheet = sheetViewController.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+        }
+        present(sheetViewController, animated: true, completion: nil)
+    }
+
+    @objc func goToOtherScreen() {
+        let nextViewController = UIViewController()
+        nextViewController.view.backgroundColor = .white
+        nextViewController.title = "Outra Tela"
+        navigationController?.pushViewController(nextViewController, animated: true)
+    }
+
     // MARK: Initializers
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+    }
+}
+
+extension MainMenuViewController: UITabBarDelegate {
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        switch item.tag {
+        case 0:
+            goToHome()
+        case 1:
+            openSheet()
+        case 2:
+            goToOtherScreen()
+        default:
+            break
+        }
     }
 }
 
@@ -36,15 +90,21 @@ extension MainMenuViewController: SetupView {
         addSubviews()
         setupConstraints()
     }
-    
+
     func addSubviews() {
         view.addSubview(backButton)
+        view.addSubview(bottomBar)
     }
-    
+
     func setupConstraints() {
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+
+            bottomBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomBar.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 }
