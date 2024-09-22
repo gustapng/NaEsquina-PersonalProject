@@ -1,5 +1,5 @@
 //
-//  FilterView.swift
+//  FilterViewController.swift
 //  NaEsquina
 //
 //  Created by Gustavo Ferreira dos Santos on 18/09/24.
@@ -7,11 +7,10 @@
 
 import UIKit
 
-class FilterView: UIView {
+class FilterViewController: UIViewController {
 
     // MARK: UI Components
 
-    // TODO: REVIEW LAYOUT AND ITENS OF SHEET FILTERS AND SWITCH TO UIVIEWCONTROLLER
     private lazy var viewLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -23,29 +22,27 @@ class FilterView: UIView {
     }()
         
     // MARK: Initializers
-    init() {
-        super.init(frame: .zero)
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
         setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension FilterView: SetupView {
+extension FilterViewController: SetupView {
     func setup() {
+        view.backgroundColor = .white
         addSubviews()
         setupConstraints()
     }
     
     func addSubviews() {
-        addSubview(viewLabel)
+        view.addSubview(viewLabel)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            viewLabel.leadingAnchor.constraint(equalTo: <#T##NSLayoutAnchor<NSLayoutXAxisAnchor>#>, constant: <#T##CGFloat#>)
+            viewLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }

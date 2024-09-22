@@ -45,7 +45,7 @@ class MainMenuViewController: UIViewController {
     }
 
     @objc func openSheet() {
-        let sheetViewController = FilterView()
+        let sheetViewController = FilterViewController()
         if let sheet = sheetViewController.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.prefersGrabberVisible = true
