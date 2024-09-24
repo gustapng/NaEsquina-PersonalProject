@@ -26,6 +26,12 @@ class OtpViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private lazy var optCodeView: OtpTextFieldView = {
+        let view = OtpTextFieldView(descriptionText: "Código de verificação")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     private lazy var sendCodeButton: UIButton = {
         let button = UIButton()
@@ -100,7 +106,7 @@ extension OtpViewController: SetupView {
     func addSubviews() {
         view.addSubview(backButton)
         view.addSubview(imageWithDescription)
-        view.addSubview(emailInputWithDescriptionView)
+        view.addSubview(optCodeView)
         view.addSubview(sendCodeButton)
         view.addSubview(resendCodeLabel)
         view.addSubview(resendCodeButton)
@@ -116,11 +122,11 @@ extension OtpViewController: SetupView {
             imageWithDescription.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             imageWithDescription.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            emailInputWithDescriptionView.topAnchor.constraint(equalTo: imageWithDescription.bottomAnchor, constant: 58),
-            emailInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            emailInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-
-            sendCodeButton.topAnchor.constraint(equalTo: emailInputWithDescriptionView.bottomAnchor, constant: 38),
+            optCodeView.topAnchor.constraint(equalTo: imageWithDescription.bottomAnchor, constant: 58),
+            optCodeView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            optCodeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            
+            sendCodeButton.topAnchor.constraint(equalTo: optCodeView.bottomAnchor, constant: 38),
             sendCodeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             sendCodeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             sendCodeButton.heightAnchor.constraint(equalToConstant: 45),

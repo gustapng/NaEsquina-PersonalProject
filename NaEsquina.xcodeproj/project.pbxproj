@@ -10,6 +10,7 @@
 		EC2560412C92677800F076F5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2560402C92677800F076F5 /* UIButton+Extension.swift */; };
 		EC3AB3612C8A75A100DEDC44 /* ColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */; };
 		EC3AB3632C8A7D1700DEDC44 /* InputWithDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3AB3622C8A7D1700DEDC44 /* InputWithDescriptionView.swift */; };
+		EC5063BE2CA23A31009852FA /* OtpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5063BD2CA23A31009852FA /* OtpTextFieldView.swift */; };
 		EC65642C2C9B926C00953563 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65642B2C9B926C00953563 /* FilterViewController.swift */; };
 		EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */; };
 		EC95A7CF2CA0C13B00661DEA /* OtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */; };
@@ -33,6 +34,7 @@
 		EC2560402C92677800F076F5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsExtension.swift; sourceTree = "<group>"; };
 		EC3AB3622C8A7D1700DEDC44 /* InputWithDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputWithDescriptionView.swift; sourceTree = "<group>"; };
+		EC5063BD2CA23A31009852FA /* OtpTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpTextFieldView.swift; sourceTree = "<group>"; };
 		EC65642B2C9B926C00953563 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewExtension.swift; sourceTree = "<group>"; };
 		EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewController.swift; sourceTree = "<group>"; };
@@ -76,8 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				EC3AB3622C8A7D1700DEDC44 /* InputWithDescriptionView.swift */,
-				ECABB0512C8FB0740030042E /* InputPasswordView.swift */,
+				EC5063BD2CA23A31009852FA /* OtpTextFieldView.swift */,
 				ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */,
+				ECABB0512C8FB0740030042E /* InputPasswordView.swift */,
 				ECBA89242C9F9F920016AAB4 /* ImageWithInfoView.swift */,
 			);
 			path = Views;
@@ -211,6 +214,7 @@
 			mainGroup = EC9E14E32C87D22C007A9F88;
 			packageReferences = (
 				ECABB0572C8FCD400030042E /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+				EC5063BC2CA22D5F009852FA /* XCRemoteSwiftPackageReference "OTPFieldView" */,
 			);
 			productRefGroup = EC9E14ED2C87D22C007A9F88 /* Products */;
 			projectDirPath = "";
@@ -239,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC5063BE2CA23A31009852FA /* OtpTextFieldView.swift in Sources */,
 				EC65642C2C9B926C00953563 /* FilterViewController.swift in Sources */,
 				ECABB0522C8FB0740030042E /* InputPasswordView.swift in Sources */,
 				EC9E14F42C87D22C007A9F88 /* ViewController.swift in Sources */,
@@ -470,6 +475,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EC5063BC2CA22D5F009852FA /* XCRemoteSwiftPackageReference "OTPFieldView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Root-vb/OTPFieldView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
 		ECABB0572C8FCD400030042E /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
