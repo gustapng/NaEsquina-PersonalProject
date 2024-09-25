@@ -9,6 +9,10 @@ import UIKit
 
 class OtpTextFieldView: UIView {
 
+    // MARK: Properties
+    private var numberOfFields: Int
+    private var otpTextFields: [UITextField] = []
+    
     // MARK: UI Components
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
@@ -16,76 +20,6 @@ class OtpTextFieldView: UIView {
         label.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         label.textColor = .black
         return label
-    }()
-
-    private lazy var otpVerificationTextField1: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textColor = ColorsExtension.lightGray
-        textField.backgroundColor = ColorsExtension.lightGrayBackground
-        textField.layer.borderWidth = 1.5
-        textField.layer.borderColor = ColorsExtension.lightGray?.cgColor
-        textField.layer.cornerRadius = 9
-        textField.textAlignment = .center
-        textField.autocapitalizationType = .allCharacters
-        textField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        return textField
-    }()
-
-    private lazy var otpVerificationTextField2: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textColor = ColorsExtension.lightGray
-        textField.backgroundColor = ColorsExtension.lightGrayBackground
-        textField.layer.borderWidth = 1.5
-        textField.layer.borderColor = ColorsExtension.lightGray?.cgColor
-        textField.layer.cornerRadius = 9
-        textField.textAlignment = .center
-        textField.autocapitalizationType = .allCharacters
-        textField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        return textField
-    }()
-
-    private lazy var otpVerificationTextField3: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textColor = ColorsExtension.lightGray
-        textField.backgroundColor = ColorsExtension.lightGrayBackground
-        textField.layer.borderWidth = 1.5
-        textField.layer.borderColor = ColorsExtension.lightGray?.cgColor
-        textField.layer.cornerRadius = 9
-        textField.textAlignment = .center
-        textField.autocapitalizationType = .allCharacters
-        textField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        return textField
-    }()
-
-    private lazy var otpVerificationTextField4: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textColor = ColorsExtension.lightGray
-        textField.backgroundColor = ColorsExtension.lightGrayBackground
-        textField.layer.borderWidth = 1.5
-        textField.layer.borderColor = ColorsExtension.lightGray?.cgColor
-        textField.layer.cornerRadius = 9
-        textField.textAlignment = .center
-        textField.autocapitalizationType = .allCharacters
-        textField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        return textField
-    }()
-
-    private lazy var otpVerificationTextField5: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textColor = ColorsExtension.lightGray
-        textField.backgroundColor = ColorsExtension.lightGrayBackground
-        textField.layer.borderWidth = 1.5
-        textField.layer.borderColor = ColorsExtension.lightGray?.cgColor
-        textField.layer.cornerRadius = 9
-        textField.textAlignment = .center
-        textField.autocapitalizationType = .allCharacters
-        textField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        return textField
     }()
 
     private lazy var otpContainerHorizontalStackView: UIStackView = {
@@ -99,7 +33,8 @@ class OtpTextFieldView: UIView {
 
     // MARK: Initializers
 
-    init(descriptionText: String) {
+    init(descriptionText: String, numberOfFields: Int) {
+        self.numberOfFields = numberOfFields
         super.init(frame: .zero)
         descriptionLabel.text = descriptionText
         setup()
@@ -111,57 +46,57 @@ class OtpTextFieldView: UIView {
 
     // MARK: Functions
 
-    @objc private func textDidChange(textField: UITextField) {
-        let text = textField.text
-        if text?.count == 1 {
-            switch textField {
-                case otpVerificationTextField1:
-                    otpVerificationTextField2.becomeFirstResponder()
-                case otpVerificationTextField2:
-                    otpVerificationTextField3.becomeFirstResponder()
-                case otpVerificationTextField3:
-                    otpVerificationTextField4.becomeFirstResponder()
-                case otpVerificationTextField4:
-                    otpVerificationTextField5.becomeFirstResponder()
-                case otpVerificationTextField5:
-                    otpVerificationTextField5.resignFirstResponder()
-            default:
-                break
-            }
-        }
-        if text?.count == 0 {
-            switch textField {
-                case otpVerificationTextField1:
-                    otpVerificationTextField1.becomeFirstResponder()
-                case otpVerificationTextField2:
-                    otpVerificationTextField1.becomeFirstResponder()
-                case otpVerificationTextField3:
-                    otpVerificationTextField2.becomeFirstResponder()
-                case otpVerificationTextField4:
-                    otpVerificationTextField3.becomeFirstResponder()
-                case otpVerificationTextField5:
-                    otpVerificationTextField4.becomeFirstResponder()
-            default:
-                break
-            }
-        }
+    private func createTextField() -> UITextField {
+          let textField = UITextField()
+          textField.translatesAutoresizingMaskIntoConstraints = false
+          textField.textColor = ColorsExtension.lightGray
+          textField.backgroundColor = ColorsExtension.lightGrayBackground
+          textField.layer.borderWidth = 1.5
+          textField.layer.borderColor = ColorsExtension.lightGray?.cgColor
+          textField.layer.cornerRadius = 9
+          textField.textAlignment = .center
+          textField.autocapitalizationType = .allCharacters
+          textField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+          return textField
+      }
+
+      private func setupFields() {
+          for _ in 0..<numberOfFields {
+              let textField = createTextField()
+              otpTextFields.append(textField)
+              otpContainerHorizontalStackView.addArrangedSubview(textField)
+          }
+      }
+    
+    func getOtpValues() -> String {
+        return otpTextFields.compactMap { $0.text }.joined()
     }
+    
+    @objc private func textDidChange(textField: UITextField) {
+         guard let index = otpTextFields.firstIndex(of: textField) else { return }
+         
+         if let text = textField.text, text.count == 1 {
+             if index < numberOfFields - 1 {
+                 otpTextFields[index + 1].becomeFirstResponder()
+             } else {
+                 textField.resignFirstResponder()
+             }
+         } else if textField.text?.count == 0 && index > 0 {
+             otpTextFields[index - 1].becomeFirstResponder()
+         }
+     }
 }
 
 extension OtpTextFieldView: SetupView {
     func setup() {
         addSubviews()
+        setupFields()
         setupConstraints()
     }
 
     func addSubviews() {
         addSubview(descriptionLabel)
         addSubview(otpContainerHorizontalStackView)
-        otpContainerHorizontalStackView.addArrangedSubview(otpVerificationTextField1)
-        otpContainerHorizontalStackView.addArrangedSubview(otpVerificationTextField2)
-        otpContainerHorizontalStackView.addArrangedSubview(otpVerificationTextField3)
-        otpContainerHorizontalStackView.addArrangedSubview(otpVerificationTextField4)
-        otpContainerHorizontalStackView.addArrangedSubview(otpVerificationTextField5)
     }
 
     func setupConstraints() {

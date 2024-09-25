@@ -28,7 +28,7 @@ class OtpViewController: UIViewController {
     }()
     
     private lazy var optCodeView: OtpTextFieldView = {
-        let view = OtpTextFieldView(descriptionText: "Código de verificação")
+        let view = OtpTextFieldView(descriptionText: "Digite o código de verificação", numberOfFields: 5)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -79,7 +79,12 @@ class OtpViewController: UIViewController {
     }
 
     @objc private func goToNewPasswordView() {
-        // CRIAR VIEW CONTROLLER DE NOVA SENHA
+        let otpCode = optCodeView.getOtpValues()
+        if otpCode.count < 5 {
+            print("Código OTP inserido com erro: \(otpCode)")
+            return
+        }
+        print("Código OTP inserido com sucesso!: \(otpCode)")
     }
 
     @objc private func resendCode() {
