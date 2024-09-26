@@ -16,7 +16,7 @@ class RecoveryViewController: UIViewController {
     }()
 
     private lazy var imageWithDescription: ImageWithInfoView = {
-        let view = ImageWithInfoView(image: Constants.PasswordRecovery.image, mainMessage: Constants.PasswordRecovery.mainMessage, description: Constants.PasswordRecovery.description)
+        let view = ImageWithInfoView(image: Constants.PasswordRecovery.imageDetails, mainMessage: Constants.PasswordRecovery.mainMessage, description: Constants.PasswordRecovery.description)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

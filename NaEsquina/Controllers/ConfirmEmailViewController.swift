@@ -1,14 +1,14 @@
 //
-//  OtpViewController.swift
+//  ConfirmEmailViewController.swift
 //  NaEsquina
 //
-//  Created by Gustavo Ferreira dos Santos on 22/09/24.
+//  Created by Gustavo Ferreira dos Santos on 25/09/24.
 //
 
 import UIKit
 
-class OtpViewController: UIViewController {
-
+class ConfirmEmailViewController: UIViewController {
+    
     // MARK: UI Components
 
     private lazy var backButton: UIButton = {
@@ -16,7 +16,7 @@ class OtpViewController: UIViewController {
     }()
 
     private lazy var imageWithDescription: ImageWithInfoView = {
-        let view = ImageWithInfoView(image: Constants.OtpVerification.imageDetails, mainMessage: Constants.OtpVerification.mainMessage, description: Constants.OtpVerification.description)
+        let view = ImageWithInfoView(image: Constants.ConfirmEmail.imageDetails, mainMessage: Constants.ConfirmEmail.mainMessage, description: Constants.ConfirmEmail.description)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -72,10 +72,6 @@ class OtpViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
-    @objc private func goToNewPasswordView() {
-        // CRIAR VIEW CONTROLLER DE NOVA SENHA
-    }
-
     @objc private func resendCode() {
         // Lógica para reenviar código de recuperação para o email
         print("Reenviar código")
@@ -89,14 +85,14 @@ class OtpViewController: UIViewController {
     }
 }
 
-extension OtpViewController: SetupView {
+extension ConfirmEmailViewController: SetupView {
     func setup() {
         self.navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
         addSubviews()
         setupConstraints()
     }
-
+    
     func addSubviews() {
         view.addSubview(backButton)
         view.addSubview(imageWithDescription)
@@ -105,7 +101,7 @@ extension OtpViewController: SetupView {
         view.addSubview(resendCodeLabel)
         view.addSubview(resendCodeButton)
     }
-
+    
     func setupConstraints() {
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -133,3 +129,4 @@ extension OtpViewController: SetupView {
         ])
     }
 }
+

@@ -53,7 +53,7 @@ class RegisterViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorsExtension.purpleMedium
         button.layer.cornerRadius = 9
-        //button.addTarget(self, action: #selector(goToMainMenuView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(goToConfirmEmailViewController), for: .touchUpInside)
         button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.layer.shadowOpacity = 1
@@ -72,6 +72,11 @@ class RegisterViewController: UIViewController {
 
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func goToConfirmEmailViewController() {
+        let confirmEmailViewController = ConfirmEmailViewController()
+        navigationController?.pushViewController(confirmEmailViewController, animated: true)
     }
 }
 
