@@ -76,6 +76,13 @@ class ConfirmEmailViewController: UIViewController {
         // Lógica para reenviar código de recuperação para o email
         print("Reenviar código")
     }
+    
+    @objc func goToNewPasswordView() {
+        let newPasswordController = UIViewController()
+        newPasswordController.view.backgroundColor = .white
+        newPasswordController.title = "Outra Tela"
+        navigationController?.pushViewController(newPasswordController, animated: true)
+    }
 
     // MARK: Initializers
 

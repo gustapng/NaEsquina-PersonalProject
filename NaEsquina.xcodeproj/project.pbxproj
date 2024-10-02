@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC1D87312CACC676002363A4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EC1D87302CACC670002363A4 /* README.md */; };
+		EC1D87332CACC874002363A4 /* BusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1D87322CACC874002363A4 /* BusinessViewController.swift */; };
+		EC1D87352CACCB2A002363A4 /* SheetInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1D87342CACCB2A002363A4 /* SheetInfoView.swift */; };
 		EC2560412C92677800F076F5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2560402C92677800F076F5 /* UIButton+Extension.swift */; };
 		EC3AB3612C8A75A100DEDC44 /* ColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */; };
 		EC3AB3632C8A7D1700DEDC44 /* InputWithDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3AB3622C8A7D1700DEDC44 /* InputWithDescriptionView.swift */; };
 		EC5063BE2CA23A31009852FA /* OtpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5063BD2CA23A31009852FA /* OtpTextFieldView.swift */; };
+		EC598E512CAC8ED000BDF9B0 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */; };
 		EC65642C2C9B926C00953563 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65642B2C9B926C00953563 /* FilterViewController.swift */; };
 		EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */; };
 		EC85914B2CA4D7E000621C33 /* ConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */; };
@@ -32,10 +36,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC1D87302CACC670002363A4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EC1D87322CACC874002363A4 /* BusinessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessViewController.swift; sourceTree = "<group>"; };
+		EC1D87342CACCB2A002363A4 /* SheetInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetInfoView.swift; sourceTree = "<group>"; };
 		EC2560402C92677800F076F5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsExtension.swift; sourceTree = "<group>"; };
 		EC3AB3622C8A7D1700DEDC44 /* InputWithDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputWithDescriptionView.swift; sourceTree = "<group>"; };
 		EC5063BD2CA23A31009852FA /* OtpTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpTextFieldView.swift; sourceTree = "<group>"; };
+		EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		EC65642B2C9B926C00953563 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewExtension.swift; sourceTree = "<group>"; };
 		EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmailViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +92,7 @@
 				ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */,
 				ECABB0512C8FB0740030042E /* InputPasswordView.swift */,
 				ECBA89242C9F9F920016AAB4 /* ImageWithInfoView.swift */,
+				EC1D87342CACCB2A002363A4 /* SheetInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -96,8 +105,10 @@
 				ECABB0532C8FC6C20030042E /* RegisterViewController.swift */,
 				ECABB0552C8FC97D0030042E /* MainMenuViewController.swift */,
 				EC65642B2C9B926C00953563 /* FilterViewController.swift */,
+				EC1D87322CACC874002363A4 /* BusinessViewController.swift */,
 				EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */,
 				EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */,
+				EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -147,6 +158,7 @@
 		EC9E14EE2C87D22C007A9F88 /* NaEsquina */ = {
 			isa = PBXGroup;
 			children = (
+				EC1D87302CACC670002363A4 /* README.md */,
 				EC821F662C8A69E900F35B96 /* Models */,
 				EC821F672C8A69FD00F35B96 /* Views */,
 				EC821F682C8A6A0700F35B96 /* Controllers */,
@@ -234,6 +246,7 @@
 			files = (
 				ECABB05B2C8FCDCA0030042E /* .swiftlint.yml in Resources */,
 				EC9E14F92C87D22D007A9F88 /* Assets.xcassets in Resources */,
+				EC1D87312CACC676002363A4 /* README.md in Resources */,
 				EC9E14FC2C87D22D007A9F88 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,6 +260,7 @@
 			files = (
 				EC5063BE2CA23A31009852FA /* OtpTextFieldView.swift in Sources */,
 				EC65642C2C9B926C00953563 /* FilterViewController.swift in Sources */,
+				EC1D87352CACCB2A002363A4 /* SheetInfoView.swift in Sources */,
 				ECABB0522C8FB0740030042E /* InputPasswordView.swift in Sources */,
 				EC9E14F42C87D22C007A9F88 /* ViewController.swift in Sources */,
 				EC2560412C92677800F076F5 /* UIButton+Extension.swift in Sources */,
@@ -255,6 +269,7 @@
 				ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */,
 				ECABB0562C8FC97D0030042E /* MainMenuViewController.swift in Sources */,
 				ECBA89282C9FAE240016AAB4 /* Constants.swift in Sources */,
+				EC1D87332CACC874002363A4 /* BusinessViewController.swift in Sources */,
 				ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */,
 				EC95A7CF2CA0C13B00661DEA /* OtpViewController.swift in Sources */,
 				ECBA89252C9F9F920016AAB4 /* ImageWithInfoView.swift in Sources */,
@@ -263,6 +278,7 @@
 				EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */,
 				EC9E14F22C87D22C007A9F88 /* SceneDelegate.swift in Sources */,
 				EC3AB3632C8A7D1700DEDC44 /* InputWithDescriptionView.swift in Sources */,
+				EC598E512CAC8ED000BDF9B0 /* NewPasswordViewController.swift in Sources */,
 				EC3AB3612C8A75A100DEDC44 /* ColorsExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

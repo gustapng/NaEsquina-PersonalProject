@@ -24,7 +24,7 @@ class MainMenuViewController: UIViewController {
         tabBar.barTintColor = .white
         tabBar.delegate = self
         
-        let homeItem = UITabBarItem(title: "Início", image: UIImage(systemName: "house"), tag: 0)
+        let homeItem = UITabBarItem(title: "Adicionar", image: UIImage(systemName: "plus.circle"), tag: 0)
         let filterItem = UITabBarItem(title: "Filtro", image: UIImage(systemName: "line.3.horizontal.decrease.circle"), tag: 1)
         let perfilItem = UITabBarItem(title: "Perfil", image: UIImage(systemName: "person"), tag: 2)
 
@@ -37,11 +37,14 @@ class MainMenuViewController: UIViewController {
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-
-    @objc func goToHome() {
-        let alert = UIAlertController(title: "Home", message: "Volta para home", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+    
+    @objc func addBusiness() {
+        let businessViewController = BusinessViewController()
+        if let sheet = businessViewController.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersGrabberVisible = true
+        }
+        present(businessViewController, animated: true, completion: nil)
     }
 
     @objc func openSheet() {
@@ -72,7 +75,7 @@ extension MainMenuViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.tag {
         case 0:
-            goToHome()
+            addBusiness()
         case 1:
             openSheet()
         case 2:
