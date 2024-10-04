@@ -34,7 +34,7 @@ class InputWithDescriptionView: UIView {
     init(descriptionText: String, inputPlaceholder: String, isPassword: Bool, icon: String, leftView: Bool, horRotation: Bool) {
         super.init(frame: .zero)
         descriptionLabel.text = descriptionText
-        inputLabel.placeholder = inputPlaceholder
+        inputLabel.attributedPlaceholder = NSAttributedString(string: inputPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension.lightGray ?? UIColor.black])
         let icon = UIImage(systemName: icon) ?? UIImage()
         let iconColor = ColorsExtension.lightGray ?? UIColor()
 

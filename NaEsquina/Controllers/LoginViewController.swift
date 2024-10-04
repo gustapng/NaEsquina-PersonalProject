@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     // MARK: UI Components
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
-        let view = CurrentViewDescriptionView(viewTitle: "Login", viewDescription: "Faça login para continuar usando o aplicativo")
+        let view = CurrentViewDescriptionView(viewTitle: "Login", viewDescription: "Acesse sua conta para explorar comércios e serviços locais de forma rápida e segura.")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -103,6 +103,10 @@ class ViewController: UIViewController {
         let mainMenuViewController = MainMenuViewController()
         navigationController?.pushViewController(mainMenuViewController, animated: true)
     }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 
     // MARK: Initializers
 
@@ -112,9 +116,11 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: SetupView {
+extension LoginViewController: SetupView {
     func setup() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.backgroundColor = .white
+        view.addGestureRecognizer(tap)
         addSubviews()
         setupConstraints()
     }

@@ -16,7 +16,7 @@ class RegisterViewController: UIViewController {
     }()
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
-        let view = CurrentViewDescriptionView(viewTitle: "Registre se", viewDescription: "Insira suas informações pessoais")
+        let view = CurrentViewDescriptionView(viewTitle: "Registre se", viewDescription: "Crie sua conta para começar a descobrir e interagir com comércios locais.")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

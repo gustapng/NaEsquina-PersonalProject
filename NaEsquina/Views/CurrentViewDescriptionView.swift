@@ -24,6 +24,7 @@ class CurrentViewDescriptionView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14.0, weight: .regular)
         label.textColor = ColorsExtension.gray
+        label.numberOfLines = 0
         return label
     }()
 
