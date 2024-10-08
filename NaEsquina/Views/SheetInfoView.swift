@@ -29,6 +29,7 @@ class SheetInfoView: UIView {
     }()
 
     // MARK: Initializers
+    
     init(title: String, subtitle: String) {
         super.init(frame: .zero)
         viewTitleLabel.text = title
@@ -54,13 +55,13 @@ extension SheetInfoView: SetupView {
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            viewTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 42),
-            viewTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            viewTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            viewTitleLabel.topAnchor.constraint(equalTo: topAnchor),
+            viewTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            viewTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
 
             viewSubtitleLabel.topAnchor.constraint(equalTo: viewTitleLabel.bottomAnchor, constant: 6),
-            viewSubtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            viewSubtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30)
+            viewSubtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            viewSubtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
 }

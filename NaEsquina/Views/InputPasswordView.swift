@@ -111,7 +111,7 @@ extension InputPasswordView: SetupView {
             inputLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             inputLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             inputLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            inputLabel.heightAnchor.constraint(equalToConstant: 45)
+            inputLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }

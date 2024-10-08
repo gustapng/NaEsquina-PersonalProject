@@ -35,7 +35,7 @@ class ConfirmEmailViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorsExtension.purpleMedium
         button.layer.cornerRadius = 9
-        button.addTarget(self, action: #selector(goToNewPasswordView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(verifyCode), for: .touchUpInside)
         button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.layer.shadowOpacity = 1
@@ -77,11 +77,9 @@ class ConfirmEmailViewController: UIViewController {
         print("Reenviar código")
     }
     
-    @objc func goToNewPasswordView() {
-        let newPasswordController = UIViewController()
-        newPasswordController.view.backgroundColor = .white
-        newPasswordController.title = "Outra Tela"
-        navigationController?.pushViewController(newPasswordController, animated: true)
+    @objc func verifyCode() {
+        // Lógica para confirmar código de recuperação para o email
+        print("Confirmar código")
     }
 
     // MARK: Initializers

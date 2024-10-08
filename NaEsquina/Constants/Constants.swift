@@ -20,6 +20,13 @@ struct Constants {
         static let description = "Insira o código de verificação que acabamos de enviar em seu endereço de e-mail."
     }
     
+    struct NewPassword {
+        static let image = "newPassword"
+        static let imageDetails = ""
+        static let mainMessage = ""
+        static let description = ""
+    }
+    
     struct ConfirmEmail {
         static let image = "confirmEmail"
         static let imageDetails = "confirmEmailDetails"

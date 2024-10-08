@@ -103,9 +103,11 @@ extension RegisterViewController: SetupView {
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
 
-            currentViewDescriptionView.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 40),
+            currentViewDescriptionView.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 30),
+            currentViewDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            currentViewDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            userInputWithDescriptionView.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 100),
+            userInputWithDescriptionView.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 110),
             userInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             userInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 

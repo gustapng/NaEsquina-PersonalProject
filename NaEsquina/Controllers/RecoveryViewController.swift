@@ -91,7 +91,7 @@ extension RecoveryViewController: SetupView {
             emailInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             emailInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            sendCodeButton.topAnchor.constraint(equalTo: emailInputWithDescriptionView.bottomAnchor, constant: 38),
+            sendCodeButton.topAnchor.constraint(equalTo: emailInputWithDescriptionView.bottomAnchor, constant: 33.5),
             sendCodeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             sendCodeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             sendCodeButton.heightAnchor.constraint(equalToConstant: 45),

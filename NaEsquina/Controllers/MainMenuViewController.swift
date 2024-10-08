@@ -41,7 +41,7 @@ class MainMenuViewController: UIViewController {
     @objc func addBusiness() {
         let businessViewController = AddBusinessViewController()
         if let sheet = businessViewController.sheetPresentationController {
-            sheet.detents = [.large()]
+            sheet.detents = [.custom(resolver: { context in return 600 })]
             sheet.prefersGrabberVisible = true
         }
         present(businessViewController, animated: true, completion: nil)

@@ -55,12 +55,12 @@ extension CurrentViewDescriptionView: SetupView {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             viewTitleLabel.topAnchor.constraint(equalTo: topAnchor),
-            viewTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            viewTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            viewTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            viewTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
 
             viewDescriptionLabel.topAnchor.constraint(equalTo: viewTitleLabel.bottomAnchor, constant: 12),
-            viewDescriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            viewDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 30)
+            viewDescriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            viewDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
 }

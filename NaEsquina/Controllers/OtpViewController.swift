@@ -73,7 +73,8 @@ class OtpViewController: UIViewController {
     }
 
     @objc private func goToNewPasswordView() {
-        // CRIAR VIEW CONTROLLER DE NOVA SENHA
+        let newPasswordViewController = NewPasswordViewController()
+        navigationController?.pushViewController(newPasswordViewController, animated: true)
     }
 
     @objc private func resendCode() {

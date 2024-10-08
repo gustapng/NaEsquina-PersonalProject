@@ -10,15 +10,12 @@ import UIKit
 class FilterViewController: UIViewController {
 
     // MARK: UI Components
+    //var filterNames = ["Filtro 1", "Filtro 2", "Filtro 3"] // Lista com os nomes dos filtros
 
-    private lazy var viewLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 28.0, weight: .semibold)
-        label.textColor = .black
-        label.text = "This is a sheet view"
-        label.textAlignment = .center
-        return label
+    private lazy var sheetInfoView: SheetInfoView = {
+        let sheetInfoView = SheetInfoView(title: "Filtros", subtitle: "Selecione uma ou mais categorias para encontrar comércios específicos, como mercados, restaurantes e mais.")
+        sheetInfoView.translatesAutoresizingMaskIntoConstraints = false
+        return sheetInfoView
     }()
         
     // MARK: Initializers
@@ -37,12 +34,14 @@ extension FilterViewController: SetupView {
     }
     
     func addSubviews() {
-        view.addSubview(viewLabel)
+        view.addSubview(sheetInfoView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            viewLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            sheetInfoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 42),
+            sheetInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            sheetInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
         ])
     }
 }

@@ -138,6 +138,8 @@ extension LoginViewController: SetupView {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             currentViewDescriptionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 68),
+            currentViewDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            currentViewDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
             emailInputWithDescriptionView.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 146),
             emailInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
@@ -153,7 +155,7 @@ extension LoginViewController: SetupView {
             loginButton.topAnchor.constraint(equalTo: recoverPassword.bottomAnchor, constant: 84),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            loginButton.heightAnchor.constraint(equalToConstant: 45),
+            loginButton.heightAnchor.constraint(equalToConstant: 50),
 
             registerAccount.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 84),
             registerAccount.centerXAnchor.constraint(equalTo: view.centerXAnchor),

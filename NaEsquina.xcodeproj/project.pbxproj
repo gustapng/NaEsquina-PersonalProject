@@ -28,8 +28,11 @@
 		ECABB0542C8FC6C20030042E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0532C8FC6C20030042E /* RegisterViewController.swift */; };
 		ECABB0562C8FC97D0030042E /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0552C8FC97D0030042E /* MainMenuViewController.swift */; };
 		ECABB05B2C8FCDCA0030042E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = ECABB05A2C8FCDCA0030042E /* .swiftlint.yml */; };
+		ECB6338E2CB56D6200CD585B /* FilterButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6338D2CB56D6200CD585B /* FilterButtonCell.swift */; };
 		ECBA89252C9F9F920016AAB4 /* ImageWithInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBA89242C9F9F920016AAB4 /* ImageWithInfoView.swift */; };
 		ECBA89282C9FAE240016AAB4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBA89272C9FAE210016AAB4 /* Constants.swift */; };
+		ECBD55562CB2165A0020BCF8 /* InputWithLeftIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD55552CB2165A0020BCF8 /* InputWithLeftIconView.swift */; };
+		ECDD0F2D2CB228980047AF1D /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDD0F2C2CB228980047AF1D /* DefaultButton.swift */; };
 		ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919232C8E31C00094B898 /* UITextField+Extension.swift */; };
 		ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */; };
 		ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919282C8E66150094B898 /* RecoveryViewController.swift */; };
@@ -59,8 +62,11 @@
 		ECABB0532C8FC6C20030042E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		ECABB0552C8FC97D0030042E /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		ECABB05A2C8FCDCA0030042E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		ECB6338D2CB56D6200CD585B /* FilterButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonCell.swift; sourceTree = "<group>"; };
 		ECBA89242C9F9F920016AAB4 /* ImageWithInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithInfoView.swift; sourceTree = "<group>"; };
 		ECBA89272C9FAE210016AAB4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ECBD55552CB2165A0020BCF8 /* InputWithLeftIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputWithLeftIconView.swift; sourceTree = "<group>"; };
+		ECDD0F2C2CB228980047AF1D /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		ECE919232C8E31C00094B898 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewDescriptionView.swift; sourceTree = "<group>"; };
 		ECE919282C8E66150094B898 /* RecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +99,9 @@
 				ECABB0512C8FB0740030042E /* InputPasswordView.swift */,
 				ECBA89242C9F9F920016AAB4 /* ImageWithInfoView.swift */,
 				EC1D87342CACCB2A002363A4 /* SheetInfoView.swift */,
+				ECBD55552CB2165A0020BCF8 /* InputWithLeftIconView.swift */,
+				ECDD0F2C2CB228980047AF1D /* DefaultButton.swift */,
+				ECB6338D2CB56D6200CD585B /* FilterButtonCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -265,7 +274,9 @@
 				EC9E14F42C87D22C007A9F88 /* LoginViewController.swift in Sources */,
 				EC2560412C92677800F076F5 /* UIButton+Extension.swift in Sources */,
 				EC85914B2CA4D7E000621C33 /* ConfirmEmailViewController.swift in Sources */,
+				ECDD0F2D2CB228980047AF1D /* DefaultButton.swift in Sources */,
 				EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */,
+				ECBD55562CB2165A0020BCF8 /* InputWithLeftIconView.swift in Sources */,
 				ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */,
 				ECABB0562C8FC97D0030042E /* MainMenuViewController.swift in Sources */,
 				ECBA89282C9FAE240016AAB4 /* Constants.swift in Sources */,
@@ -273,6 +284,7 @@
 				ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */,
 				EC95A7CF2CA0C13B00661DEA /* OtpViewController.swift in Sources */,
 				ECBA89252C9F9F920016AAB4 /* ImageWithInfoView.swift in Sources */,
+				ECB6338E2CB56D6200CD585B /* FilterButtonCell.swift in Sources */,
 				ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */,
 				ECABB0542C8FC6C20030042E /* RegisterViewController.swift in Sources */,
 				EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */,

@@ -17,26 +17,51 @@ class AddBusinessViewController: UIViewController {
         return sheetInfoView
     }()
     
-    // REFACTOR THIS FOR VIEW
-    private lazy var inputTextField: UITextField = {
-        let leftView = UIView(frame: CGRect(x: 10, y: 0, width: 45, height: 40))
-        let icon = UIImageView(frame: CGRect(x: 15, y: 10, width: 20, height: 20))
-        icon.image = UIImage(systemName: "bag")
-        icon.tintColor = ColorsExtension.lightGray
-        leftView.addSubview(icon)
-
-        let input = UITextField()
-        input.placeholder = "Teste"
-        input.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+    private lazy var inputTextFieldName: InputWithLeftIconView = {
+        let input = InputWithLeftIconView(placeholder: "Nome", icon: "bag")
         input.translatesAutoresizingMaskIntoConstraints = false
-        input.textColor = ColorsExtension.lightGray
-        input.backgroundColor = ColorsExtension.lightGrayBackground
-        input.layer.borderWidth = 1.5
-        input.layer.borderColor = ColorsExtension.lightGray?.cgColor
-        input.layer.cornerRadius = 9
-        input.leftView = leftView
-        input.leftViewMode = .always
         return input
+    }()
+    
+    private lazy var inputTextFieldAddress: InputWithLeftIconView = {
+        let input = InputWithLeftIconView(placeholder: "Endereço", icon: "location")
+        input.translatesAutoresizingMaskIntoConstraints = false
+        return input
+    }()
+    
+    private lazy var inputTextFieldPhone: InputWithLeftIconView = {
+        let input = InputWithLeftIconView(placeholder: "Telefone", icon: "phone")
+        input.translatesAutoresizingMaskIntoConstraints = false
+        return input
+    }()
+    
+    private lazy var inputTextFieldBussinessType: InputWithLeftIconView = {
+        let input = InputWithLeftIconView(placeholder: "Tipo de comércio", icon: "option")
+        input.translatesAutoresizingMaskIntoConstraints = false
+        return input
+    }()
+    
+    private lazy var inputTextFieldImage: InputWithLeftIconView = {
+        let input = InputWithLeftIconView(placeholder: "Adicionar imagem", icon: "photo")
+        input.translatesAutoresizingMaskIntoConstraints = false
+        return input
+    }()
+    
+    private lazy var addBussinessButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
+        button.setTitle("Adicionar", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = ColorsExtension.purpleMedium
+        button.layer.cornerRadius = 9
+        // TODO CREATE ADCTION FOR THIS BUTTON
+//        button.addTarget(self, action: #selector(goToMainMenuView), for: .touchUpInside)
+        button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 2)
+        button.layer.shadowOpacity = 1
+        button.layer.shadowRadius = 0
+        return button
     }()
         
     // MARK: Initializers
@@ -56,20 +81,44 @@ extension AddBusinessViewController: SetupView {
     
     func addSubviews() {
         view.addSubview(sheetInfoView)
-        view.addSubview(inputTextField)
+        view.addSubview(inputTextFieldName)
+        view.addSubview(inputTextFieldAddress)
+        view.addSubview(inputTextFieldPhone)
+        view.addSubview(inputTextFieldBussinessType)
+        view.addSubview(inputTextFieldImage)
+        view.addSubview(addBussinessButton)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            sheetInfoView.topAnchor.constraint(equalTo: view.topAnchor),
-            sheetInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            sheetInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            sheetInfoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 42),
+            sheetInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            sheetInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             
-            inputTextField.topAnchor.constraint(equalTo: sheetInfoView.bottomAnchor, constant: 160),
-            inputTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            inputTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            inputTextField.heightAnchor.constraint(equalToConstant: 45),
-            inputTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            inputTextFieldName.topAnchor.constraint(equalTo: sheetInfoView.bottomAnchor, constant: 120),
+            inputTextFieldName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            inputTextFieldName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+
+            inputTextFieldAddress.topAnchor.constraint(equalTo: inputTextFieldName.bottomAnchor, constant: 65),
+            inputTextFieldAddress.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            inputTextFieldAddress.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+
+            inputTextFieldPhone.topAnchor.constraint(equalTo: inputTextFieldAddress.bottomAnchor, constant: 65),
+            inputTextFieldPhone.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            inputTextFieldPhone.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            
+            inputTextFieldBussinessType.topAnchor.constraint(equalTo: inputTextFieldPhone.bottomAnchor, constant: 65),
+            inputTextFieldBussinessType.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            inputTextFieldBussinessType.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+
+            inputTextFieldImage.topAnchor.constraint(equalTo: inputTextFieldBussinessType.bottomAnchor, constant: 65),
+            inputTextFieldImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            inputTextFieldImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+
+            addBussinessButton.topAnchor.constraint(equalTo: inputTextFieldImage.bottomAnchor, constant: 80),
+            addBussinessButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            addBussinessButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            addBussinessButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 }
