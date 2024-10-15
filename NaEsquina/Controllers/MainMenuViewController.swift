@@ -1,21 +1,23 @@
-//
-//  mainMenuViewController.swift
-//  NaEsquina
-//
-//  Created by Gustavo Ferreira dos Santos on 09/09/24.
-//
-
 import UIKit
+import MapKit
 
 class MainMenuViewController: UIViewController {
 
-    // MARK: UI Components
+    // MARK: - UI Components
 
     private lazy var backButton: UIButton = {
-        return UIButton.createCustomBackButton(target: self, action: #selector(backButtonTapped),
+        return UIButton.createCustomBackButton(target: self,
+                                               action: #selector(backButtonTapped),
                                                borderColor: ColorsExtension.lightGray ?? .black)
     }()
-    
+
+    private lazy var mapView: MKMapView = {
+        let mapView = MKMapView()
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.pointOfInterestFilter = .excludingAll
+        return mapView
+    }()
+
     private lazy var bottomBar: UITabBar = {
         let tabBar = UITabBar()
         tabBar.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +25,7 @@ class MainMenuViewController: UIViewController {
         tabBar.tintColor = ColorsExtension.purpleMedium
         tabBar.barTintColor = .white
         tabBar.delegate = self
-        
+
         let homeItem = UITabBarItem(title: "Adicionar", image: UIImage(systemName: "plus.circle"), tag: 0)
         let filterItem = UITabBarItem(title: "Filtro", image: UIImage(systemName: "line.3.horizontal.decrease.circle"), tag: 1)
         let perfilItem = UITabBarItem(title: "Perfil", image: UIImage(systemName: "person"), tag: 2)
@@ -32,13 +34,13 @@ class MainMenuViewController: UIViewController {
         return tabBar
     }()
 
-    // MARK: Functions
-
+    // MARK: - Actions
+    
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    @objc func addBusiness() {
+
+    @objc func openSheetAddBusiness() {
         let businessViewController = AddBusinessViewController()
         if let sheet = businessViewController.sheetPresentationController {
             sheet.detents = [.custom(resolver: { context in return 600 })]
@@ -47,7 +49,7 @@ class MainMenuViewController: UIViewController {
         present(businessViewController, animated: true, completion: nil)
     }
 
-    @objc func openSheet() {
+    @objc func openSheetFilter() {
         let sheetViewController = FilterViewController()
         if let sheet = sheetViewController.sheetPresentationController {
             sheet.detents = [.medium()]
@@ -56,17 +58,22 @@ class MainMenuViewController: UIViewController {
         present(sheetViewController, animated: true, completion: nil)
     }
 
-    @objc func goToOtherScreen() {
-        let nextViewController = UIViewController()
-        nextViewController.view.backgroundColor = .white
-        nextViewController.title = "Outra Tela"
-        navigationController?.pushViewController(nextViewController, animated: true)
+    @objc func goToUserView() {
+        let userViewController = UserViewController()
+        navigationController?.pushViewController(userViewController, animated: true)
     }
 
-    // MARK: Initializers
+    private func setInitialLocation(location: CLLocation, regionRadius: CLLocationDistance = 1000) {
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let initialLocation = CLLocation(latitude: -23.55052, longitude: -46.63331)
+        setInitialLocation(location: initialLocation)
         setup()
     }
 }
@@ -75,11 +82,11 @@ extension MainMenuViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.tag {
         case 0:
-            addBusiness()
+            openSheetAddBusiness()
         case 1:
-            openSheet()
+            openSheetFilter()
         case 2:
-            goToOtherScreen()
+            goToUserView()
         default:
             break
         }
@@ -96,6 +103,7 @@ extension MainMenuViewController: SetupView {
 
     func addSubviews() {
         view.addSubview(backButton)
+        view.addSubview(mapView)
         view.addSubview(bottomBar)
     }
 
@@ -103,6 +111,11 @@ extension MainMenuViewController: SetupView {
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: bottomBar.topAnchor),
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
             bottomBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),

@@ -16,6 +16,7 @@
 		EC5063BE2CA23A31009852FA /* OtpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5063BD2CA23A31009852FA /* OtpTextFieldView.swift */; };
 		EC598E512CAC8ED000BDF9B0 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */; };
 		EC65642C2C9B926C00953563 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65642B2C9B926C00953563 /* FilterViewController.swift */; };
+		EC7E16F02CBDDCDE00BFFE15 /* CustomOptionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7E16EF2CBDDCDE00BFFE15 /* CustomOptionButtonCell.swift */; };
 		EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */; };
 		EC85914B2CA4D7E000621C33 /* ConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */; };
 		EC95A7CF2CA0C13B00661DEA /* OtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */; };
@@ -24,6 +25,7 @@
 		EC9E14F42C87D22C007A9F88 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14F32C87D22C007A9F88 /* LoginViewController.swift */; };
 		EC9E14F92C87D22D007A9F88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC9E14F82C87D22D007A9F88 /* Assets.xcassets */; };
 		EC9E14FC2C87D22D007A9F88 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EC9E14FB2C87D22D007A9F88 /* Base */; };
+		ECA92BE22CBD5C8400C417E1 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA92BE12CBD5C8400C417E1 /* UserViewController.swift */; };
 		ECABB0522C8FB0740030042E /* InputPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0512C8FB0740030042E /* InputPasswordView.swift */; };
 		ECABB0542C8FC6C20030042E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0532C8FC6C20030042E /* RegisterViewController.swift */; };
 		ECABB0562C8FC97D0030042E /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0552C8FC97D0030042E /* MainMenuViewController.swift */; };
@@ -48,6 +50,7 @@
 		EC5063BD2CA23A31009852FA /* OtpTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpTextFieldView.swift; sourceTree = "<group>"; };
 		EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		EC65642B2C9B926C00953563 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		EC7E16EF2CBDDCDE00BFFE15 /* CustomOptionButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOptionButtonCell.swift; sourceTree = "<group>"; };
 		EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewExtension.swift; sourceTree = "<group>"; };
 		EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmailViewController.swift; sourceTree = "<group>"; };
 		EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 		EC9E14F82C87D22D007A9F88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC9E14FB2C87D22D007A9F88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC9E14FD2C87D22D007A9F88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECA92BE12CBD5C8400C417E1 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		ECABB0512C8FB0740030042E /* InputPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordView.swift; sourceTree = "<group>"; };
 		ECABB0532C8FC6C20030042E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		ECABB0552C8FC97D0030042E /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 				ECBD55552CB2165A0020BCF8 /* InputWithLeftIconView.swift */,
 				ECDD0F2C2CB228980047AF1D /* DefaultButton.swift */,
 				ECB6338D2CB56D6200CD585B /* FilterButtonCell.swift */,
+				EC7E16EF2CBDDCDE00BFFE15 /* CustomOptionButtonCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 				EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */,
 				EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */,
 				EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */,
+				ECA92BE12CBD5C8400C417E1 /* UserViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -282,8 +288,10 @@
 				ECBA89282C9FAE240016AAB4 /* Constants.swift in Sources */,
 				EC1D87332CACC874002363A4 /* AddBusinessViewController.swift in Sources */,
 				ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */,
+				ECA92BE22CBD5C8400C417E1 /* UserViewController.swift in Sources */,
 				EC95A7CF2CA0C13B00661DEA /* OtpViewController.swift in Sources */,
 				ECBA89252C9F9F920016AAB4 /* ImageWithInfoView.swift in Sources */,
+				EC7E16F02CBDDCDE00BFFE15 /* CustomOptionButtonCell.swift in Sources */,
 				ECB6338E2CB56D6200CD585B /* FilterButtonCell.swift in Sources */,
 				ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */,
 				ECABB0542C8FC6C20030042E /* RegisterViewController.swift in Sources */,
