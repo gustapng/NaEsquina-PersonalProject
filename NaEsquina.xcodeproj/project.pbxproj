@@ -16,6 +16,7 @@
 		EC5063BE2CA23A31009852FA /* OtpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5063BD2CA23A31009852FA /* OtpTextFieldView.swift */; };
 		EC598E512CAC8ED000BDF9B0 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */; };
 		EC65642C2C9B926C00953563 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65642B2C9B926C00953563 /* FilterViewController.swift */; };
+		EC6BA7B42CC1C8B600D45065 /* SuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6BA7B32CC1C8B600D45065 /* SuggestionViewController.swift */; };
 		EC7E16F02CBDDCDE00BFFE15 /* CustomOptionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7E16EF2CBDDCDE00BFFE15 /* CustomOptionButtonCell.swift */; };
 		EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */; };
 		EC85914B2CA4D7E000621C33 /* ConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */; };
@@ -50,6 +51,7 @@
 		EC5063BD2CA23A31009852FA /* OtpTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpTextFieldView.swift; sourceTree = "<group>"; };
 		EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		EC65642B2C9B926C00953563 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		EC6BA7B32CC1C8B600D45065 /* SuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewController.swift; sourceTree = "<group>"; };
 		EC7E16EF2CBDDCDE00BFFE15 /* CustomOptionButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOptionButtonCell.swift; sourceTree = "<group>"; };
 		EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewExtension.swift; sourceTree = "<group>"; };
 		EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmailViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */,
 				EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */,
 				ECA92BE12CBD5C8400C417E1 /* UserViewController.swift */,
+				EC6BA7B32CC1C8B600D45065 /* SuggestionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC6BA7B42CC1C8B600D45065 /* SuggestionViewController.swift in Sources */,
 				EC5063BE2CA23A31009852FA /* OtpTextFieldView.swift in Sources */,
 				EC65642C2C9B926C00953563 /* FilterViewController.swift in Sources */,
 				EC1D87352CACCB2A002363A4 /* SheetInfoView.swift in Sources */,
