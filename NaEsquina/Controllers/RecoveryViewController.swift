@@ -22,7 +22,7 @@ class RecoveryViewController: UIViewController {
     }()
     
     private lazy var emailInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", isPassword: false, icon: "envelope", leftView: true, horRotation: false)
+        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true, horRotation: false, inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

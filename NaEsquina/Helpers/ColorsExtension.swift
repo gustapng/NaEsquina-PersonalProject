@@ -10,7 +10,9 @@ import UIKit
 struct ColorsExtension {
     static let gray = UIColor(named: "ColorGray")
     static let lightGray = UIColor(named: "ColorLightGray")
+    static let lightGrayDisabled = UIColor(named: "ColorLightGrayDisabled")
     static let lightGrayBackground = UIColor(named: "ColorLightGrayBackground")
+    static let lightGrayBackgroundDisabled = UIColor(named: "ColorLightGrayBackgroundDisabled")
     static let purpleMedium = UIColor(named: "ColorPurpleMedium")
     static let purpleLight = UIColor(named: "ColorPurpleLight")
 }

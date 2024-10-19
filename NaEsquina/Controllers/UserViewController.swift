@@ -45,9 +45,11 @@ class UserViewController: UIViewController {
         config.image = UIImage(systemName: "door.left.hand.open")
         config.title = "Sair"
         config.baseForegroundColor = ColorsExtension.lightGray
-        config.imagePadding = 16
+        config.imagePadding = 17
         config.imagePlacement = .leading
+        
         button.configuration = config
+        button.contentHorizontalAlignment = .leading
         button.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
         
         return button
@@ -82,22 +84,33 @@ class UserViewController: UIViewController {
     }
 
     @objc func goToUserDataView() {
-        print("DATA VIEW")
+        let userDataViewController = UserDataViewController()
+        navigationController?.pushViewController(userDataViewController, animated: true)
     }
 
     @objc func goToSuggestionView() {
-        print("SUGGESTION VIEW")
+        let suggestionViewController = SuggestionViewController()
+        navigationController?.pushViewController(suggestionViewController, animated: true)
     }
 
     @objc func logoutButtonTapped() {
-        print("Logout button tapped")
+        print("ACTION DE LOGOUT")
     }
 
     // MARK: - Function
 
     private func setupTableFooterView() {
-        let footerView = UIView(frame: CGRect(x: 10, y: 0, width: view.frame.width, height: 70))
+        let footerView = UIView(frame: CGRect(x: 5, y: 0, width: view.frame.width, height: 70))
         footerView.addSubview(logoutButton)
+        
+        NSLayoutConstraint.activate([
+            logoutButton.heightAnchor.constraint(equalToConstant: 70),
+            logoutButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor),
+            logoutButton.trailingAnchor.constraint(equalTo: footerView.trailingAnchor),
+            logoutButton.topAnchor.constraint(equalTo: footerView.topAnchor),
+            logoutButton.bottomAnchor.constraint(equalTo: footerView.bottomAnchor),
+        ])
+        
         tableView.tableFooterView = footerView
     }
 }
@@ -130,8 +143,6 @@ extension UserViewController: SetupView {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
-            logoutButton.heightAnchor.constraint(equalToConstant: 70),
         ])
     }
 }

@@ -1,34 +1,34 @@
 //
-//  registerViewController.swift
+//  SuggestionViewController.swift
 //  NaEsquina
 //
-//  Created by Gustavo Ferreira dos Santos on 09/09/24.
+//  Created by Gustavo Ferreira dos Santos on 17/10/24.
 //
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class UserDataViewController: UIViewController {
 
-    // MARK: UI Components
+    // MARK: - UI Components
 
     private lazy var backButton: UIButton = {
         return UIButton.createCustomBackButton(target: self, action: #selector(backButtonTapped), borderColor: ColorsExtension.lightGray ?? .black)
     }()
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
-        let view = CurrentViewDescriptionView(viewTitle: "Registre se", viewDescription: "Crie sua conta para começar a descobrir e interagir com comércios locais.")
+        let view = CurrentViewDescriptionView(viewTitle: "Dados da conta", viewDescription: "Minhas informações da conta.")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private lazy var userInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Nome de usuário", inputPlaceholder: "Seu nome", icon: "person", leftView: true, horRotation: false, inputDisabled: false)
+        let view = InputWithDescriptionView(descriptionText: "Gustavo Ferreira Dos Santos", inputPlaceholder: "Seu nome", icon: "person", leftView: true, horRotation: false, inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private lazy var emailInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true, horRotation: false, inputDisabled: false)
+        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true, horRotation: false, inputDisabled: true)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -45,15 +45,15 @@ class RegisterViewController: UIViewController {
         return view
     }()
 
-    private lazy var registerButton: UIButton = {
+    private lazy var resendUserDataButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
-        button.setTitle("Registrar", for: .normal)
+        button.setTitle("Alterar", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorsExtension.purpleMedium
         button.layer.cornerRadius = 9
-        button.addTarget(self, action: #selector(goToConfirmEmailViewController), for: .touchUpInside)
+        button.addTarget(self, action: #selector(resendUserData), for: .touchUpInside)
         button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.layer.shadowOpacity = 1
@@ -61,26 +61,25 @@ class RegisterViewController: UIViewController {
         return button
     }()
 
-    // MARK: Initializers
+    // MARK: - Initializers
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
 
-    // MARK: Functions
+    // MARK: - Actions
 
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func goToConfirmEmailViewController() {
-        let confirmEmailViewController = ConfirmEmailViewController()
-        navigationController?.pushViewController(confirmEmailViewController, animated: true)
+    @objc func resendUserData() {
+        print("ACTION DE REENVIAR DADOS DO USUARIO")
     }
 }
 
-extension RegisterViewController: SetupView {
+extension UserDataViewController: SetupView {
     func setup() {
         self.navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
@@ -95,7 +94,7 @@ extension RegisterViewController: SetupView {
         view.addSubview(emailInputWithDescriptionView)
         view.addSubview(passwordInputWithDescriptionView)
         view.addSubview(rePasswordInputWithDescriptionView)
-        view.addSubview(registerButton)
+        view.addSubview(resendUserDataButton)
     }
 
     func setupConstraints() {
@@ -107,7 +106,7 @@ extension RegisterViewController: SetupView {
             currentViewDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             currentViewDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            userInputWithDescriptionView.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 110),
+            userInputWithDescriptionView.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 100),
             userInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             userInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
@@ -123,10 +122,11 @@ extension RegisterViewController: SetupView {
             rePasswordInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             rePasswordInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            registerButton.topAnchor.constraint(equalTo: rePasswordInputWithDescriptionView.bottomAnchor, constant: 50),
-            registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            registerButton.heightAnchor.constraint(equalToConstant: 45),
+            resendUserDataButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            resendUserDataButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            resendUserDataButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            resendUserDataButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            resendUserDataButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 }

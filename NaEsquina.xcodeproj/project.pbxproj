@@ -39,6 +39,7 @@
 		ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919232C8E31C00094B898 /* UITextField+Extension.swift */; };
 		ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */; };
 		ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919282C8E66150094B898 /* RecoveryViewController.swift */; };
+		ECECD82B2CC31D500038B171 /* UserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECECD82A2CC31D500038B171 /* UserDataViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		ECE919232C8E31C00094B898 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewDescriptionView.swift; sourceTree = "<group>"; };
 		ECE919282C8E66150094B898 /* RecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryViewController.swift; sourceTree = "<group>"; };
+		ECECD82A2CC31D500038B171 /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */,
 				ECA92BE12CBD5C8400C417E1 /* UserViewController.swift */,
 				EC6BA7B32CC1C8B600D45065 /* SuggestionViewController.swift */,
+				ECECD82A2CC31D500038B171 /* UserDataViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				ECBD55562CB2165A0020BCF8 /* InputWithLeftIconView.swift in Sources */,
 				ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */,
 				ECABB0562C8FC97D0030042E /* MainMenuViewController.swift in Sources */,
+				ECECD82B2CC31D500038B171 /* UserDataViewController.swift in Sources */,
 				ECBA89282C9FAE240016AAB4 /* Constants.swift in Sources */,
 				EC1D87332CACC874002363A4 /* AddBusinessViewController.swift in Sources */,
 				ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */,

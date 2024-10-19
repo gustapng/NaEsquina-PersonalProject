@@ -8,6 +8,10 @@
 import UIKit
 
 class InputWithDescriptionView: UIView {
+    
+    // MARK: Variables
+    
+    var iconColor: UIColor
 
     // MARK: UI Components
     private lazy var descriptionLabel: UILabel = {
@@ -21,64 +25,61 @@ class InputWithDescriptionView: UIView {
     private lazy var inputLabel: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textColor = ColorsExtension.lightGray
-        textField.backgroundColor = ColorsExtension.lightGrayBackground
         textField.layer.borderWidth = 1.5
-        textField.layer.borderColor = ColorsExtension.lightGray?.cgColor
         textField.layer.cornerRadius = 9
         return textField
     }()
 
-    // MARK: Initializers
+    // MARK: - Initializers
 
-    init(descriptionText: String, inputPlaceholder: String, isPassword: Bool, icon: String, leftView: Bool, horRotation: Bool) {
+    init(descriptionText: String, inputPlaceholder: String, icon: String, leftView: Bool, horRotation: Bool, inputDisabled: Bool) {
+        if inputDisabled {
+            self.iconColor = ColorsExtension.lightGrayDisabled ?? UIColor()
+        } else {
+            self.iconColor = ColorsExtension.lightGray ?? UIColor()
+        }
         super.init(frame: .zero)
         descriptionLabel.text = descriptionText
-        inputLabel.attributedPlaceholder = NSAttributedString(string: inputPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension.lightGray ?? UIColor.black])
-        let icon = UIImage(systemName: icon) ?? UIImage()
-        let iconColor = ColorsExtension.lightGray ?? UIColor()
-
-        inputLabel.addPaddingAndIcon(icon, iconColor, leftPad: 15, rightPad: 12, isLeftView: leftView, horRotation: horRotation)
-        if isPassword {
-            setupPasswordVisibilityToggle()
-        }
+        configureInputLabel(inputPlaceholder: inputPlaceholder, icon: icon, inputDisabled: inputDisabled)
+        inputLabel.addPaddingAndIcon(UIImage(systemName: icon) ?? UIImage(),
+                                     iconColor,
+                                     leftPad: 15,
+                                     rightPad: 12,
+                                     isLeftView: leftView,
+                                     horRotation: horRotation)
         setup()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    // MARK: Functions
-
-    private func setupPasswordVisibilityToggle() {
-        let toggleButton = UIButton(type: .system)
-        toggleButton.setImage(UIImage(systemName: "eye"), for: .normal)
-        toggleButton.tintColor = .gray
-        toggleButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
-
-        toggleButton.imageView?.contentMode = .scaleAspectFit
-        toggleButton.frame.size = CGSize(width: 16, height: 16)
-
-        let rightViewContainer = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        rightViewContainer.addSubview(toggleButton)
-
-        toggleButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            toggleButton.centerYAnchor.constraint(equalTo: rightViewContainer.centerYAnchor),
-            toggleButton.trailingAnchor.constraint(equalTo: rightViewContainer.trailingAnchor, constant: -8)
-        ])
-
-        inputLabel.rightView = rightViewContainer
-        inputLabel.rightViewMode = .always
+    
+    // MARK: - Functions
+    
+    private func configureInputLabel(inputPlaceholder: String, icon: String, inputDisabled: Bool) {
+        if inputDisabled {
+            applyDisabledStyle(inputPlaceholder: inputPlaceholder, icon: icon)
+        } else {
+            applyEnabledStyle(inputPlaceholder: inputPlaceholder, icon: icon)
+        }
     }
 
-    @objc private func togglePasswordVisibility() {
-        inputLabel.isSecureTextEntry.toggle()
+    private func applyDisabledStyle(inputPlaceholder: String, icon: String) {
+        inputLabel.textColor = ColorsExtension.lightGrayDisabled
+        inputLabel.backgroundColor = ColorsExtension.lightGrayBackgroundDisabled
+        inputLabel.layer.borderColor = ColorsExtension.lightGrayDisabled?.cgColor
 
-        let button = inputLabel.rightView?.subviews.first as? UIButton
-        let imageName = inputLabel.isSecureTextEntry ? "eye" : "eye.slash"
-        button?.setImage(UIImage(systemName: imageName), for: .normal)
+        inputLabel.attributedPlaceholder = NSAttributedString(string: inputPlaceholder,
+                                                              attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension.lightGrayDisabled ?? UIColor.black])
+    }
+
+    private func applyEnabledStyle(inputPlaceholder: String, icon: String) {
+        inputLabel.textColor = ColorsExtension.lightGray
+        inputLabel.backgroundColor = ColorsExtension.lightGrayBackground
+        inputLabel.layer.borderColor = ColorsExtension.lightGray?.cgColor
+
+        inputLabel.attributedPlaceholder = NSAttributedString(string: inputPlaceholder,
+                                                              attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension.lightGray ?? UIColor.black])
     }
 }
 
