@@ -22,7 +22,7 @@ class UserDataViewController: UIViewController {
     }()
 
     private lazy var userInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Gustavo Ferreira Dos Santos", inputPlaceholder: "Seu nome", icon: "person", leftView: true, horRotation: false, inputDisabled: false)
+        let view = InputWithDescriptionView(descriptionText: "Nome", inputPlaceholder: "Gustavo Ferreira Dos Santos", icon: "person", leftView: true, horRotation: false, inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

@@ -21,6 +21,29 @@ class SuggestionViewController: UIViewController {
         return view
     }()
     
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
+        label.textColor = .black
+        label.text = "Sugestão"
+        return label
+    }()
+
+    private lazy var inputLabel: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.layer.borderWidth = 1.5
+        textView.layer.cornerRadius = 9
+        textView.text = "Sugestão ou erro? Conte-nos!"
+        textView.textColor = ColorsExtension.lightGray
+        textView.backgroundColor = ColorsExtension.lightGrayBackground
+        textView.layer.borderColor = ColorsExtension.lightGray?.cgColor
+        textView.font = UIFont.systemFont(ofSize: 12)
+        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return textView
+    }()
+    
     private lazy var sendSuggestionButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -66,6 +89,8 @@ extension SuggestionViewController: SetupView {
     func addSubviews() {
         view.addSubview(backButton)
         view.addSubview(currentViewDescriptionView)
+        view.addSubview(descriptionLabel)
+        view.addSubview(inputLabel)
         view.addSubview(sendSuggestionButton)
     }
 
@@ -77,6 +102,15 @@ extension SuggestionViewController: SetupView {
             currentViewDescriptionView.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 30),
             currentViewDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             currentViewDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 100),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            
+            inputLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
+            inputLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            inputLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            inputLabel.heightAnchor.constraint(equalToConstant: 400),
             
             sendSuggestionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             sendSuggestionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),

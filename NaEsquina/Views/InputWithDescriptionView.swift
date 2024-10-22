@@ -14,6 +14,7 @@ class InputWithDescriptionView: UIView {
     var iconColor: UIColor
 
     // MARK: UI Components
+
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

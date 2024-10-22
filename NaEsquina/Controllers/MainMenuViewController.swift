@@ -11,11 +11,17 @@ class MainMenuViewController: UIViewController {
                                                borderColor: ColorsExtension.lightGray ?? .black)
     }()
 
-    private lazy var mapView: MKMapView = {
-        let mapView = MKMapView()
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        mapView.pointOfInterestFilter = .excludingAll
-        return mapView
+//    private lazy var mapView: MKMapView = {
+//        let mapView = MKMapView()
+//        mapView.translatesAutoresizingMaskIntoConstraints = false
+//        mapView.pointOfInterestFilter = .excludingAll
+//        return mapView
+//    }()
+    
+    private lazy var mapView: MapView = {
+        let map = MapView()
+        map.translatesAutoresizingMaskIntoConstraints = false
+        return map
     }()
 
     private lazy var bottomBar: UITabBar = {
@@ -63,17 +69,21 @@ class MainMenuViewController: UIViewController {
         navigationController?.pushViewController(userViewController, animated: true)
     }
 
-    private func setInitialLocation(location: CLLocation, regionRadius: CLLocationDistance = 1000) {
-        let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-        mapView.setRegion(coordinateRegion, animated: true)
-    }
+//    private func setInitialLocation(location: CLLocation, regionRadius: CLLocationDistance = 1000) {
+//        let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+//        mapView.setRegion(coordinateRegion, animated: true)
+//    }
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let initialLocation = CLLocation(latitude: -23.55052, longitude: -46.63331)
-        setInitialLocation(location: initialLocation)
+//        let initialLocation = CLLocation(latitude: -23.55052, longitude: -46.63331)
+//        let annotation = MKPointAnnotation()
+//        // ADICIONA O PIN DA COORDENADA
+//        annotation.coordinate = CLLocationCoordinate2D(latitude: -23.55052, longitude: -46.63331)
+//        mapView.addAnnotation(annotation)
+//        setInitialLocation(location: initialLocation)
         setup()
     }
 }
