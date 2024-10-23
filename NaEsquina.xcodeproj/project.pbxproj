@@ -21,6 +21,7 @@
 		EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */; };
 		EC85914B2CA4D7E000621C33 /* ConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */; };
 		EC8A86A82CC7EE080013524D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A86A72CC7EE080013524D /* MapView.swift */; };
+		EC9464872CC8676000D22416 /* MKAnnotationView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9464862CC8676000D22416 /* MKAnnotationView+Extension.swift */; };
 		EC95A7CF2CA0C13B00661DEA /* OtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */; };
 		EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14EF2C87D22C007A9F88 /* AppDelegate.swift */; };
 		EC9E14F22C87D22C007A9F88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14F12C87D22C007A9F88 /* SceneDelegate.swift */; };
@@ -40,6 +41,8 @@
 		ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919232C8E31C00094B898 /* UITextField+Extension.swift */; };
 		ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */; };
 		ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919282C8E66150094B898 /* RecoveryViewController.swift */; };
+		ECE94DC22CC953ED0017BFC2 /* BusinessDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE94DC12CC953ED0017BFC2 /* BusinessDetailsViewController.swift */; };
+		ECE94DC42CC9551B0017BFC2 /* SheetBusinessDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE94DC32CC9551B0017BFC2 /* SheetBusinessDetailsView.swift */; };
 		ECECD82B2CC31D500038B171 /* UserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECECD82A2CC31D500038B171 /* UserDataViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +61,7 @@
 		EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewExtension.swift; sourceTree = "<group>"; };
 		EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmailViewController.swift; sourceTree = "<group>"; };
 		EC8A86A72CC7EE080013524D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		EC9464862CC8676000D22416 /* MKAnnotationView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKAnnotationView+Extension.swift"; sourceTree = "<group>"; };
 		EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewController.swift; sourceTree = "<group>"; };
 		EC9E14EC2C87D22C007A9F88 /* NaEsquina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaEsquina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC9E14EF2C87D22C007A9F88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		ECE919232C8E31C00094B898 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewDescriptionView.swift; sourceTree = "<group>"; };
 		ECE919282C8E66150094B898 /* RecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryViewController.swift; sourceTree = "<group>"; };
+		ECE94DC12CC953ED0017BFC2 /* BusinessDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailsViewController.swift; sourceTree = "<group>"; };
+		ECE94DC32CC9551B0017BFC2 /* SheetBusinessDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetBusinessDetailsView.swift; sourceTree = "<group>"; };
 		ECECD82A2CC31D500038B171 /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +115,7 @@
 				ECABB0512C8FB0740030042E /* InputPasswordView.swift */,
 				ECBA89242C9F9F920016AAB4 /* ImageWithInfoView.swift */,
 				EC1D87342CACCB2A002363A4 /* SheetInfoView.swift */,
+				ECE94DC32CC9551B0017BFC2 /* SheetBusinessDetailsView.swift */,
 				ECBD55552CB2165A0020BCF8 /* InputWithLeftIconView.swift */,
 				ECDD0F2C2CB228980047AF1D /* DefaultButton.swift */,
 				ECB6338D2CB56D6200CD585B /* FilterButtonCell.swift */,
@@ -127,6 +134,7 @@
 				ECABB0532C8FC6C20030042E /* RegisterViewController.swift */,
 				EC65642B2C9B926C00953563 /* FilterViewController.swift */,
 				EC1D87322CACC874002363A4 /* AddBusinessViewController.swift */,
+				ECE94DC12CC953ED0017BFC2 /* BusinessDetailsViewController.swift */,
 				EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */,
 				EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */,
 				EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */,
@@ -151,6 +159,7 @@
 				EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */,
 				ECE919232C8E31C00094B898 /* UITextField+Extension.swift */,
 				EC2560402C92677800F076F5 /* UIButton+Extension.swift */,
+				EC9464862CC8676000D22416 /* MKAnnotationView+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -288,6 +297,8 @@
 				EC1D87352CACCB2A002363A4 /* SheetInfoView.swift in Sources */,
 				ECABB0522C8FB0740030042E /* InputPasswordView.swift in Sources */,
 				EC9E14F42C87D22C007A9F88 /* LoginViewController.swift in Sources */,
+				ECE94DC42CC9551B0017BFC2 /* SheetBusinessDetailsView.swift in Sources */,
+				ECE94DC22CC953ED0017BFC2 /* BusinessDetailsViewController.swift in Sources */,
 				EC2560412C92677800F076F5 /* UIButton+Extension.swift in Sources */,
 				EC8A86A82CC7EE080013524D /* MapView.swift in Sources */,
 				EC85914B2CA4D7E000621C33 /* ConfirmEmailViewController.swift in Sources */,
@@ -309,6 +320,7 @@
 				ECABB0542C8FC6C20030042E /* RegisterViewController.swift in Sources */,
 				EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */,
 				EC9E14F22C87D22C007A9F88 /* SceneDelegate.swift in Sources */,
+				EC9464872CC8676000D22416 /* MKAnnotationView+Extension.swift in Sources */,
 				EC3AB3632C8A7D1700DEDC44 /* InputWithDescriptionView.swift in Sources */,
 				EC598E512CAC8ED000BDF9B0 /* NewPasswordViewController.swift in Sources */,
 				EC3AB3612C8A75A100DEDC44 /* ColorsExtension.swift in Sources */,

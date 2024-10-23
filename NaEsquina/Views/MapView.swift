@@ -8,7 +8,15 @@
 import UIKit
 import MapKit
 
-class MapView: UIView {
+protocol MapViewDelegate: AnyObject {
+    func didTapOnPin(annotationTitle: String?)
+}
+
+class MapView: UIView, MKMapViewDelegate {
+    
+    // MARK: - Variables
+    
+    weak var delegate: MapViewDelegate?
 
     // MARK: - UI Components
 
@@ -26,6 +34,40 @@ class MapView: UIView {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+    
+    // MARK: - MKMapViewDelegate
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKPointAnnotation {
+            let identifier = "customPin"
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+            
+            if annotationView == nil {
+                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                
+                // Adicione a cor do pin
+                annotationView?.canShowCallout = true // Permite que o callout seja exibido
+                                
+                // Adicione a cor do pin
+                annotationView?.markerTintColor = ColorsExtension.purpleMedium // Cor personalizada do pin
+                annotationView?.glyphImage = UIImage(systemName: "cart.fill")
+                
+                // Adiciona um botão de detalhe ao callout
+                let detailButton = UIButton(type: .detailDisclosure)
+                annotationView?.rightCalloutAccessoryView = detailButton
+            } else {
+                annotationView?.annotation = annotation
+            }
+            return annotationView
+        }
+        return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let annotationTitle = view.annotation?.title else { return }
+        delegate?.didTapOnPin(annotationTitle: annotationTitle)
+        print("Pin clicado: \(annotationTitle ?? "")")
+    }
 
     // MARK: - Lifecycle
 
@@ -36,8 +78,11 @@ class MapView: UIView {
         let annotation = MKPointAnnotation()
         // ADICIONA O PIN DA COORDENADA
         annotation.coordinate = CLLocationCoordinate2D(latitude: -23.55052, longitude: -46.63331)
+        annotation.title = "Mais Variedades"
         mapView.addAnnotation(annotation)
         setInitialLocation(location: initialLocation)
+        mapView.delegate = self
+
     }
 
     required init?(coder: NSCoder) {

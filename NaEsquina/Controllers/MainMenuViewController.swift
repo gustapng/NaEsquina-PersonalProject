@@ -1,7 +1,7 @@
 import UIKit
 import MapKit
 
-class MainMenuViewController: UIViewController {
+class MainMenuViewController: UIViewController, MapViewDelegate {
 
     // MARK: - UI Components
 
@@ -54,6 +54,15 @@ class MainMenuViewController: UIViewController {
         }
         present(businessViewController, animated: true, completion: nil)
     }
+    
+    func didTapOnPin(annotationTitle: String?) {
+        let sheetViewController = BusinessDetailsViewController()
+        if let sheet = sheetViewController.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+        }
+        present(sheetViewController, animated: true, completion: nil)
+    }
 
     @objc func openSheetFilter() {
         let sheetViewController = FilterViewController()
@@ -78,6 +87,7 @@ class MainMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
 //        let initialLocation = CLLocation(latitude: -23.55052, longitude: -46.63331)
 //        let annotation = MKPointAnnotation()
 //        // ADICIONA O PIN DA COORDENADA

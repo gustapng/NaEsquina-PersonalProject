@@ -43,7 +43,7 @@ class NewPasswordViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
-        button.setTitle("Registrar", for: .normal)
+        button.setTitle("Definir nova senha", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorsExtension.purpleMedium
         button.layer.cornerRadius = 9
