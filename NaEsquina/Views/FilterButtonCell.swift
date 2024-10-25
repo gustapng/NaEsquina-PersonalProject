@@ -1,29 +1,28 @@
 import UIKit
 
 class FilterButtonCell: UICollectionViewCell {
-    static let identifier = "FilterButtonCell"
 
     private lazy var filterButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
-        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .regular)
         button.backgroundColor = ColorsExtension.purpleMedium
-        button.layer.cornerRadius = 9
+        button.layer.cornerRadius = 18
+        button.setTitleColor(.white, for: .normal)
         return button
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func configure(with title: String) {
-        filterButton.setTitle(title, for: .normal) // Certifique-se de que o título está sendo definido
+        filterButton.setTitle(title, for: .normal)
     }
     
     private func setup() {
@@ -36,9 +35,3 @@ class FilterButtonCell: UICollectionViewCell {
         ])
     }
 }
-
-//#Preview {
-//    let filterButton = FilterButtonCell()
-//    filterButton.configure(with: "teste")
-//   return filterButton
-//}

@@ -18,7 +18,7 @@ class AddBusinessViewController: UIViewController {
     }()
     
     private lazy var inputTextFieldName: InputWithLeftIconView = {
-        let input = InputWithLeftIconView(placeholder: "Nome", icon: "bag")
+        let input = InputWithLeftIconView(placeholder: "Nome do comércio", icon: "bag")
         input.translatesAutoresizingMaskIntoConstraints = false
         return input
     }()
@@ -41,10 +41,10 @@ class AddBusinessViewController: UIViewController {
         return input
     }()
     
-    private lazy var inputTextFieldImage: InputWithLeftIconView = {
-        let input = InputWithLeftIconView(placeholder: "Adicionar imagem", icon: "photo")
-        input.translatesAutoresizingMaskIntoConstraints = false
-        return input
+    private lazy var inputSelectImageButton: selectImageButton = {
+        let button = selectImageButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private lazy var addBussinessButton: UIButton = {
@@ -55,7 +55,7 @@ class AddBusinessViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorsExtension.purpleMedium
         button.layer.cornerRadius = 9
-        // TODO CREATE ADCTION FOR THIS BUTTON
+        // TODO CREATE ACTION FOR THIS BUTTON
 //        button.addTarget(self, action: #selector(goToMainMenuView), for: .touchUpInside)
         button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -85,7 +85,7 @@ extension AddBusinessViewController: SetupView {
         view.addSubview(inputTextFieldAddress)
         view.addSubview(inputTextFieldPhone)
         view.addSubview(inputTextFieldBussinessType)
-        view.addSubview(inputTextFieldImage)
+        view.addSubview(inputSelectImageButton)
         view.addSubview(addBussinessButton)
     }
     
@@ -111,11 +111,11 @@ extension AddBusinessViewController: SetupView {
             inputTextFieldBussinessType.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             inputTextFieldBussinessType.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            inputTextFieldImage.topAnchor.constraint(equalTo: inputTextFieldBussinessType.bottomAnchor, constant: 65),
-            inputTextFieldImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            inputTextFieldImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-
-            addBussinessButton.topAnchor.constraint(equalTo: inputTextFieldImage.bottomAnchor, constant: 80),
+            inputSelectImageButton.topAnchor.constraint(equalTo: inputTextFieldBussinessType.bottomAnchor, constant: 65),
+            inputSelectImageButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            inputSelectImageButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            
+            addBussinessButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             addBussinessButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             addBussinessButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             addBussinessButton.heightAnchor.constraint(equalToConstant: 50),

@@ -36,17 +36,17 @@ class SheetBusinessDetailsView: UIView {
         label.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         label.textColor = ColorsExtension.lightGray
         label.numberOfLines = 0
-        label.text = "endereço"
+        label.text = "Endereço: Lorem impsum"
         return label
     }()
     
     private lazy var phoneLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         label.textColor = ColorsExtension.lightGray
         label.numberOfLines = 0
-        label.text = "telefone"
+        label.text = "Telefone: 999999999"
         return label
     }()
 
@@ -54,8 +54,6 @@ class SheetBusinessDetailsView: UIView {
     
     init() {
         super.init(frame: .zero)
-//        viewTitleLabel.text = title
-//        viewSubtitleLabel.text = subtitle
         setup()
     }
     
@@ -81,9 +79,6 @@ extension SheetBusinessDetailsView: SetupView {
         NSLayoutConstraint.activate([
             businessImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             businessImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            businessImageView.heightAnchor.constraint(equalToConstant: 180),
-//            businessImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            businessImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             viewTitleLabel.topAnchor.constraint(equalTo: businessImageView.bottomAnchor, constant: 16),
             viewTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
