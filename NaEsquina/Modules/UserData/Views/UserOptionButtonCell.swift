@@ -1,6 +1,6 @@
 import UIKit
 
-class CustomUserOptionCell: UITableViewCell {
+class UserOptionButtonCell: UITableViewCell {
 
     // MARK: - UI Components
 
@@ -70,7 +70,7 @@ class CustomUserOptionCell: UITableViewCell {
     }
 }
 
-extension CustomUserOptionCell: SetupView {
+extension UserOptionButtonCell: SetupView {
     func setup() {
         addSubviews()
         setupConstraints()

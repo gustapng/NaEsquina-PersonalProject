@@ -5,10 +5,8 @@ class FilterButtonCell: UICollectionViewCell {
     private lazy var filterButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .regular)
-        button.backgroundColor = ColorsExtension.purpleMedium
+        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
         button.layer.cornerRadius = 18
-        button.setTitleColor(.white, for: .normal)
         return button
     }()
 
@@ -21,17 +19,35 @@ class FilterButtonCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with title: String) {
+    func configureButton(with title: String, isActive: Bool) {
         filterButton.setTitle(title, for: .normal)
+        
+        let backgroundColor = isActive ? ColorsExtension.purpleMedium : ColorsExtension.lightGray
+        let titleColor = isActive ? UIColor.white : UIColor.black
+        
+        filterButton.backgroundColor = backgroundColor
+        filterButton.setTitleColor(titleColor, for: .normal)
+    }
+}
+
+extension FilterButtonCell: SetupView {
+    func setup() {
+        addSubviews()
+        setupConstraints()
     }
     
-    private func setup() {
+    func addSubviews() {
         contentView.addSubview(filterButton)
+    }
+    
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             filterButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             filterButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             filterButton.topAnchor.constraint(equalTo: contentView.topAnchor),
-            filterButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            filterButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
     }
+    
+    
 }

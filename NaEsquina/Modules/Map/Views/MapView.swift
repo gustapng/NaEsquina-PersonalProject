@@ -24,7 +24,7 @@ class MapView: UIView, MKMapViewDelegate {
         let mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.pointOfInterestFilter = .excludingAll
-//        mapView.overrideUserInterfaceStyle = .light
+        mapView.overrideUserInterfaceStyle = .light
         return mapView
     }()
     

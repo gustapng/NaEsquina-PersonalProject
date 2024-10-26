@@ -1,13 +1,13 @@
 //
-//  SheetInfoView.swift
+//  CurrentScreenDescriptionView.swift
 //  NaEsquina
 //
-//  Created by Gustavo Ferreira dos Santos on 01/10/24.
+//  Created by Gustavo Ferreira dos Santos on 08/09/24.
 //
 
 import UIKit
 
-class SheetInfoView: UIView {
+class CurrentViewDescriptionView: UIView {
 
     // MARK: UI Components
 
@@ -18,31 +18,30 @@ class SheetInfoView: UIView {
         label.textColor = .black
         return label
     }()
-    
-    private lazy var viewSubtitleLabel: UILabel = {
+
+    private lazy var viewDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         label.textColor = ColorsExtension.lightGray
         label.numberOfLines = 0
         return label
     }()
 
     // MARK: Initializers
-    
-    init(title: String, subtitle: String) {
+    init(viewTitle: String, viewDescription: String) {
         super.init(frame: .zero)
-        viewTitleLabel.text = title
-        viewSubtitleLabel.text = subtitle
+        viewTitleLabel.text = viewTitle
+        viewDescriptionLabel.text = viewDescription
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension SheetInfoView: SetupView {
+extension CurrentViewDescriptionView: SetupView {
     func setup() {
         addSubviews()
         setupConstraints()
@@ -50,7 +49,7 @@ extension SheetInfoView: SetupView {
 
     func addSubviews() {
         addSubview(viewTitleLabel)
-        addSubview(viewSubtitleLabel)
+        addSubview(viewDescriptionLabel)
     }
 
     func setupConstraints() {
@@ -59,9 +58,9 @@ extension SheetInfoView: SetupView {
             viewTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             viewTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
 
-            viewSubtitleLabel.topAnchor.constraint(equalTo: viewTitleLabel.bottomAnchor, constant: 6),
-            viewSubtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            viewSubtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+            viewDescriptionLabel.topAnchor.constraint(equalTo: viewTitleLabel.bottomAnchor, constant: 12),
+            viewDescriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            viewDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
 }

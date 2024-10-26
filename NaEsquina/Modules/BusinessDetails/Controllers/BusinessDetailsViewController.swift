@@ -26,7 +26,7 @@ class BusinessDetailsViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorsExtension.purpleMedium
         button.layer.cornerRadius = 9
-        // TODO CREATE ADCTION FOR THIS BUTTON
+        // TODO CRIAR A ACAO DESSE BOTAO
 //        button.addTarget(self, action: #selector(goToMainMenuView), for: .touchUpInside)
         button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)

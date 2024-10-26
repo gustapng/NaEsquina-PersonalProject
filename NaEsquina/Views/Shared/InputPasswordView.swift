@@ -18,9 +18,8 @@ class InputPasswordView: UIView {
     }()
 
     private lazy var inputLabel: UITextField = {
-        // Icon Config
         let desiredIconSize = CGSize(width: 25, height: 25)
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 40 + 12, height: 30)) // Adicionando 12 de padding extra
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 40 + 12, height: 30))
         let icon = UIImage(systemName: "key.horizontal")
         let iconView = UIImageView(image: icon)
         let rightPaddingView = UIView(frame: CGRect(x: iconView.frame.maxX + 5, y: 0, width: 12, height: 30))

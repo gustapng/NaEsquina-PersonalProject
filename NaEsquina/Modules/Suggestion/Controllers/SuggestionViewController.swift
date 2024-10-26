@@ -39,7 +39,7 @@ class SuggestionViewController: UIViewController {
         textView.textColor = ColorsExtension.lightGray
         textView.backgroundColor = ColorsExtension.lightGrayBackground
         textView.layer.borderColor = ColorsExtension.lightGray?.cgColor
-        textView.font = UIFont.systemFont(ofSize: 12)
+        textView.font = UIFont.systemFont(ofSize: 14)
         textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return textView
     }()

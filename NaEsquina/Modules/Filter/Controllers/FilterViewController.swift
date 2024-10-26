@@ -10,8 +10,14 @@ import UIKit
 class FilterViewController: UIViewController {
 
     // MARK: UI Components
-    var filterNames = ["Mercado", "Farmácia", "Padaria", "Hamburgueria", "Pizzaria"]
-
+    var filters: [FilterOption] = [
+        FilterOption(name: "Mercado", isActive: true),
+        FilterOption(name: "Farmácia", isActive: false),
+        FilterOption(name: "Padaria", isActive: true),
+        FilterOption(name: "Hamburgueria", isActive: true),
+        FilterOption(name: "Pizzaria", isActive: false)
+    ]
+    
     private lazy var sheetInfoView: SheetInfoView = {
         let sheetInfoView = SheetInfoView(title: "Filtros", subtitle: "Selecione uma ou mais categorias para encontrar comércios específicos, como mercados, restaurantes e mais.")
         sheetInfoView.translatesAutoresizingMaskIntoConstraints = false
@@ -69,12 +75,12 @@ extension FilterViewController: SetupView {
 
 extension FilterViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filterNames.count
+        return filters.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterButtonCell", for: indexPath) as! FilterButtonCell
-        cell.configure(with: filterNames[indexPath.item])
+        cell.configureButton(with: filters[indexPath.item].name, isActive: filters[indexPath.item].isActive)
         return cell
     }
 

@@ -31,7 +31,7 @@ class UserViewController: UIViewController {
         tableView.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(CustomUserOptionCell.self, forCellReuseIdentifier: "CustomUserOptionCell")
+        tableView.register(UserOptionButtonCell.self, forCellReuseIdentifier: "UserOptionButtonCell")
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         tableView.separatorColor = ColorsExtension.lightGray
         return tableView
@@ -159,7 +159,7 @@ extension UserViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomUserOptionCell", for: indexPath) as? CustomUserOptionCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserOptionButtonCell", for: indexPath) as? UserOptionButtonCell else {
             return UITableViewCell()
         }
 

@@ -1,7 +1,7 @@
 import UIKit
 import MapKit
 
-class MainMenuViewController: UIViewController, MapViewDelegate {
+class MapViewController: UIViewController, MapViewDelegate {
 
     // MARK: - UI Components
 
@@ -10,13 +10,6 @@ class MainMenuViewController: UIViewController, MapViewDelegate {
                                                action: #selector(backButtonTapped),
                                                borderColor: ColorsExtension.lightGray ?? .black)
     }()
-
-//    private lazy var mapView: MKMapView = {
-//        let mapView = MKMapView()
-//        mapView.translatesAutoresizingMaskIntoConstraints = false
-//        mapView.pointOfInterestFilter = .excludingAll
-//        return mapView
-//    }()
     
     private lazy var mapView: MapView = {
         let map = MapView()
@@ -78,27 +71,16 @@ class MainMenuViewController: UIViewController, MapViewDelegate {
         navigationController?.pushViewController(userViewController, animated: true)
     }
 
-//    private func setInitialLocation(location: CLLocation, regionRadius: CLLocationDistance = 1000) {
-//        let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-//        mapView.setRegion(coordinateRegion, animated: true)
-//    }
-
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-//        let initialLocation = CLLocation(latitude: -23.55052, longitude: -46.63331)
-//        let annotation = MKPointAnnotation()
-//        // ADICIONA O PIN DA COORDENADA
-//        annotation.coordinate = CLLocationCoordinate2D(latitude: -23.55052, longitude: -46.63331)
-//        mapView.addAnnotation(annotation)
-//        setInitialLocation(location: initialLocation)
         setup()
     }
 }
 
-extension MainMenuViewController: UITabBarDelegate {
+extension MapViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.tag {
         case 0:
@@ -113,7 +95,7 @@ extension MainMenuViewController: UITabBarDelegate {
     }
 }
 
-extension MainMenuViewController: SetupView {
+extension MapViewController: SetupView {
     func setup() {
         self.navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white

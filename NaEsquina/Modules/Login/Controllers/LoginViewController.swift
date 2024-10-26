@@ -100,8 +100,8 @@ class LoginViewController: UIViewController {
 
     @objc private func goToMainMenuView() {
         // TODO - Lógica de login
-        let mainMenuViewController = MainMenuViewController()
-        navigationController?.pushViewController(mainMenuViewController, animated: true)
+        let mapViewController = MapViewController()
+        navigationController?.pushViewController(mapViewController, animated: true)
     }
     
     @objc func dismissKeyboard() {

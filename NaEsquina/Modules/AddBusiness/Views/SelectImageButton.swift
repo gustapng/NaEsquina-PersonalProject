@@ -15,7 +15,7 @@ class selectImageButton: UIButton, UIImagePickerControllerDelegate, UINavigation
         
     weak var delegate: ImagePickerViewDelegate?
     
-    private lazy var imageButton: UIButton = {
+    private lazy var ImagePickerButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -50,12 +50,12 @@ class selectImageButton: UIButton, UIImagePickerControllerDelegate, UINavigation
     }
     
     private func setup() {
-        addSubview(imageButton)
+        addSubview(ImagePickerButton)
         
         NSLayoutConstraint.activate([
-            imageButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            imageButton.heightAnchor.constraint(equalToConstant: 50),
+            ImagePickerButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            ImagePickerButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            ImagePickerButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
     
