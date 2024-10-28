@@ -8,19 +8,19 @@
 import UIKit
 
 class ConfirmEmailViewController: UIViewController {
-    
+
     // MARK: UI Components
 
-    private lazy var backButton: UIButton = {
-        return UIButton.createCustomBackButton(target: self, action: #selector(backButtonTapped), borderColor: ColorsExtension.lightGray ?? .black)
-    }()
+    private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
+                                                                    borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var imageWithDescription: ImageWithInfoView = {
-        let view = ImageWithInfoView(image: Constants.ConfirmEmail.imageDetails, mainMessage: Constants.ConfirmEmail.mainMessage, description: Constants.ConfirmEmail.description)
+        let view = ImageWithInfoView(image: Constants.ConfirmEmail.imageDetails, mainMessage: Constants.ConfirmEmail.mainMessage,
+                                     description: Constants.ConfirmEmail.description)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private lazy var optCodeView: OtpTextFieldView = {
         let view = OtpTextFieldView(descriptionText: "Digite o código de verificação", numberOfFields: 5)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +60,8 @@ class ConfirmEmailViewController: UIViewController {
         button.addTarget(self, action: #selector(resendCode), for: .touchUpInside)
 
         let attributedString = NSMutableAttributedString(string: "Reenviar")
-         attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue,
+                                      range: NSRange(location: 0, length: attributedString.length))
 
         button.setAttributedTitle(attributedString, for: .normal)
         return button
@@ -76,7 +77,7 @@ class ConfirmEmailViewController: UIViewController {
         // Lógica para reenviar código de recuperação para o email
         print("Reenviar código")
     }
-    
+
     @objc func verifyCode() {
         // Lógica para confirmar código de recuperação para o email
         print("Confirmar código")
@@ -92,12 +93,12 @@ class ConfirmEmailViewController: UIViewController {
 
 extension ConfirmEmailViewController: SetupView {
     func setup() {
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
         addSubviews()
         setupConstraints()
     }
-    
+
     func addSubviews() {
         view.addSubview(backButton)
         view.addSubview(imageWithDescription)
@@ -106,7 +107,7 @@ extension ConfirmEmailViewController: SetupView {
         view.addSubview(resendCodeLabel)
         view.addSubview(resendCodeButton)
     }
-    
+
     func setupConstraints() {
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -120,18 +121,17 @@ extension ConfirmEmailViewController: SetupView {
             optCodeView.topAnchor.constraint(equalTo: imageWithDescription.bottomAnchor, constant: 58),
             optCodeView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             optCodeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            
+
             sendCodeButton.topAnchor.constraint(equalTo: optCodeView.bottomAnchor, constant: 38),
             sendCodeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             sendCodeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             sendCodeButton.heightAnchor.constraint(equalToConstant: 45),
-            
+
             resendCodeLabel.topAnchor.constraint(equalTo: sendCodeButton.bottomAnchor, constant: 30),
             resendCodeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
             resendCodeButton.topAnchor.constraint(equalTo: resendCodeLabel.bottomAnchor, constant: -2),
-            resendCodeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            resendCodeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }
-

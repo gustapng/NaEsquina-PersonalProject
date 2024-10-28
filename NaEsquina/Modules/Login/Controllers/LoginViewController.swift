@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  NaEsquina
 //
 //  Created by Gustavo Ferreira dos Santos on 03/09/24.
@@ -12,13 +12,15 @@ class LoginViewController: UIViewController {
     // MARK: UI Components
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
-        let view = CurrentViewDescriptionView(viewTitle: "Login", viewDescription: "Acesse sua conta para explorar comércios e serviços locais de forma rápida e segura.")
+        let view = CurrentViewDescriptionView(viewTitle: "Login",
+                                              viewDescription: "Acesse sua conta para explorar comércios e serviços locais de forma rápida e segura.")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private lazy var emailInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true, horRotation: false, inputDisabled: false)
+        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true,
+                                            horRotation: false, inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -34,10 +36,11 @@ class LoginViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .systemFont(ofSize: 12, weight: .regular)
         button.setTitleColor(ColorsExtension.purpleMedium, for: .normal)
-        button.addTarget(self, action: #selector(goToRecoverView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.goToRecoverView), for: .touchUpInside)
 
         let attributedString = NSMutableAttributedString(string: "Esqueceu sua senha?")
-         attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue,
+                                      range: NSRange(location: 0, length: attributedString.length))
 
         button.setAttributedTitle(attributedString, for: .normal)
         return button
@@ -76,7 +79,8 @@ class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(goToRegisterView), for: .touchUpInside)
 
         let attributedString = NSMutableAttributedString(string: "Registre-se")
-         attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue,
+                                      range: NSRange(location: 0, length: attributedString.length))
 
         button.setAttributedTitle(attributedString, for: .normal)
         return button
@@ -99,11 +103,11 @@ class LoginViewController: UIViewController {
     }
 
     @objc private func goToMainMenuView() {
-        // TODO - Lógica de login
+        // TODO: - Lógica de login
         let mapViewController = MapViewController()
         navigationController?.pushViewController(mapViewController, animated: true)
     }
-    
+
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -161,7 +165,7 @@ extension LoginViewController: SetupView {
             registerAccount.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
             registerAccountButton.topAnchor.constraint(equalTo: registerAccount.bottomAnchor, constant: -2),
-            registerAccountButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            registerAccountButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }

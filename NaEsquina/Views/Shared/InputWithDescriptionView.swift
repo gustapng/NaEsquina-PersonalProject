@@ -1,5 +1,5 @@
 //
-//  LabelButton.swift
+//  InputWithDescriptionView.swift
 //  NaEsquina
 //
 //  Created by Gustavo Ferreira dos Santos on 05/09/24.
@@ -10,7 +10,7 @@ import UIKit
 class InputWithDescriptionView: UIView {
     
     // MARK: Variables
-    
+
     var iconColor: UIColor
 
     // MARK: UI Components
@@ -35,31 +35,32 @@ class InputWithDescriptionView: UIView {
 
     init(descriptionText: String, inputPlaceholder: String, icon: String, leftView: Bool, horRotation: Bool, inputDisabled: Bool) {
         if inputDisabled {
-            self.iconColor = ColorsExtension.lightGrayDisabled ?? UIColor()
+            iconColor = ColorsExtension.lightGrayDisabled ?? UIColor()
         } else {
-            self.iconColor = ColorsExtension.lightGray ?? UIColor()
+            iconColor = ColorsExtension.lightGray ?? UIColor()
         }
         super.init(frame: .zero)
         descriptionLabel.text = descriptionText
         configureInputLabel(inputPlaceholder: inputPlaceholder, icon: icon, inputDisabled: inputDisabled)
         inputLabel.addPaddingAndIcon(UIImage(systemName: icon) ?? UIImage(),
-                                     iconColor,
-                                     leftPad: 15,
-                                     rightPad: 12,
-                                     isLeftView: leftView,
-                                     horRotation: horRotation)
+                                          iconColor,
+                                          leftPad: 15,
+                                          rightPad: 12,
+                                          isLeftView: leftView,
+                                          horRotation: horRotation)
         setup()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Functions
-    
+
     private func configureInputLabel(inputPlaceholder: String, icon: String, inputDisabled: Bool) {
         if inputDisabled {
-            applyDisabledStyle(inputPlaceholder: inputPlaceholder, icon: icon)
+           applyDisabledStyle(inputPlaceholder: inputPlaceholder, icon: icon)
         } else {
             applyEnabledStyle(inputPlaceholder: inputPlaceholder, icon: icon)
         }
@@ -71,7 +72,8 @@ class InputWithDescriptionView: UIView {
         inputLabel.layer.borderColor = ColorsExtension.lightGrayDisabled?.cgColor
 
         inputLabel.attributedPlaceholder = NSAttributedString(string: inputPlaceholder,
-                                                              attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension.lightGrayDisabled ?? UIColor.black])
+                                                                   attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension
+                                                                       .lightGrayDisabled ?? UIColor.black])
     }
 
     private func applyEnabledStyle(inputPlaceholder: String, icon: String) {
@@ -80,7 +82,8 @@ class InputWithDescriptionView: UIView {
         inputLabel.layer.borderColor = ColorsExtension.lightGray?.cgColor
 
         inputLabel.attributedPlaceholder = NSAttributedString(string: inputPlaceholder,
-                                                              attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension.lightGray ?? UIColor.black])
+                                                                   attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension
+                                                                       .lightGray ?? UIColor.black])
     }
 }
 

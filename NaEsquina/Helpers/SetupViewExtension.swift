@@ -1,5 +1,5 @@
 //
-//  ViewCodeExtension.swift
+//  SetupViewExtension.swift
 //  NaEsquina
 //
 //  Created by Gustavo Ferreira dos Santos on 05/09/24.

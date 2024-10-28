@@ -11,9 +11,8 @@ class UserViewController: UIViewController {
 
     // MARK: - UI Components
 
-    private lazy var backButton: UIButton = {
-        return UIButton.createCustomBackButton(target: self, action: #selector(backButtonTapped), borderColor: ColorsExtension.lightGray ?? .black)
-    }()
+    private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
+                                                                    borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var userNameLabel: UILabel = {
         let label = UILabel()
@@ -40,18 +39,18 @@ class UserViewController: UIViewController {
     private lazy var logoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
+
         var config = UIButton.Configuration.plain()
         config.image = UIImage(systemName: "door.left.hand.open")
         config.title = "Sair"
         config.baseForegroundColor = ColorsExtension.lightGray
         config.imagePadding = 17
         config.imagePlacement = .leading
-        
+
         button.configuration = config
         button.contentHorizontalAlignment = .leading
         button.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
-        
+
         return button
     }()
 
@@ -102,22 +101,22 @@ class UserViewController: UIViewController {
     private func setupTableFooterView() {
         let footerView = UIView(frame: CGRect(x: 5, y: 0, width: view.frame.width, height: 70))
         footerView.addSubview(logoutButton)
-        
+
         NSLayoutConstraint.activate([
             logoutButton.heightAnchor.constraint(equalToConstant: 70),
             logoutButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor),
             logoutButton.trailingAnchor.constraint(equalTo: footerView.trailingAnchor),
             logoutButton.topAnchor.constraint(equalTo: footerView.topAnchor),
-            logoutButton.bottomAnchor.constraint(equalTo: footerView.bottomAnchor),
+            logoutButton.bottomAnchor.constraint(equalTo: footerView.bottomAnchor)
         ])
-        
+
         tableView.tableFooterView = footerView
     }
 }
 
 extension UserViewController: SetupView {
     func setup() {
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
         addSubviews()
         setupConstraints()
@@ -142,7 +141,7 @@ extension UserViewController: SetupView {
             tableView.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }

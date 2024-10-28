@@ -18,7 +18,7 @@ class SheetInfoView: UIView {
         label.textColor = .black
         return label
     }()
-    
+
     private lazy var viewSubtitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,14 +29,14 @@ class SheetInfoView: UIView {
     }()
 
     // MARK: Initializers
-    
+
     init(title: String, subtitle: String) {
         super.init(frame: .zero)
-        viewTitleLabel.text = title
-        viewSubtitleLabel.text = subtitle
+        self.viewTitleLabel.text = title
+        self.viewSubtitleLabel.text = subtitle
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

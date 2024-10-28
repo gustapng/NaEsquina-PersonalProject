@@ -9,6 +9,8 @@ import UIKit
 
 class InputPasswordView: UIView {
 
+    // MARK: UI Components
+
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +59,9 @@ class InputPasswordView: UIView {
     init(descriptionText: String, inputLabelPlaceholder: String) {
         super.init(frame: .zero)
         descriptionLabel.text = descriptionText
-        inputLabel.attributedPlaceholder = NSAttributedString(string: inputLabelPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension.lightGray ?? UIColor.black])
+        inputLabel.attributedPlaceholder = NSAttributedString(string: inputLabelPlaceholder,
+                                                                   attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension
+                                                                       .lightGray ?? UIColor.black])
         configurePasswordVisibility()
         setup()
     }
@@ -69,17 +73,17 @@ class InputPasswordView: UIView {
     // MARK: Functions
 
     private func configurePasswordVisibility() {
-         let buttonSize: CGFloat = 30
-         let rightPadding: CGFloat = 12
-         let buttonContainer = UIView(frame: CGRect(x: 0, y: 0, width: buttonSize + rightPadding, height: buttonSize))
+        let buttonSize: CGFloat = 30
+        let rightPadding: CGFloat = 12
+        let buttonContainer = UIView(frame: CGRect(x: 0, y: 0, width: buttonSize + rightPadding, height: buttonSize))
 
-         toggleButton.frame = CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize)
-         toggleButton.tintColor = ColorsExtension.lightGray
+        toggleButton.frame = CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize)
+        toggleButton.tintColor = ColorsExtension.lightGray
 
-         buttonContainer.addSubview(toggleButton)
-        
-         inputLabel.rightView = buttonContainer
-         inputLabel.rightViewMode = .always
+        buttonContainer.addSubview(toggleButton)
+
+        inputLabel.rightView = buttonContainer
+        inputLabel.rightViewMode = .always
     }
 
     @objc private func togglePasswordVisibility() {

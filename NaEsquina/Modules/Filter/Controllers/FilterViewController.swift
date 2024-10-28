@@ -10,16 +10,10 @@ import UIKit
 class FilterViewController: UIViewController {
 
     // MARK: UI Components
-    var filters: [FilterOption] = [
-        FilterOption(name: "Mercado", isActive: true),
-        FilterOption(name: "Farmácia", isActive: false),
-        FilterOption(name: "Padaria", isActive: true),
-        FilterOption(name: "Hamburgueria", isActive: true),
-        FilterOption(name: "Pizzaria", isActive: false)
-    ]
-    
+
     private lazy var sheetInfoView: SheetInfoView = {
-        let sheetInfoView = SheetInfoView(title: "Filtros", subtitle: "Selecione uma ou mais categorias para encontrar comércios específicos, como mercados, restaurantes e mais.")
+        let sheetInfoView = SheetInfoView(title: "Filtros",
+                                          subtitle: "Selecione uma ou mais categorias para encontrar comércios específicos, como mercados, restaurantes e mais.")
         sheetInfoView.translatesAutoresizingMaskIntoConstraints = false
         return sheetInfoView
     }()
@@ -84,7 +78,9 @@ extension FilterViewController: UICollectionViewDataSource, UICollectionViewDele
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
         let padding: CGFloat = 10
         let availableWidth = collectionView.frame.width - padding
         let buttonSize = (availableWidth - 10) / 2

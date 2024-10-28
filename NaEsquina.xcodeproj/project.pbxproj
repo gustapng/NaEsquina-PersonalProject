@@ -10,9 +10,11 @@
 		EC1D87332CACC874002363A4 /* AddBusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1D87322CACC874002363A4 /* AddBusinessViewController.swift */; };
 		EC1D87352CACCB2A002363A4 /* SheetInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1D87342CACCB2A002363A4 /* SheetInfoView.swift */; };
 		EC2560412C92677800F076F5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2560402C92677800F076F5 /* UIButton+Extension.swift */; };
+		EC273DAA2CCEF76300945369 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = EC273DA92CCEF76300945369 /* .swiftformat */; };
 		EC3AB3612C8A75A100DEDC44 /* ColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */; };
 		EC3AB3632C8A7D1700DEDC44 /* InputWithDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3AB3622C8A7D1700DEDC44 /* InputWithDescriptionView.swift */; };
 		EC4E2FF32CCC84F8008CDFC3 /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E2FF22CCC84F8008CDFC3 /* FilterOption.swift */; };
+		EC5025652CCEF45300D98868 /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = EC5025642CCEF45300D98868 /* SwiftFormat */; };
 		EC5063BE2CA23A31009852FA /* OtpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5063BD2CA23A31009852FA /* OtpTextFieldView.swift */; };
 		EC598E512CAC8ED000BDF9B0 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */; };
 		EC65642C2C9B926C00953563 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65642B2C9B926C00953563 /* FilterViewController.swift */; };
@@ -49,6 +51,7 @@
 		EC1D87322CACC874002363A4 /* AddBusinessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBusinessViewController.swift; sourceTree = "<group>"; };
 		EC1D87342CACCB2A002363A4 /* SheetInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetInfoView.swift; sourceTree = "<group>"; };
 		EC2560402C92677800F076F5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		EC273DA92CCEF76300945369 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 		EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsExtension.swift; sourceTree = "<group>"; };
 		EC3AB3622C8A7D1700DEDC44 /* InputWithDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputWithDescriptionView.swift; sourceTree = "<group>"; };
 		EC4E2FF22CCC84F8008CDFC3 /* FilterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC5025652CCEF45300D98868 /* SwiftFormat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,13 +476,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		EC821F682C8A6A0700F35B96 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		EC821F692C8A6A1600F35B96 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,7 +524,6 @@
 				EC4E2FF42CCC9C0D008CDFC3 /* Modules */,
 				EC821F662C8A69E900F35B96 /* Models */,
 				EC821F672C8A69FD00F35B96 /* Views */,
-				EC821F682C8A6A0700F35B96 /* Controllers */,
 				EC821F692C8A6A1600F35B96 /* Services */,
 				EC821F6A2C8A6A1E00F35B96 /* Helpers */,
 				ECBA89262C9FAE160016AAB4 /* Constants */,
@@ -537,6 +533,7 @@
 				EC9E14FA2C87D22D007A9F88 /* LaunchScreen.storyboard */,
 				EC9E14FD2C87D22D007A9F88 /* Info.plist */,
 				ECABB05A2C8FCDCA0030042E /* .swiftlint.yml */,
+				EC273DA92CCEF76300945369 /* .swiftformat */,
 			);
 			path = NaEsquina;
 			sourceTree = "<group>";
@@ -595,6 +592,7 @@
 			mainGroup = EC9E14E32C87D22C007A9F88;
 			packageReferences = (
 				ECABB0572C8FCD400030042E /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+				EC5025632CCEF45300D98868 /* XCRemoteSwiftPackageReference "SwiftFormat" */,
 			);
 			productRefGroup = EC9E14ED2C87D22C007A9F88 /* Products */;
 			projectDirPath = "";
@@ -610,6 +608,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC273DAA2CCEF76300945369 /* .swiftformat in Resources */,
 				ECABB05B2C8FCDCA0030042E /* .swiftlint.yml in Resources */,
 				EC9E14F92C87D22D007A9F88 /* Assets.xcassets in Resources */,
 				EC9E14FC2C87D22D007A9F88 /* Base in Resources */,
@@ -870,6 +869,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EC5025632CCEF45300D98868 /* XCRemoteSwiftPackageReference "SwiftFormat" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nicklockwood/SwiftFormat.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.54.6;
+			};
+		};
 		ECABB0572C8FCD400030042E /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
@@ -879,6 +886,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EC5025642CCEF45300D98868 /* SwiftFormat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC5025632CCEF45300D98868 /* XCRemoteSwiftPackageReference "SwiftFormat" */;
+			productName = SwiftFormat;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EC9E14E42C87D22C007A9F88 /* Project object */;
 }

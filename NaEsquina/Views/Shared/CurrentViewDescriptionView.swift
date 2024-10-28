@@ -1,5 +1,5 @@
 //
-//  CurrentScreenDescriptionView.swift
+//  CurrentViewDescriptionView.swift
 //  NaEsquina
 //
 //  Created by Gustavo Ferreira dos Santos on 08/09/24.
@@ -29,6 +29,7 @@ class CurrentViewDescriptionView: UIView {
     }()
 
     // MARK: Initializers
+
     init(viewTitle: String, viewDescription: String) {
         super.init(frame: .zero)
         viewTitleLabel.text = viewTitle

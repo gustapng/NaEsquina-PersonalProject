@@ -1,5 +1,5 @@
 //
-//  SuggestionViewController.swift
+//  UserDataViewController.swift
 //  NaEsquina
 //
 //  Created by Gustavo Ferreira dos Santos on 17/10/24.
@@ -11,9 +11,8 @@ class UserDataViewController: UIViewController {
 
     // MARK: - UI Components
 
-    private lazy var backButton: UIButton = {
-        return UIButton.createCustomBackButton(target: self, action: #selector(backButtonTapped), borderColor: ColorsExtension.lightGray ?? .black)
-    }()
+    private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
+                                                                    borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
         let view = CurrentViewDescriptionView(viewTitle: "Dados da conta", viewDescription: "Minhas informações da conta.")
@@ -22,13 +21,15 @@ class UserDataViewController: UIViewController {
     }()
 
     private lazy var userInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Nome", inputPlaceholder: "Gustavo Ferreira Dos Santos", icon: "person", leftView: true, horRotation: false, inputDisabled: false)
+        let view = InputWithDescriptionView(descriptionText: "Nome", inputPlaceholder: "Gustavo Ferreira Dos Santos", icon: "person", leftView: true,
+                                            horRotation: false, inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private lazy var emailInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true, horRotation: false, inputDisabled: true)
+        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true,
+                                            horRotation: false, inputDisabled: true)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -73,7 +74,7 @@ class UserDataViewController: UIViewController {
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     @objc func resendUserData() {
         print("ACTION DE REENVIAR DADOS DO USUARIO")
     }
@@ -81,7 +82,7 @@ class UserDataViewController: UIViewController {
 
 extension UserDataViewController: SetupView {
     func setup() {
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
         addSubviews()
         setupConstraints()
@@ -102,23 +103,23 @@ extension UserDataViewController: SetupView {
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
 
-            currentViewDescriptionView.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 30),
+            currentViewDescriptionView.topAnchor.constraint(equalTo: self.backButton.bottomAnchor, constant: 30),
             currentViewDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             currentViewDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            userInputWithDescriptionView.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 100),
+            userInputWithDescriptionView.topAnchor.constraint(equalTo: self.currentViewDescriptionView.bottomAnchor, constant: 100),
             userInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             userInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            emailInputWithDescriptionView.topAnchor.constraint(equalTo: userInputWithDescriptionView.bottomAnchor, constant: 30),
+            emailInputWithDescriptionView.topAnchor.constraint(equalTo: self.userInputWithDescriptionView.bottomAnchor, constant: 30),
             emailInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             emailInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            passwordInputWithDescriptionView.topAnchor.constraint(equalTo: emailInputWithDescriptionView.bottomAnchor, constant: 30),
+            passwordInputWithDescriptionView.topAnchor.constraint(equalTo: self.emailInputWithDescriptionView.bottomAnchor, constant: 30),
             passwordInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             passwordInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            rePasswordInputWithDescriptionView.topAnchor.constraint(equalTo: passwordInputWithDescriptionView.bottomAnchor, constant: 30),
+            rePasswordInputWithDescriptionView.topAnchor.constraint(equalTo: self.passwordInputWithDescriptionView.bottomAnchor, constant: 30),
             rePasswordInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             rePasswordInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
@@ -126,7 +127,7 @@ extension UserDataViewController: SetupView {
             resendUserDataButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             resendUserDataButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             resendUserDataButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            resendUserDataButton.heightAnchor.constraint(equalToConstant: 50),
+            resendUserDataButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }

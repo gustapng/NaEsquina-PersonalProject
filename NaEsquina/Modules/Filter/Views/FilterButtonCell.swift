@@ -2,6 +2,8 @@ import UIKit
 
 class FilterButtonCell: UICollectionViewCell {
 
+    // MARK: UI Components
+
     private lazy var filterButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -21,10 +23,10 @@ class FilterButtonCell: UICollectionViewCell {
 
     func configureButton(with title: String, isActive: Bool) {
         filterButton.setTitle(title, for: .normal)
-        
+
         let backgroundColor = isActive ? ColorsExtension.purpleMedium : ColorsExtension.lightGray
         let titleColor = isActive ? UIColor.white : UIColor.black
-        
+
         filterButton.backgroundColor = backgroundColor
         filterButton.setTitleColor(titleColor, for: .normal)
     }
@@ -35,19 +37,17 @@ extension FilterButtonCell: SetupView {
         addSubviews()
         setupConstraints()
     }
-    
+
     func addSubviews() {
         contentView.addSubview(filterButton)
     }
-    
+
     func setupConstraints() {
         NSLayoutConstraint.activate([
             filterButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             filterButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             filterButton.topAnchor.constraint(equalTo: contentView.topAnchor),
-            filterButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            filterButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
-    
-    
 }

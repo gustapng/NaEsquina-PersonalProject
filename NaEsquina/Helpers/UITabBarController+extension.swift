@@ -8,9 +8,7 @@
 import UIKit
 
 class UITabBarController_extension: UITabBarController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 }

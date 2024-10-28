@@ -11,22 +11,23 @@ class RecoveryViewController: UIViewController {
 
     // MARK: UI Components
 
-    private lazy var backButton: UIButton = {
-        return UIButton.createCustomBackButton(target: self, action: #selector(backButtonTapped), borderColor: ColorsExtension.lightGray ?? .black)
-    }()
+    private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
+                                                                    borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var imageWithDescription: ImageWithInfoView = {
-        let view = ImageWithInfoView(image: Constants.PasswordRecovery.imageDetails, mainMessage: Constants.PasswordRecovery.mainMessage, description: Constants.PasswordRecovery.description)
+        let view = ImageWithInfoView(image: Constants.PasswordRecovery.imageDetails, mainMessage: Constants.PasswordRecovery.mainMessage,
+                                     description: Constants.PasswordRecovery.description)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private lazy var emailInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true, horRotation: false, inputDisabled: false)
+        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true,
+                                            horRotation: false, inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private lazy var sendCodeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -35,20 +36,20 @@ class RecoveryViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorsExtension.purpleMedium
         button.layer.cornerRadius = 9
-        button.addTarget(self, action: #selector(goToOtpView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.goToOtpView), for: .touchUpInside)
         button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.layer.shadowOpacity = 1
         button.layer.shadowRadius = 0
         return button
     }()
-    
+
     // MARK: Functions
 
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     @objc private func goToOtpView() {
         let otpViewController = OtpViewController()
         navigationController?.pushViewController(otpViewController, animated: true)
@@ -64,7 +65,7 @@ class RecoveryViewController: UIViewController {
 
 extension RecoveryViewController: SetupView {
     func setup() {
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
         addSubviews()
         setupConstraints()
@@ -94,7 +95,7 @@ extension RecoveryViewController: SetupView {
             sendCodeButton.topAnchor.constraint(equalTo: emailInputWithDescriptionView.bottomAnchor, constant: 33.5),
             sendCodeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             sendCodeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            sendCodeButton.heightAnchor.constraint(equalToConstant: 45),
+            sendCodeButton.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
 }

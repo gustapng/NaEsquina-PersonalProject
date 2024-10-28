@@ -8,10 +8,11 @@
 import UIKit
 
 class NewPasswordViewController: UIViewController {
-
-    private lazy var backButton: UIButton = {
-        return UIButton.createCustomBackButton(target: self, action: #selector(backButtonTapped), borderColor: ColorsExtension.lightGray ?? .black)
-    }()
+    
+    // MARK: UI Components
+    
+    private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
+                                                                    borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
         let view = CurrentViewDescriptionView(viewTitle: "Definir nova senha", viewDescription: "Crie uma senha forte para proteger sua conta.")
@@ -26,7 +27,7 @@ class NewPasswordViewController: UIViewController {
         image.image = UIImage(named: Constants.NewPassword.image)
         return image
     }()
-    
+
     private lazy var passwordInputWithDescriptionView: InputPasswordView = {
         let view = InputPasswordView(descriptionText: "Nova senha", inputLabelPlaceholder: "Sua senha")
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +68,7 @@ class NewPasswordViewController: UIViewController {
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     @objc func confirmNewPassword() {
         print("Lógica de salvar nova senha")
     }
@@ -75,7 +76,7 @@ class NewPasswordViewController: UIViewController {
 
 extension NewPasswordViewController: SetupView {
     func setup() {
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
         addSubviews()
         setupConstraints()
@@ -98,15 +99,15 @@ extension NewPasswordViewController: SetupView {
             currentViewDescriptionView.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 30),
             currentViewDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             currentViewDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            
+
             illustrationImage.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 80),
             illustrationImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             illustrationImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            
+
             passwordInputWithDescriptionView.topAnchor.constraint(equalTo: illustrationImage.bottomAnchor, constant: 20),
             passwordInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             passwordInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            
+
             rePasswordInputWithDescriptionView.topAnchor.constraint(equalTo: passwordInputWithDescriptionView.bottomAnchor, constant: 23),
             rePasswordInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             rePasswordInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
@@ -114,8 +115,7 @@ extension NewPasswordViewController: SetupView {
             registerButton.topAnchor.constraint(equalTo: rePasswordInputWithDescriptionView.bottomAnchor, constant: 45),
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            registerButton.heightAnchor.constraint(equalToConstant: 45),
+            registerButton.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
-
 }

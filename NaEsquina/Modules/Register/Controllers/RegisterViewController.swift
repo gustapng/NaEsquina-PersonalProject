@@ -1,5 +1,5 @@
 //
-//  registerViewController.swift
+//  RegisterViewController.swift
 //  NaEsquina
 //
 //  Created by Gustavo Ferreira dos Santos on 09/09/24.
@@ -11,24 +11,26 @@ class RegisterViewController: UIViewController {
 
     // MARK: UI Components
 
-    private lazy var backButton: UIButton = {
-        return UIButton.createCustomBackButton(target: self, action: #selector(backButtonTapped), borderColor: ColorsExtension.lightGray ?? .black)
-    }()
+    private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
+                                                                    borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
-        let view = CurrentViewDescriptionView(viewTitle: "Registre se", viewDescription: "Crie sua conta para começar a descobrir e interagir com comércios locais.")
+        let view = CurrentViewDescriptionView(viewTitle: "Registre se",
+                                              viewDescription: "Crie sua conta para começar a descobrir e interagir com comércios locais.")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private lazy var userInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Nome de usuário", inputPlaceholder: "Seu nome", icon: "person", leftView: true, horRotation: false, inputDisabled: false)
+        let view = InputWithDescriptionView(descriptionText: "Nome de usuário", inputPlaceholder: "Seu nome", icon: "person", leftView: true,
+                                            horRotation: false, inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private lazy var emailInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true, horRotation: false, inputDisabled: false)
+        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true,
+                                            horRotation: false, inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -73,7 +75,7 @@ class RegisterViewController: UIViewController {
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     @objc func goToConfirmEmailViewController() {
         let confirmEmailViewController = ConfirmEmailViewController()
         navigationController?.pushViewController(confirmEmailViewController, animated: true)
@@ -82,7 +84,7 @@ class RegisterViewController: UIViewController {
 
 extension RegisterViewController: SetupView {
     func setup() {
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
         addSubviews()
         setupConstraints()
@@ -126,7 +128,7 @@ extension RegisterViewController: SetupView {
             registerButton.topAnchor.constraint(equalTo: rePasswordInputWithDescriptionView.bottomAnchor, constant: 50),
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            registerButton.heightAnchor.constraint(equalToConstant: 45),
+            registerButton.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
 }

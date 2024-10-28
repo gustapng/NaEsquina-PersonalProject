@@ -11,16 +11,16 @@ class OtpViewController: UIViewController {
 
     // MARK: UI Components
 
-    private lazy var backButton: UIButton = {
-        return UIButton.createCustomBackButton(target: self, action: #selector(backButtonTapped), borderColor: ColorsExtension.lightGray ?? .black)
-    }()
+    private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
+                                                                    borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var imageWithDescription: ImageWithInfoView = {
-        let view = ImageWithInfoView(image: Constants.OtpVerification.imageDetails, mainMessage: Constants.OtpVerification.mainMessage, description: Constants.OtpVerification.description)
+        let view = ImageWithInfoView(image: Constants.OtpVerification.imageDetails, mainMessage: Constants.OtpVerification.mainMessage,
+                                     description: Constants.OtpVerification.description)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private lazy var optCodeView: OtpTextFieldView = {
         let view = OtpTextFieldView(descriptionText: "Digite o código de verificação", numberOfFields: 5)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -57,10 +57,11 @@ class OtpViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
         button.setTitleColor(ColorsExtension.purpleMedium, for: .normal)
-        button.addTarget(self, action: #selector(resendCode), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.resendCode), for: .touchUpInside)
 
         let attributedString = NSMutableAttributedString(string: "Reenviar")
-         attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue,
+                                      range: NSRange(location: 0, length: attributedString.length))
 
         button.setAttributedTitle(attributedString, for: .normal)
         return button
@@ -92,7 +93,7 @@ class OtpViewController: UIViewController {
 
 extension OtpViewController: SetupView {
     func setup() {
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
         addSubviews()
         setupConstraints()
@@ -120,17 +121,17 @@ extension OtpViewController: SetupView {
             optCodeView.topAnchor.constraint(equalTo: imageWithDescription.bottomAnchor, constant: 58),
             optCodeView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             optCodeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            
+
             sendCodeButton.topAnchor.constraint(equalTo: optCodeView.bottomAnchor, constant: 38),
             sendCodeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             sendCodeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             sendCodeButton.heightAnchor.constraint(equalToConstant: 45),
-            
+
             resendCodeLabel.topAnchor.constraint(equalTo: sendCodeButton.bottomAnchor, constant: 30),
             resendCodeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
             resendCodeButton.topAnchor.constraint(equalTo: resendCodeLabel.bottomAnchor, constant: -2),
-            resendCodeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            resendCodeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }

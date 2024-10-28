@@ -1,6 +1,6 @@
 
 //
-//  SheetInfoView.swift
+//  SheetBusinessDetailsView.swift
 //  NaEsquina
 //
 //  Created by Gustavo Ferreira dos Santos on 01/10/24.
@@ -11,7 +11,7 @@ import UIKit
 class SheetBusinessDetailsView: UIView {
 
     // MARK: UI Components
-    
+
     private lazy var businessImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "comercio"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,10 +26,10 @@ class SheetBusinessDetailsView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 28.0, weight: .semibold)
         label.textColor = ColorsExtension.purpleLight
-        label.text = "teste"
+        label.text = "Mais Variedades"
         return label
     }()
-    
+
     private lazy var addressLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +39,7 @@ class SheetBusinessDetailsView: UIView {
         label.text = "Endereço: Lorem impsum"
         return label
     }()
-    
+
     private lazy var phoneLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -51,12 +51,12 @@ class SheetBusinessDetailsView: UIView {
     }()
 
     // MARK: Initializers
-    
+
     init() {
         super.init(frame: .zero)
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -79,7 +79,7 @@ extension SheetBusinessDetailsView: SetupView {
         NSLayoutConstraint.activate([
             businessImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             businessImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
+
             viewTitleLabel.topAnchor.constraint(equalTo: businessImageView.bottomAnchor, constant: 16),
             viewTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             viewTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -87,10 +87,10 @@ extension SheetBusinessDetailsView: SetupView {
             addressLabel.topAnchor.constraint(equalTo: viewTitleLabel.bottomAnchor, constant: 6),
             addressLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             addressLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
+
             phoneLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 6),
             phoneLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            phoneLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            phoneLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
 }

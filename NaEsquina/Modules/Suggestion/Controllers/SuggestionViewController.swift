@@ -11,16 +11,15 @@ class SuggestionViewController: UIViewController {
 
     // MARK: - UI Components
 
-    private lazy var backButton: UIButton = {
-        return UIButton.createCustomBackButton(target: self, action: #selector(backButtonTapped), borderColor: ColorsExtension.lightGray ?? .black)
-    }()
+    private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
+                                                                    borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
         let view = CurrentViewDescriptionView(viewTitle: "Sugestões", viewDescription: "Tem alguma uma sugestão? Conte para nós.")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +42,7 @@ class SuggestionViewController: UIViewController {
         textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return textView
     }()
-    
+
     private lazy var sendSuggestionButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +51,7 @@ class SuggestionViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorsExtension.purpleMedium
         button.layer.cornerRadius = 9
-        button.addTarget(self, action: #selector(sendSuggestion), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.sendSuggestion), for: .touchUpInside)
         button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.layer.shadowOpacity = 1
@@ -72,7 +71,7 @@ class SuggestionViewController: UIViewController {
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     @objc func sendSuggestion() {
         print("ACTION DE ENVIAR SUGESTAO")
     }
@@ -80,7 +79,7 @@ class SuggestionViewController: UIViewController {
 
 extension SuggestionViewController: SetupView {
     func setup() {
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
         addSubviews()
         setupConstraints()
@@ -102,20 +101,20 @@ extension SuggestionViewController: SetupView {
             currentViewDescriptionView.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 30),
             currentViewDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             currentViewDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            
+
             descriptionLabel.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 100),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            
+
             inputLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
             inputLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             inputLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             inputLabel.heightAnchor.constraint(equalToConstant: 400),
-            
+
             sendSuggestionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             sendSuggestionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             sendSuggestionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            sendSuggestionButton.heightAnchor.constraint(equalToConstant: 50),
+            sendSuggestionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }

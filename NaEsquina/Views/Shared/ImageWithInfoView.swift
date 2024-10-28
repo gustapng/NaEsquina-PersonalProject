@@ -17,7 +17,7 @@ class ImageWithInfoView: UIView {
         image.contentMode = .scaleAspectFit
         return image
     }()
-    
+
     private lazy var mainMessageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -36,11 +36,12 @@ class ImageWithInfoView: UIView {
     }()
 
     // MARK: Initializers
+
     init(image: String, mainMessage: String, description: String) {
         super.init(frame: .zero)
-        illustrationImage.image = UIImage(named: image)
-        mainMessageLabel.text = mainMessage
-        descriptionLabel.text = description
+        self.illustrationImage.image = UIImage(named: image)
+        self.mainMessageLabel.text = mainMessage
+        self.descriptionLabel.text = description
         setup()
     }
 
@@ -66,11 +67,11 @@ extension ImageWithInfoView: SetupView {
             illustrationImage.centerXAnchor.constraint(equalTo: centerXAnchor),
             illustrationImage.heightAnchor.constraint(equalToConstant: 300),
             illustrationImage.widthAnchor.constraint(equalToConstant: 300),
-            
+
             mainMessageLabel.topAnchor.constraint(equalTo: illustrationImage.bottomAnchor, constant: 30),
             mainMessageLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             mainMessageLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
+
             descriptionLabel.topAnchor.constraint(equalTo: mainMessageLabel.bottomAnchor, constant: 10),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor)

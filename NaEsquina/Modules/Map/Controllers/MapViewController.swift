@@ -1,16 +1,14 @@
-import UIKit
 import MapKit
+import UIKit
 
 class MapViewController: UIViewController, MapViewDelegate {
 
     // MARK: - UI Components
 
-    private lazy var backButton: UIButton = {
-        return UIButton.createCustomBackButton(target: self,
-                                               action: #selector(backButtonTapped),
-                                               borderColor: ColorsExtension.lightGray ?? .black)
-    }()
-    
+    private lazy var backButton: UIButton = .createCustomBackButton(target: self,
+                                                                    action: #selector(backButtonTapped),
+                                                                    borderColor: ColorsExtension.lightGray ?? .black)
+
     private lazy var mapView: MapView = {
         let map = MapView()
         map.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +32,7 @@ class MapViewController: UIViewController, MapViewDelegate {
     }()
 
     // MARK: - Actions
-    
+
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -42,12 +40,12 @@ class MapViewController: UIViewController, MapViewDelegate {
     @objc func openSheetAddBusiness() {
         let businessViewController = AddBusinessViewController()
         if let sheet = businessViewController.sheetPresentationController {
-            sheet.detents = [.custom(resolver: { context in return 600 })]
+            sheet.detents = [.custom(resolver: { _ in 600 })]
             sheet.prefersGrabberVisible = true
         }
         present(businessViewController, animated: true, completion: nil)
     }
-    
+
     func didTapOnPin(annotationTitle: String?) {
         let sheetViewController = BusinessDetailsViewController()
         if let sheet = sheetViewController.sheetPresentationController {
@@ -97,7 +95,7 @@ extension MapViewController: UITabBarDelegate {
 
 extension MapViewController: SetupView {
     func setup() {
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
         addSubviews()
         setupConstraints()

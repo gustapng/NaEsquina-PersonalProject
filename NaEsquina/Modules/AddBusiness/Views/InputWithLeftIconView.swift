@@ -44,7 +44,7 @@ class InputWithLeftIconView: UIView {
         }
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -55,17 +55,17 @@ extension InputWithLeftIconView: SetupView {
         addSubviews()
         setupConstraints()
     }
-    
+
     func addSubviews() {
         addSubview(inputTextField)
     }
-    
+
     func setupConstraints() {
         NSLayoutConstraint.activate([
             inputTextField.topAnchor.constraint(equalTo: topAnchor),
             inputTextField.leadingAnchor.constraint(equalTo: leadingAnchor),
             inputTextField.trailingAnchor.constraint(equalTo: trailingAnchor),
-            inputTextField.heightAnchor.constraint(equalToConstant: 50),
+            inputTextField.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
