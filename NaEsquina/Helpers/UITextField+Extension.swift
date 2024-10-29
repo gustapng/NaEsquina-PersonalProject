@@ -8,7 +8,13 @@
 import UIKit.UITextField
 
 extension UITextField {
-    func addPaddingAndIcon(_ img: UIImage, _ color: UIColor, leftPad: CGFloat, rightPad: CGFloat, isLeftView: Bool, horRotation: Bool) {
+    func addPaddingAndIcon(_ img: UIImage,
+                           _ color: UIColor,
+                           leftPad: CGFloat,
+                           rightPad: CGFloat,
+                           isLeftView: Bool,
+                           horRotation: Bool) {
+
         let totalPadding = leftPad + rightPad
         let frame = CGRect(x: 0, y: 0, width: img.size.width + totalPadding, height: img.size.height)
 

@@ -15,33 +15,43 @@ class UserDataViewController: UIViewController {
                                                                     borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
-        let view = CurrentViewDescriptionView(viewTitle: "Dados da conta", viewDescription: "Minhas informações da conta.")
+        let view = CurrentViewDescriptionView(viewTitle: "Dados da conta",
+                                              viewDescription: "Minhas informações da conta.")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var userInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Nome", inputPlaceholder: "Gustavo Ferreira Dos Santos", icon: "person", leftView: true,
-                                            horRotation: false, inputDisabled: false)
+    private lazy var userWithDescriptionView: InputWithDescriptionView = {
+        let view = InputWithDescriptionView(descriptionText: "Nome",
+                                            inputPlaceholder: "Gustavo Ferreira Dos Santos",
+                                            icon: "person", leftView: true,
+                                            horRotation: false,
+                                            inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var emailInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true,
-                                            horRotation: false, inputDisabled: true)
+    private lazy var emailWithDescriptionView: InputWithDescriptionView = {
+        let view = InputWithDescriptionView(descriptionText: "Email",
+                                            inputPlaceholder: "Seu email",
+                                            icon: "envelope",
+                                            leftView: true,
+                                            horRotation: false,
+                                            inputDisabled: true)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var passwordInputWithDescriptionView: InputPasswordView = {
-        let view = InputPasswordView(descriptionText: "Senha", inputLabelPlaceholder: "Sua senha")
+    private lazy var passwordWithDescriptionView: InputPasswordView = {
+        let view = InputPasswordView(descriptionText: "Senha",
+                                     inputLabelPlaceholder: "Sua senha")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var rePasswordInputWithDescriptionView: InputPasswordView = {
-        let view = InputPasswordView(descriptionText: "Confirmar senha", inputLabelPlaceholder: "Confirme sua senha")
+    private lazy var rePasswordWithDescriptionView: InputPasswordView = {
+        let view = InputPasswordView(descriptionText: "Confirmar senha",
+                                     inputLabelPlaceholder: "Confirme sua senha")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -91,10 +101,10 @@ extension UserDataViewController: SetupView {
     func addSubviews() {
         view.addSubview(backButton)
         view.addSubview(currentViewDescriptionView)
-        view.addSubview(userInputWithDescriptionView)
-        view.addSubview(emailInputWithDescriptionView)
-        view.addSubview(passwordInputWithDescriptionView)
-        view.addSubview(rePasswordInputWithDescriptionView)
+        view.addSubview(userWithDescriptionView)
+        view.addSubview(emailWithDescriptionView)
+        view.addSubview(passwordWithDescriptionView)
+        view.addSubview(rePasswordWithDescriptionView)
         view.addSubview(resendUserDataButton)
     }
 
@@ -107,21 +117,21 @@ extension UserDataViewController: SetupView {
             currentViewDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             currentViewDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            userInputWithDescriptionView.topAnchor.constraint(equalTo: self.currentViewDescriptionView.bottomAnchor, constant: 100),
-            userInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            userInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            userWithDescriptionView.topAnchor.constraint(equalTo: self.currentViewDescriptionView.bottomAnchor, constant: 100),
+            userWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            userWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            emailInputWithDescriptionView.topAnchor.constraint(equalTo: self.userInputWithDescriptionView.bottomAnchor, constant: 30),
-            emailInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            emailInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            emailWithDescriptionView.topAnchor.constraint(equalTo: self.userWithDescriptionView.bottomAnchor, constant: 30),
+            emailWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            emailWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            passwordInputWithDescriptionView.topAnchor.constraint(equalTo: self.emailInputWithDescriptionView.bottomAnchor, constant: 30),
-            passwordInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            passwordInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            passwordWithDescriptionView.topAnchor.constraint(equalTo: self.emailWithDescriptionView.bottomAnchor, constant: 30),
+            passwordWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            passwordWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            rePasswordInputWithDescriptionView.topAnchor.constraint(equalTo: self.passwordInputWithDescriptionView.bottomAnchor, constant: 30),
-            rePasswordInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            rePasswordInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            rePasswordWithDescriptionView.topAnchor.constraint(equalTo: self.passwordWithDescriptionView.bottomAnchor, constant: 30),
+            rePasswordWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            rePasswordWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
             resendUserDataButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             resendUserDataButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),

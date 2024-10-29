@@ -8,7 +8,7 @@
 import UIKit
 
 class InputWithDescriptionView: UIView {
-    
+
     // MARK: Variables
 
     var iconColor: UIColor
@@ -82,8 +82,8 @@ class InputWithDescriptionView: UIView {
         inputLabel.layer.borderColor = ColorsExtension.lightGray?.cgColor
 
         inputLabel.attributedPlaceholder = NSAttributedString(string: inputPlaceholder,
-                                                                   attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension
-                                                                       .lightGray ?? UIColor.black])
+                                                              attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension
+                                                                .lightGray ?? UIColor.black])
     }
 }
 

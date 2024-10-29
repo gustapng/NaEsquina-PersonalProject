@@ -60,8 +60,8 @@ class InputPasswordView: UIView {
         super.init(frame: .zero)
         descriptionLabel.text = descriptionText
         inputLabel.attributedPlaceholder = NSAttributedString(string: inputLabelPlaceholder,
-                                                                   attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension
-                                                                       .lightGray ?? UIColor.black])
+                                                              attributes: [NSAttributedString.Key.foregroundColor:
+                                                              ColorsExtension.lightGray ?? UIColor.black])
         configurePasswordVisibility()
         setup()
     }

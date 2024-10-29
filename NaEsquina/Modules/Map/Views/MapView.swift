@@ -31,7 +31,9 @@ class MapView: UIView, MKMapViewDelegate {
     // MARK: - Functions
 
     private func setInitialLocation(location: CLLocation, regionRadius: CLLocationDistance = 1000) {
-        let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
+                                                  latitudinalMeters: regionRadius,
+                                                  longitudinalMeters: regionRadius)
         self.mapView.setRegion(coordinateRegion, animated: true)
     }
 
@@ -63,7 +65,10 @@ class MapView: UIView, MKMapViewDelegate {
         return nil
     }
 
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    func mapView(_ mapView: MKMapView,
+                 annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl) {
+
         guard let annotationTitle = view.annotation?.title else { return }
         delegate?.didTapOnPin(annotationTitle: annotationTitle)
         print("Pin clicado: \(annotationTitle ?? "")")

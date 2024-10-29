@@ -11,10 +11,10 @@ protocol ImagePickerViewDelegate: AnyObject {
     func didSelectImage(_ image: UIImage)
 }
 
-class selectImageButton: UIButton, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SelectImageButton: UIButton, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     weak var delegate: ImagePickerViewDelegate?
 
-    private lazy var ImagePickerButton: UIButton = {
+    private lazy var imagePickerButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -48,12 +48,12 @@ class selectImageButton: UIButton, UIImagePickerControllerDelegate, UINavigation
     }
 
     private func setup() {
-        addSubview(ImagePickerButton)
+        addSubview(imagePickerButton)
 
         NSLayoutConstraint.activate([
-            ImagePickerButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-            ImagePickerButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            ImagePickerButton.heightAnchor.constraint(equalToConstant: 50)
+            imagePickerButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imagePickerButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imagePickerButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 
@@ -69,7 +69,8 @@ class selectImageButton: UIButton, UIImagePickerControllerDelegate, UINavigation
         }
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
             delegate?.didSelectImage(image)
         }

@@ -15,7 +15,8 @@ class SuggestionViewController: UIViewController {
                                                                     borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
-        let view = CurrentViewDescriptionView(viewTitle: "Sugestões", viewDescription: "Tem alguma uma sugestão? Conte para nós.")
+        let view = CurrentViewDescriptionView(viewTitle: "Sugestões",
+                                              viewDescription: "Tem alguma uma sugestão? Conte para nós.")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

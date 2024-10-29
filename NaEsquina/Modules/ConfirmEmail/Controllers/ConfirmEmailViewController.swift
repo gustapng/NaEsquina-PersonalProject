@@ -15,7 +15,8 @@ class ConfirmEmailViewController: UIViewController {
                                                                     borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var imageWithDescription: ImageWithInfoView = {
-        let view = ImageWithInfoView(image: Constants.ConfirmEmail.imageDetails, mainMessage: Constants.ConfirmEmail.mainMessage,
+        let view = ImageWithInfoView(image: Constants.ConfirmEmail.imageDetails,
+                                     mainMessage: Constants.ConfirmEmail.mainMessage,
                                      description: Constants.ConfirmEmail.description)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

@@ -15,14 +15,18 @@ class RecoveryViewController: UIViewController {
                                                                     borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var imageWithDescription: ImageWithInfoView = {
-        let view = ImageWithInfoView(image: Constants.PasswordRecovery.imageDetails, mainMessage: Constants.PasswordRecovery.mainMessage,
+        let view = ImageWithInfoView(image: Constants.PasswordRecovery.imageDetails,
+                                     mainMessage: Constants.PasswordRecovery.mainMessage,
                                      description: Constants.PasswordRecovery.description)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private lazy var emailInputWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true,
+        let view = InputWithDescriptionView(descriptionText: "Email",
+                                            inputPlaceholder: "Seu email",
+                                            icon: "envelope",
+                                            leftView: true,
                                             horRotation: false, inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

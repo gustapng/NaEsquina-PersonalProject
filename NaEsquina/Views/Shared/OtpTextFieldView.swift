@@ -24,7 +24,7 @@ class OtpTextFieldView: UIView {
         return label
     }()
 
-    private lazy var otpContainerHorizontalStackView: UIStackView = {
+    private lazy var otpStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -66,7 +66,7 @@ class OtpTextFieldView: UIView {
         for _ in 0 ..< numberOfFields {
             let textField = createTextField()
             self.otpTextFields.append(textField)
-            self.otpContainerHorizontalStackView.addArrangedSubview(textField)
+            self.otpStackView.addArrangedSubview(textField)
         }
     }
 
@@ -83,7 +83,7 @@ class OtpTextFieldView: UIView {
             } else {
                 textField.resignFirstResponder()
             }
-        } else if textField.text?.count == 0 && index > 0 {
+        } else if textField.text?.isEmpty == true && index > 0 {
             otpTextFields[index - 1].becomeFirstResponder()
         }
     }
@@ -98,7 +98,7 @@ extension OtpTextFieldView: SetupView {
 
     func addSubviews() {
         addSubview(descriptionLabel)
-        addSubview(otpContainerHorizontalStackView)
+        addSubview(otpStackView)
     }
 
     func setupConstraints() {
@@ -107,12 +107,12 @@ extension OtpTextFieldView: SetupView {
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
 
-            otpContainerHorizontalStackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
-            otpContainerHorizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            otpContainerHorizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            otpContainerHorizontalStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            otpContainerHorizontalStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            otpContainerHorizontalStackView.heightAnchor.constraint(equalToConstant: 45)
+            otpStackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
+            otpStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            otpStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            otpStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            otpStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            otpStackView.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
 }

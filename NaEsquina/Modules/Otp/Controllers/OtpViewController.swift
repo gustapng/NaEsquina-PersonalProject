@@ -15,7 +15,8 @@ class OtpViewController: UIViewController {
                                                                     borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var imageWithDescription: ImageWithInfoView = {
-        let view = ImageWithInfoView(image: Constants.OtpVerification.imageDetails, mainMessage: Constants.OtpVerification.mainMessage,
+        let view = ImageWithInfoView(image: Constants.OtpVerification.imageDetails,
+                                     mainMessage: Constants.OtpVerification.mainMessage,
                                      description: Constants.OtpVerification.description)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

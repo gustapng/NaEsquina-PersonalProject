@@ -70,7 +70,7 @@ class UserViewController: UIViewController {
 
     @objc func actionCell(sender: UIButton) {
         let index = sender.tag
-        let action = Constants.UserOptions.options[index].action
+        let action = UserOptions.options[index].action
 
         switch action {
         case "goToUserDataView":
@@ -154,7 +154,7 @@ extension UserViewController: UITableViewDelegate {
 
 extension UserViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Constants.UserOptions.options.count
+        return UserOptions.options.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -162,7 +162,7 @@ extension UserViewController: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        let option = Constants.UserOptions.options[indexPath.row]
+        let option = UserOptions.options[indexPath.row]
         cell.configureCell(icon: UIImage(systemName: option.icon),
                            title: option.title,
                            subtitle: option.subtitle,

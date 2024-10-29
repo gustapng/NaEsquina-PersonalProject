@@ -13,7 +13,10 @@ class AddBusinessViewController: UIViewController {
 
     private lazy var sheetInfoView: SheetInfoView = {
         let sheetInfoView = SheetInfoView(title: "Adicionar comércio",
-                                          subtitle: "Os dados enviados serão analisados e, se aprovados, o comércio será adicionado ao app em até 48 horas.")
+                                          subtitle: """
+                                            Os dados enviados serão analisados e, se aprovados, o comércio
+                                            será adicionado ao app em até 48 horas.
+                                            """.trimmingCharacters(in: .whitespacesAndNewlines))
         sheetInfoView.translatesAutoresizingMaskIntoConstraints = false
         return sheetInfoView
     }()
@@ -42,8 +45,8 @@ class AddBusinessViewController: UIViewController {
         return input
     }()
 
-    private lazy var inputSelectImageButton: selectImageButton = {
-        let button = selectImageButton()
+    private lazy var inputSelectImageButton: SelectImageButton = {
+        let button = SelectImageButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

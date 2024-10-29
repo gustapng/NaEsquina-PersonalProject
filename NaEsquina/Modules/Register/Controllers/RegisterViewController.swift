@@ -21,27 +21,27 @@ class RegisterViewController: UIViewController {
         return view
     }()
 
-    private lazy var userInputWithDescriptionView: InputWithDescriptionView = {
+    private lazy var userWithDescriptionView: InputWithDescriptionView = {
         let view = InputWithDescriptionView(descriptionText: "Nome de usuário", inputPlaceholder: "Seu nome", icon: "person", leftView: true,
                                             horRotation: false, inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var emailInputWithDescriptionView: InputWithDescriptionView = {
+    private lazy var emailWithDescriptionView: InputWithDescriptionView = {
         let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true,
                                             horRotation: false, inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var passwordInputWithDescriptionView: InputPasswordView = {
+    private lazy var passwordWithDescriptionView: InputPasswordView = {
         let view = InputPasswordView(descriptionText: "Senha", inputLabelPlaceholder: "Sua senha")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var rePasswordInputWithDescriptionView: InputPasswordView = {
+    private lazy var rePasswordWithDescriptionView: InputPasswordView = {
         let view = InputPasswordView(descriptionText: "Confirmar senha", inputLabelPlaceholder: "Confirme sua senha")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -93,10 +93,10 @@ extension RegisterViewController: SetupView {
     func addSubviews() {
         view.addSubview(backButton)
         view.addSubview(currentViewDescriptionView)
-        view.addSubview(userInputWithDescriptionView)
-        view.addSubview(emailInputWithDescriptionView)
-        view.addSubview(passwordInputWithDescriptionView)
-        view.addSubview(rePasswordInputWithDescriptionView)
+        view.addSubview(userWithDescriptionView)
+        view.addSubview(emailWithDescriptionView)
+        view.addSubview(passwordWithDescriptionView)
+        view.addSubview(rePasswordWithDescriptionView)
         view.addSubview(registerButton)
     }
 
@@ -109,23 +109,23 @@ extension RegisterViewController: SetupView {
             currentViewDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             currentViewDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            userInputWithDescriptionView.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 110),
-            userInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            userInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            userWithDescriptionView.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 110),
+            userWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            userWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            emailInputWithDescriptionView.topAnchor.constraint(equalTo: userInputWithDescriptionView.bottomAnchor, constant: 30),
-            emailInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            emailInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            emailWithDescriptionView.topAnchor.constraint(equalTo: userWithDescriptionView.bottomAnchor, constant: 30),
+            emailWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            emailWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            passwordInputWithDescriptionView.topAnchor.constraint(equalTo: emailInputWithDescriptionView.bottomAnchor, constant: 30),
-            passwordInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            passwordInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            passwordWithDescriptionView.topAnchor.constraint(equalTo: emailWithDescriptionView.bottomAnchor, constant: 30),
+            passwordWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            passwordWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            rePasswordInputWithDescriptionView.topAnchor.constraint(equalTo: passwordInputWithDescriptionView.bottomAnchor, constant: 30),
-            rePasswordInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            rePasswordInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            rePasswordWithDescriptionView.topAnchor.constraint(equalTo: passwordWithDescriptionView.bottomAnchor, constant: 30),
+            rePasswordWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            rePasswordWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            registerButton.topAnchor.constraint(equalTo: rePasswordInputWithDescriptionView.bottomAnchor, constant: 50),
+            registerButton.topAnchor.constraint(equalTo: rePasswordWithDescriptionView.bottomAnchor, constant: 50),
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             registerButton.heightAnchor.constraint(equalToConstant: 45)

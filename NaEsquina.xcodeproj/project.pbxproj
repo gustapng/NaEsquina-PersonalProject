@@ -45,6 +45,7 @@
 		ECE94DC22CC953ED0017BFC2 /* BusinessDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE94DC12CC953ED0017BFC2 /* BusinessDetailsViewController.swift */; };
 		ECE94DC42CC9551B0017BFC2 /* SheetBusinessDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE94DC32CC9551B0017BFC2 /* SheetBusinessDetailsView.swift */; };
 		ECECD82B2CC31D500038B171 /* UserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECECD82A2CC31D500038B171 /* UserDataViewController.swift */; };
+		ECEF1DF72CD05ED5000F94FE /* UserOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF1DF62CD05ECB000F94FE /* UserOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,7 @@
 		ECE94DC12CC953ED0017BFC2 /* BusinessDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailsViewController.swift; sourceTree = "<group>"; };
 		ECE94DC32CC9551B0017BFC2 /* SheetBusinessDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetBusinessDetailsView.swift; sourceTree = "<group>"; };
 		ECECD82A2CC31D500038B171 /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
+		ECEF1DF62CD05ECB000F94FE /* UserOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -541,6 +543,7 @@
 		ECBA89262C9FAE160016AAB4 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				ECEF1DF62CD05ECB000F94FE /* UserOptions.swift */,
 				ECBA89272C9FAE210016AAB4 /* Constants.swift */,
 			);
 			path = Constants;
@@ -626,6 +629,7 @@
 				EC5063BE2CA23A31009852FA /* OtpTextFieldView.swift in Sources */,
 				EC65642C2C9B926C00953563 /* FilterViewController.swift in Sources */,
 				EC1D87352CACCB2A002363A4 /* SheetInfoView.swift in Sources */,
+				ECEF1DF72CD05ED5000F94FE /* UserOptions.swift in Sources */,
 				ECABB0522C8FB0740030042E /* InputPasswordView.swift in Sources */,
 				EC9E14F42C87D22C007A9F88 /* LoginViewController.swift in Sources */,
 				ECE94DC42CC9551B0017BFC2 /* SheetBusinessDetailsView.swift in Sources */,

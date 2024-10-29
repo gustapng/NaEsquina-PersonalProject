@@ -8,14 +8,15 @@
 import UIKit
 
 class NewPasswordViewController: UIViewController {
-    
+
     // MARK: UI Components
-    
+
     private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
                                                                     borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
-        let view = CurrentViewDescriptionView(viewTitle: "Definir nova senha", viewDescription: "Crie uma senha forte para proteger sua conta.")
+        let view = CurrentViewDescriptionView(viewTitle: "Definir nova senha",
+                                              viewDescription: "Crie uma senha forte para proteger sua conta.")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -28,13 +29,13 @@ class NewPasswordViewController: UIViewController {
         return image
     }()
 
-    private lazy var passwordInputWithDescriptionView: InputPasswordView = {
+    private lazy var passwordWithDescriptionView: InputPasswordView = {
         let view = InputPasswordView(descriptionText: "Nova senha", inputLabelPlaceholder: "Sua senha")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var rePasswordInputWithDescriptionView: InputPasswordView = {
+    private lazy var rePasswordWithDescriptionView: InputPasswordView = {
         let view = InputPasswordView(descriptionText: "Confirmar senha", inputLabelPlaceholder: "Confirme sua senha")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -87,8 +88,8 @@ extension NewPasswordViewController: SetupView {
         view.addSubview(currentViewDescriptionView)
         view.addSubview(illustrationImage)
         view.addSubview(registerButton)
-        view.addSubview(passwordInputWithDescriptionView)
-        view.addSubview(rePasswordInputWithDescriptionView)
+        view.addSubview(passwordWithDescriptionView)
+        view.addSubview(rePasswordWithDescriptionView)
     }
 
     func setupConstraints() {
@@ -104,15 +105,15 @@ extension NewPasswordViewController: SetupView {
             illustrationImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             illustrationImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            passwordInputWithDescriptionView.topAnchor.constraint(equalTo: illustrationImage.bottomAnchor, constant: 20),
-            passwordInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            passwordInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            passwordWithDescriptionView.topAnchor.constraint(equalTo: illustrationImage.bottomAnchor, constant: 20),
+            passwordWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            passwordWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            rePasswordInputWithDescriptionView.topAnchor.constraint(equalTo: passwordInputWithDescriptionView.bottomAnchor, constant: 23),
-            rePasswordInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            rePasswordInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            rePasswordWithDescriptionView.topAnchor.constraint(equalTo: passwordWithDescriptionView.bottomAnchor, constant: 23),
+            rePasswordWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            rePasswordWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            registerButton.topAnchor.constraint(equalTo: rePasswordInputWithDescriptionView.bottomAnchor, constant: 45),
+            registerButton.topAnchor.constraint(equalTo: rePasswordWithDescriptionView.bottomAnchor, constant: 45),
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             registerButton.heightAnchor.constraint(equalToConstant: 45)

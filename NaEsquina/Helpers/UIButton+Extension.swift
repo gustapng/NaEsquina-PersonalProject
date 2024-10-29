@@ -9,9 +9,12 @@ import UIKit.UIButton
 
 extension UIButton {
     // TODO: - TALVEZ REFATORAR PARA UMA VIEW E SETAR O WIDTH E HEIGHT NAS CONTRAINTS DA VIEWCONTROLLER
-    static func createCustomBackButton(target: Any?, action: Selector, borderColor: UIColor = .black,
-                                       borderWidth: CGFloat = 1.5, cornerRadius: CGFloat = 9, imageSize: CGFloat = 12) -> UIButton
-    {
+    static func createCustomBackButton(target: Any?,
+                                       action: Selector,
+                                       borderColor: UIColor = .black,
+                                       borderWidth: CGFloat = 1.5,
+                                       cornerRadius: CGFloat = 9,
+                                       imageSize: CGFloat = 12) -> UIButton {
         let backButton = UIButton(type: .system)
 
         let imageConfig = UIImage.SymbolConfiguration(pointSize: imageSize, weight: .regular)

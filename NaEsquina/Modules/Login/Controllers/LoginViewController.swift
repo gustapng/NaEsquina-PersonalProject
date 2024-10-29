@@ -13,19 +13,22 @@ class LoginViewController: UIViewController {
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
         let view = CurrentViewDescriptionView(viewTitle: "Login",
-                                              viewDescription: "Acesse sua conta para explorar comércios e serviços locais de forma rápida e segura.")
+                                              viewDescription: """
+                                                Acesse sua conta para explorar comércios e 
+                                                serviços locais de forma rápida e segura.
+                                                """.trimmingCharacters(in: .whitespacesAndNewlines))
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var emailInputWithDescriptionView: InputWithDescriptionView = {
+    private lazy var emailWithDescriptionView: InputWithDescriptionView = {
         let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true,
                                             horRotation: false, inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var passwordInputWithDescriptionView: InputPasswordView = {
+    private lazy var passwordWithDescriptionView: InputPasswordView = {
         let view = InputPasswordView(descriptionText: "Senha", inputLabelPlaceholder: "Sua senha")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -131,8 +134,8 @@ extension LoginViewController: SetupView {
 
     func addSubviews() {
         view.addSubview(currentViewDescriptionView)
-        view.addSubview(emailInputWithDescriptionView)
-        view.addSubview(passwordInputWithDescriptionView)
+        view.addSubview(emailWithDescriptionView)
+        view.addSubview(passwordWithDescriptionView)
         view.addSubview(recoverPassword)
         view.addSubview(loginButton)
         view.addSubview(registerAccount)
@@ -145,15 +148,15 @@ extension LoginViewController: SetupView {
             currentViewDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             currentViewDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            emailInputWithDescriptionView.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 146),
-            emailInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            emailInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            emailWithDescriptionView.topAnchor.constraint(equalTo: currentViewDescriptionView.bottomAnchor, constant: 146),
+            emailWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            emailWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            passwordInputWithDescriptionView.topAnchor.constraint(equalTo: emailInputWithDescriptionView.bottomAnchor, constant: 18),
-            passwordInputWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            passwordInputWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            passwordWithDescriptionView.topAnchor.constraint(equalTo: emailWithDescriptionView.bottomAnchor, constant: 18),
+            passwordWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            passwordWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            recoverPassword.topAnchor.constraint(equalTo: passwordInputWithDescriptionView.bottomAnchor, constant: 12),
+            recoverPassword.topAnchor.constraint(equalTo: passwordWithDescriptionView.bottomAnchor, constant: 12),
             recoverPassword.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
             loginButton.topAnchor.constraint(equalTo: recoverPassword.bottomAnchor, constant: 84),

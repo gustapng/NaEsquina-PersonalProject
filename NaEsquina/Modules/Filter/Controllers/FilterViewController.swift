@@ -13,7 +13,10 @@ class FilterViewController: UIViewController {
 
     private lazy var sheetInfoView: SheetInfoView = {
         let sheetInfoView = SheetInfoView(title: "Filtros",
-                                          subtitle: "Selecione uma ou mais categorias para encontrar comércios específicos, como mercados, restaurantes e mais.")
+                                          subtitle: """
+                                            Selecione uma ou mais categorias para encontrar comércios específicos,
+                                            como mercados, restaurantes e mais.
+                                            """.trimmingCharacters(in: .whitespacesAndNewlines))
         sheetInfoView.translatesAutoresizingMaskIntoConstraints = false
         return sheetInfoView
     }()
