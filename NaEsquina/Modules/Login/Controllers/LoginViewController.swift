@@ -6,8 +6,14 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
+
+    // MARK: Variables
+
+    var auth: Auth?
 
     // MARK: UI Components
 
@@ -21,9 +27,10 @@ class LoginViewController: UIViewController {
         return view
     }()
 
-    private lazy var emailWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Email", inputPlaceholder: "Seu email", icon: "envelope", leftView: true,
-                                            horRotation: false, inputDisabled: false)
+    private lazy var emailWithDescriptionView: InputEmailView = {
+        let view = InputEmailView(descriptionText: "Email",
+                                            inputPlaceholder: "Seu email",
+                                            inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -46,7 +53,7 @@ class LoginViewController: UIViewController {
                                       range: NSRange(location: 0, length: attributedString.length))
 
         button.setAttributedTitle(attributedString, for: .normal)
-        return button
+        return button	
     }()
 
     private lazy var loginButton: UIButton = {
@@ -107,8 +114,22 @@ class LoginViewController: UIViewController {
 
     @objc private func goToMainMenuView() {
         // TODO: - Lógica de login
-        let mapViewController = MapViewController()
-        navigationController?.pushViewController(mapViewController, animated: true)
+        let email: String = emailWithDescriptionView.getInputText() ?? ""
+        let password: String = passwordWithDescriptionView.getInputText() ?? ""
+
+        self.auth?.signIn(withEmail: email, password: password, completion: { (user, error) in
+            if error != nil {
+                print("Dados incorretos, tente novamente")
+            } else {
+                if user == nil {
+                    print("Tivemos um problema inesperado")
+                } else {
+                    print("Login feito com sucesso!")
+                }
+            }
+        })
+//        let mapViewController = MapViewController()
+//        navigationController?.pushViewController(mapViewController, animated: true)
     }
 
     @objc func dismissKeyboard() {
@@ -119,6 +140,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.auth = Auth.auth()
         setup()
     }
 }

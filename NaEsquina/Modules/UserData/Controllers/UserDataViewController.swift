@@ -21,8 +21,8 @@ class UserDataViewController: UIViewController {
         return view
     }()
 
-    private lazy var userWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Nome",
+    private lazy var userWithDescriptionView: InputTextFieldView = {
+        let view = InputTextFieldView(descriptionText: "Nome",
                                             inputPlaceholder: "Gustavo Ferreira Dos Santos",
                                             icon: "person", leftView: true,
                                             horRotation: false,
@@ -31,12 +31,9 @@ class UserDataViewController: UIViewController {
         return view
     }()
 
-    private lazy var emailWithDescriptionView: InputWithDescriptionView = {
-        let view = InputWithDescriptionView(descriptionText: "Email",
+    private lazy var emailWithDescriptionView: InputEmailView = {
+        let view = InputEmailView(descriptionText: "Email",
                                             inputPlaceholder: "Seu email",
-                                            icon: "envelope",
-                                            leftView: true,
-                                            horRotation: false,
                                             inputDisabled: true)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

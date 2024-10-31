@@ -34,6 +34,7 @@ class InputPasswordView: UIView {
 
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.delegate = self
         textField.textColor = ColorsExtension.lightGray
         textField.backgroundColor = ColorsExtension.lightGrayBackground
         textField.layer.borderWidth = 1.5
@@ -90,6 +91,14 @@ class InputPasswordView: UIView {
         inputLabel.isSecureTextEntry.toggle()
         toggleButton.isSelected.toggle()
     }
+    
+    func getInputText() -> String? {
+        return inputLabel.text
+    }
+
+    @objc private func dismissKeyboard() {
+        inputLabel.resignFirstResponder()
+    }
 }
 
 extension InputPasswordView: SetupView {
@@ -116,5 +125,12 @@ extension InputPasswordView: SetupView {
             inputLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
             inputLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+}
+
+extension InputPasswordView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

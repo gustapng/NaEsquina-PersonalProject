@@ -1,5 +1,5 @@
 //
-//  InputWithDescriptionView.swift
+//  InputEmailView.swift
 //  NaEsquina
 //
 //  Created by Gustavo Ferreira dos Santos on 05/09/24.
@@ -26,6 +26,8 @@ class InputEmailView: UIView {
     private lazy var inputLabel: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocapitalizationType = .none
+        textField.keyboardType = .emailAddress
         textField.layer.borderWidth = 1.5
         textField.layer.cornerRadius = 9
         return textField
@@ -33,7 +35,7 @@ class InputEmailView: UIView {
 
     // MARK: - Initializers
 
-    init(descriptionText: String, inputPlaceholder: String, icon: String, leftView: Bool, horRotation: Bool, inputDisabled: Bool) {
+    init(descriptionText: String, inputPlaceholder: String, inputDisabled: Bool) {
         if inputDisabled {
             iconColor = ColorsExtension.lightGrayDisabled ?? UIColor()
         } else {
@@ -41,13 +43,13 @@ class InputEmailView: UIView {
         }
         super.init(frame: .zero)
         descriptionLabel.text = descriptionText
-        configureInputLabel(inputPlaceholder: inputPlaceholder, icon: icon, inputDisabled: inputDisabled)
-        inputLabel.addPaddingAndIcon(UIImage(systemName: icon) ?? UIImage(),
+        configureInputLabel(inputPlaceholder: inputPlaceholder, icon: "envelope", inputDisabled: inputDisabled)
+        inputLabel.addPaddingAndIcon(UIImage(systemName: "envelope") ?? UIImage(),
                                           iconColor,
                                           leftPad: 15,
                                           rightPad: 12,
-                                          isLeftView: leftView,
-                                          horRotation: horRotation)
+                                          isLeftView: true,
+                                          horRotation: false)
         setup()
     }
 
