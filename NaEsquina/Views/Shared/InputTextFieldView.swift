@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InputWithDescriptionView: UIView {
+class InputTextFieldView: UIView {
 
     // MARK: Variables
 
@@ -58,6 +58,11 @@ class InputWithDescriptionView: UIView {
 
     // MARK: - Functions
 
+    // MARK: - Public Property
+    func getInputText() -> String? {
+        return inputLabel.text
+    }
+
     private func configureInputLabel(inputPlaceholder: String, icon: String, inputDisabled: Bool) {
         if inputDisabled {
            applyDisabledStyle(inputPlaceholder: inputPlaceholder, icon: icon)
@@ -87,7 +92,7 @@ class InputWithDescriptionView: UIView {
     }
 }
 
-extension InputWithDescriptionView: SetupView {
+extension InputTextFieldView: SetupView {
     func setup() {
         addSubviews()
         setupConstraints()
