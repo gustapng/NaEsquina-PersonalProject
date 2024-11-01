@@ -14,7 +14,6 @@ class RegisterViewController: UIViewController {
     // MARK: Variables
 
     var auth: Auth?
-    var db: FirebaseService?
 
     // MARK: UI Components
 
@@ -69,7 +68,7 @@ class RegisterViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorsExtension.purpleMedium
         button.layer.cornerRadius = 9
-        button.addTarget(self, action: #selector(goToConfirmEmailViewController), for: .touchUpInside)
+        button.addTarget(self, action: #selector(registerUser), for: .touchUpInside)
         button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.layer.shadowOpacity = 1
@@ -90,61 +89,101 @@ class RegisterViewController: UIViewController {
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    func alert(title: String, message: String) {
+
+    func showAlert(title: String, message: String) {
         let alertController:UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok:UIAlertAction = UIAlertAction(title: "Ok", style: .cancel)
-        
+
         alertController.addAction(ok)
         self.present(alertController, animated: true)
     }
-    
+
     @objc private func dismissKeyboard() {
-       view.endEditing(true) // Fecha o teclado
+       view.endEditing(true)
     }
 
-    @objc func goToConfirmEmailViewController() {
-        
-        let username: String = usernameWithDescriptionView.getInputText() ?? ""
-        let email: String = emailWithDescriptionView.getInputText() ?? ""
-        let password: String = passwordWithDescriptionView.getInputText() ?? ""
-        let rePassword: String = rePasswordWithDescriptionView.getInputText() ?? ""
-        
-        if username.isEmpty || email.isEmpty || password.isEmpty || rePassword.isEmpty {
-            alert(title: "Atenção", message: "Por favor, preencha todos os campos.")
-            return
+    private func validateFields() -> (isValid: Bool, errorMessage: String?) {
+        let username = usernameWithDescriptionView.getInputText() ?? ""
+        let email = emailWithDescriptionView.getInputText() ?? ""
+        let password = passwordWithDescriptionView.getInputText() ?? ""
+        let rePassword = rePasswordWithDescriptionView.getInputText() ?? ""
+
+        guard !username.isEmpty, !email.isEmpty, !password.isEmpty, !rePassword.isEmpty else {
+            return (false, "Por favor, preencha todos os campos.")
         }
-        
+
         if !isValidPassword(password) {
-            alert(title: "Atenção", message: "Para garantir a segurança da sua conta, sua senha precisa atender a alguns critérios.\n\nLembre-se:\n\nEla deve ter pelo menos 8 caracteres.\nInclua pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.")
-            return
+            return (false, "A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.")
         }
-        
-        if rePassword != password {
-            alert(title: "Erro", message: "As senhas inseridas são diferentes.\nCertifique-se de que ambas as senhas sejam idênticas.")
+
+        if password != rePassword {
+            return (false, "As senhas inseridas são diferentes.")
+        }
+
+        return (true, nil)
+    }
+
+    @objc func registerUser() {
+        let validation = validateFields()
+        guard validation.isValid else {
+            showAlert(title: "Atenção", message: validation.errorMessage!)
             return
         }
 
-        self.auth?.createUser(withEmail: email, password: password, completion: { (result, error) in
-            if error != nil {
-                self.alert(title: "Atenção", message: "Falha ao cadastrar")
-                print("Erro ao cadastrar")
+        guard let email = emailWithDescriptionView.getInputText(),
+              let password = passwordWithDescriptionView.getInputText(),
+              let username = usernameWithDescriptionView.getInputText() else {
+            return
+        }
+
+        self.auth?.createUser(withEmail: email, password: password) { result, error in
+            if let error = error {
+                self.handleFirebaseError(error)
             } else {
+                self.saveUserData(username: username, email: email)
                 
-                let userData: [String: Any] = [
-                  "email": email,
-                  "username": username
-                ]
-
-                FirebaseService.shared.db.collection("data").document("one").setData(userData)
-                print("Document successfully written!")
-                
-                self.alert(title: "Parabéns", message: "Sucesso ao cadastrar")
-                print("Sucesso ao cadastrar")
+                result?.user.sendEmailVerification(completion: { (error) in
+                    if let error = error {
+                        self.showAlert(title: "Erro", message: "Erro ao enviar email de verificação: \(error.localizedDescription)")
+                    }
+                })
             }
-        })
-//        let confirmEmailViewController = ConfirmEmailViewController()
-//        navigationController?.pushViewController(confirmEmailViewController, animated: true)
+        }
+    }
+
+    private func saveUserData(username: String, email: String) {
+        let userData: [String: Any] = ["email": email, "username": username]
+
+        FirebaseService.shared.db.collection("users").document(email).setData(userData) { error in
+            if let error = error {
+                self.showAlert(title: "Erro", message: "Erro ao salvar os dados do usuário: \(error.localizedDescription)")
+            } else {
+                self.showAlert(title: "Cadastro realizado com sucesso!", message: "\nPara concluir e liberar o acesso à sua conta, confirme o cadastro acessando o link enviado para o seu email.")
+
+//                let confirmEmailViewController = ConfirmEmailViewController()
+//                self.navigationController?.pushViewController(confirmEmailViewController, animated: true)
+            }
+        }
+    }
+
+    private func handleFirebaseError(_ error: Error) {
+        let authError = error as NSError
+        var message = "Falha ao cadastrar"
+
+        if let errCode = AuthErrorCode(rawValue: authError.code) {
+            switch errCode {
+            case .emailAlreadyInUse:
+                message = "Este email já está em uso."
+            case .invalidEmail:
+                message = "O email informado não é válido."
+            case .weakPassword:
+                message = "A senha é muito fraca."
+            default:
+                message = "Erro desconhecido: \(authError.localizedDescription)"
+            }
+        }
+
+        showAlert(title: "Erro", message: message)
     }
 }
 
