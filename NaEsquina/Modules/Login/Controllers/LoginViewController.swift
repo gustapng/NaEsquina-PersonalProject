@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import LocalAuthentication
 
 class LoginViewController: UIViewController {
 
@@ -64,7 +65,7 @@ class LoginViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorsExtension.purpleMedium
         button.layer.cornerRadius = 9
-        button.addTarget(self, action: #selector(goToMainMenuView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(loginUser), for: .touchUpInside)
         button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.layer.shadowOpacity = 1
@@ -102,6 +103,10 @@ class LoginViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
     @objc private func goToRecoverView() {
         let recoveryViewController = RecoveryViewController()
         navigationController?.pushViewController(recoveryViewController, animated: true)
@@ -112,34 +117,148 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(registerViewController, animated: true)
     }
 
-    @objc private func goToMainMenuView() {
-        // TODO: - Lógica de login
+    @objc private func loginUser() {
         let email: String = emailWithDescriptionView.getInputText() ?? ""
         let password: String = passwordWithDescriptionView.getInputText() ?? ""
 
-        self.auth?.signIn(withEmail: email, password: password, completion: { (user, error) in
-            if error != nil {
-                print("Dados incorretos, tente novamente")
+        self.auth?.signIn(withEmail: email, password: password, completion: { [weak self] authResult, error in
+            guard let self = self else { return }
+
+            if let error = error {
+                handleFirebaseLoginError(error)
+                return
+            }
+
+            guard let user = authResult?.user else {
+                showAlert(on: self, title: "Erro", message: "Tivemos um problema inesperado, tente novamente.")
+                return
+            }
+
+            if user.isEmailVerified {
+                self.navigateToMapView()
+                askToEnableFaceID()
             } else {
-                if user == nil {
-                    print("Tivemos um problema inesperado")
-                } else {
-                    print("Login feito com sucesso!")
-                }
+                self.handleUnverifiedEmail(for: user)
             }
         })
-//        let mapViewController = MapViewController()
-//        navigationController?.pushViewController(mapViewController, animated: true)
     }
 
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
+    private func navigateToMapView(_ delay: Bool = false) {
+        let mapViewController = MapViewController()
+        navigationController?.pushViewController(mapViewController, animated: true)
+
+        if (delay) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                mapViewController.showWelcomeMessage()
+            }
+        }
+
+//        TODO: Verificar se a transicao fica visualmente legal
+
+//        let mapViewController = MapViewController()
+
+//        guard let navigationController = self.navigationController else { return }
+
+//        UIView.transition(with: navigationController.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
+//            navigationController.pushViewController(mapViewController, animated: false)
+//        }, completion: { _ in
+//            if delay {
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                 mapViewController.showWelcomeMessage()
+//                }
+//            }
+//        })
+    }
+
+    private func handleUnverifiedEmail(for user: User) {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError {
+            print("Erro ao fazer signOut: \(signOutError)")
+        }
+
+        user.sendEmailVerification { [weak self] error in
+            guard let self = self else { return }
+
+            if let error = error {
+                showAlert(on: self, title: "Erro", message: "Erro ao enviar email de verificação: \(error.localizedDescription)")
+            } else {
+                showAlert(on: self, title: "Verificação de\nE-mail Necessária", message: "Um novo email de autenticação foi enviado para seu email, por favor verifique seu e-mail para completar o login.")
+            }
+        }
+    }
+
+    private func handleFirebaseLoginError(_ error: Error) {
+        let authError = error as NSError
+        var message = "Falha ao logar"
+
+        if let errCode = AuthErrorCode(rawValue: authError.code) {
+            switch errCode {
+            case .invalidCredential:
+                message = "Email ou senha não conferem, tente novamente."
+            default:
+                message = "Erro desconhecido: \(authError.localizedDescription)"
+            }
+        }
+
+        showAlert(on: self, title: "Erro", message: message)
+    }
+
+    private func showWelcomeMessage() {
+        let alertController = UIAlertController(title: "Bem-vindo!", message: "Login realizado com sucesso!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+
+        if let mapVC = self.navigationController?.topViewController as? MapViewController {
+            mapVC.present(alertController, animated: true, completion: nil)
+        }
+    }
+
+    private func authenticateUserWithFaceID() {
+        let context = LAContext()
+        var error: NSError?
+
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Autentique-se para acessar seu aplicativo"
+
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                DispatchQueue.main.async {
+                    if success {
+                        self.navigateToMapView(true)
+                    } else {
+                        if let error = authenticationError {
+                            showAlert(on: self, title: "Erro", message: error.localizedDescription)
+                        }
+                    }
+                }
+            }
+        } else {
+            showAlert(on: self,title: "Erro", message: "Face ID não está disponível neste dispositivo.")
+        }
+    }
+
+    private func askToEnableFaceID() {
+        let alertController = UIAlertController(title: "Habilitar Face ID", message: "Você gostaria de habilitar o login com Face ID para futuras sessões?", preferredStyle: .alert)
+
+        let enableAction = UIAlertAction(title: "Habilitar", style: .default) { _ in
+            UserDefaults.standard.set(true, forKey: "isFaceIDEnabled")
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+
+        alertController.addAction(enableAction)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true, completion: nil)
     }
 
     // MARK: Initializers
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UserDefaults.standard.bool(forKey: "isFaceIDEnabled") {
+            authenticateUserWithFaceID()
+        }
         self.auth = Auth.auth()
         setup()
     }

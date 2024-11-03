@@ -76,26 +76,10 @@ class RegisterViewController: UIViewController {
         return button
     }()
 
-    // MARK: Initializers
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.auth = Auth.auth()
-        setup()
-    }
-
     // MARK: Functions
 
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
-    }
-
-    func showAlert(title: String, message: String) {
-        let alertController:UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok:UIAlertAction = UIAlertAction(title: "Ok", style: .cancel)
-
-        alertController.addAction(ok)
-        self.present(alertController, animated: true)
     }
 
     @objc private func dismissKeyboard() {
@@ -109,15 +93,15 @@ class RegisterViewController: UIViewController {
         let rePassword = rePasswordWithDescriptionView.getInputText() ?? ""
 
         guard !username.isEmpty, !email.isEmpty, !password.isEmpty, !rePassword.isEmpty else {
-            return (false, "Por favor, preencha todos os campos.")
+            return (false, "\nPor favor, preencha todos os campos.")
         }
 
         if !isValidPassword(password) {
-            return (false, "A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.")
+            return (false, "\nA senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.")
         }
 
         if password != rePassword {
-            return (false, "As senhas inseridas são diferentes.")
+            return (false, "\nAs senhas inseridas são diferentes.")
         }
 
         return (true, nil)
@@ -126,7 +110,7 @@ class RegisterViewController: UIViewController {
     @objc func registerUser() {
         let validation = validateFields()
         guard validation.isValid else {
-            showAlert(title: "Atenção", message: validation.errorMessage!)
+            showAlert(on: self, title: "Atenção", message: validation.errorMessage!)
             return
         }
 
@@ -138,13 +122,13 @@ class RegisterViewController: UIViewController {
 
         self.auth?.createUser(withEmail: email, password: password) { result, error in
             if let error = error {
-                self.handleFirebaseError(error)
+                self.handleFirebaseRegisterError(error)
             } else {
                 self.saveUserData(username: username, email: email)
-                
+
                 result?.user.sendEmailVerification(completion: { (error) in
                     if let error = error {
-                        self.showAlert(title: "Erro", message: "Erro ao enviar email de verificação: \(error.localizedDescription)")
+                        showAlert(on: self, title: "Erro", message: "Erro ao enviar email de verificação: \(error.localizedDescription)")
                     }
                 })
             }
@@ -156,17 +140,17 @@ class RegisterViewController: UIViewController {
 
         FirebaseService.shared.db.collection("users").document(email).setData(userData) { error in
             if let error = error {
-                self.showAlert(title: "Erro", message: "Erro ao salvar os dados do usuário: \(error.localizedDescription)")
+                showAlert(on: self, title: "Erro", message: "Erro ao salvar os dados do usuário: \(error.localizedDescription)")
             } else {
-                self.showAlert(title: "Cadastro realizado com sucesso!", message: "\nPara concluir e liberar o acesso à sua conta, confirme o cadastro acessando o link enviado para o seu email.")
-
-//                let confirmEmailViewController = ConfirmEmailViewController()
-//                self.navigationController?.pushViewController(confirmEmailViewController, animated: true)
+                let successMessage = "Cadastro realizado com sucesso!\nPara concluir e liberar o acesso à sua conta, confirme o cadastro acessando o link enviado para o seu email."
+                showAlert(on: self, title: "Sucesso", message: successMessage) {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         }
     }
 
-    private func handleFirebaseError(_ error: Error) {
+    private func handleFirebaseRegisterError(_ error: Error) {
         let authError = error as NSError
         var message = "Falha ao cadastrar"
 
@@ -183,7 +167,15 @@ class RegisterViewController: UIViewController {
             }
         }
 
-        showAlert(title: "Erro", message: message)
+        showAlert(on: self, title: "Erro", message: message)
+    }
+    
+    // MARK: Initializers
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.auth = Auth.auth()
+        setup()
     }
 }
 

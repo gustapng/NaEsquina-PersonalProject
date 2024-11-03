@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EC1D87332CACC874002363A4 /* AddBusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1D87322CACC874002363A4 /* AddBusinessViewController.swift */; };
 		EC1D87352CACCB2A002363A4 /* SheetInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1D87342CACCB2A002363A4 /* SheetInfoView.swift */; };
+		EC2517622CD6D49900AE1ECF /* ShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2517612CD6D49200AE1ECF /* ShowAlert.swift */; };
 		EC2560412C92677800F076F5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2560402C92677800F076F5 /* UIButton+Extension.swift */; };
 		EC273DAA2CCEF76300945369 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = EC273DA92CCEF76300945369 /* .swiftformat */; };
 		EC3AB3612C8A75A100DEDC44 /* ColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */; };
@@ -62,6 +63,7 @@
 /* Begin PBXFileReference section */
 		EC1D87322CACC874002363A4 /* AddBusinessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBusinessViewController.swift; sourceTree = "<group>"; };
 		EC1D87342CACCB2A002363A4 /* SheetInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetInfoView.swift; sourceTree = "<group>"; };
+		EC2517612CD6D49200AE1ECF /* ShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlert.swift; sourceTree = "<group>"; };
 		EC2560402C92677800F076F5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		EC273DA92CCEF76300945369 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 		EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsExtension.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 		EC821F6A2C8A6A1E00F35B96 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				EC2517612CD6D49200AE1ECF /* ShowAlert.swift */,
 				EC5A019C2CD2FE3B003395D5 /* PasswordValidator.swift */,
 				EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */,
 				EC3AB3602C8A75A100DEDC44 /* ColorsExtension.swift */,
@@ -668,6 +671,7 @@
 				EC2560412C92677800F076F5 /* UIButton+Extension.swift in Sources */,
 				EC8A86A82CC7EE080013524D /* MapView.swift in Sources */,
 				EC5A01992CD2E8EF003395D5 /* FirebaseService.swift in Sources */,
+				EC2517622CD6D49900AE1ECF /* ShowAlert.swift in Sources */,
 				EC85914B2CA4D7E000621C33 /* ConfirmEmailViewController.swift in Sources */,
 				EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */,
 				ECBD55562CB2165A0020BCF8 /* InputWithLeftIconView.swift in Sources */,

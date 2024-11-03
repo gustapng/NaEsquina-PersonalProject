@@ -68,6 +68,10 @@ class MapViewController: UIViewController, MapViewDelegate {
         let userViewController = UserViewController()
         navigationController?.pushViewController(userViewController, animated: true)
     }
+    
+    func showWelcomeMessage() {
+        showAlert(on: self, title: "Bem-vindo!", message: "Login realizado com sucesso!")
+    }
 
     // MARK: - Lifecycle
 

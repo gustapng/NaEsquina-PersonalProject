@@ -12,6 +12,8 @@
 	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string></string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Este aplicativo usa o Face ID para permitir o login rápido e seguro.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
