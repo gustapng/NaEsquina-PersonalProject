@@ -9,12 +9,17 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import LocalAuthentication
+import CoreData
 
 class LoginViewController: UIViewController {
 
     // MARK: Variables
 
     var auth: Auth?
+    var context: NSManagedObjectContext = {
+        let context = UIApplication.shared.delegate as! AppDelegate
+        return context.persistentContainer.viewContext
+    }()
 
     // MARK: UI Components
 
@@ -117,9 +122,32 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(registerViewController, animated: true)
     }
 
+    private func validateLoginFields() -> (isValid: Bool, errorMessage: String?) {
+        let email = emailWithDescriptionView.getInputText() ?? ""
+        let password = passwordWithDescriptionView.getInputText() ?? ""
+
+        guard !email.isEmpty, !password.isEmpty else {
+            return (false, "\nPor favor, preencha todos os campos.")
+        }
+
+        if !isValidPassword(password) {
+            return (false, "\nA senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.")
+        }
+
+        return (true, nil)
+    }
+
     @objc private func loginUser() {
-        let email: String = emailWithDescriptionView.getInputText() ?? ""
-        let password: String = passwordWithDescriptionView.getInputText() ?? ""
+        let validation = validateLoginFields()
+        guard validation.isValid else {
+            showAlert(on: self, title: "Atenção", message: validation.errorMessage!)
+            return
+        }
+
+        guard let email = emailWithDescriptionView.getInputText(),
+              let password = passwordWithDescriptionView.getInputText() else {
+            return
+        }
 
         self.auth?.signIn(withEmail: email, password: password, completion: { [weak self] authResult, error in
             guard let self = self else { return }
@@ -135,6 +163,10 @@ class LoginViewController: UIViewController {
             }
 
             if user.isEmailVerified {
+                // TODO: CONTINUAR IMPLEMENTACAO DO CORE DATA, TESTAR SE OS DADOS FORAM SALVOS
+                let userSettings = UserSettings(userLogged: true, loggedDate: Date())
+                userSettings.save(context)
+                
                 self.navigateToMapView()
                 askToEnableFaceID()
             } else {
@@ -152,22 +184,6 @@ class LoginViewController: UIViewController {
                 mapViewController.showWelcomeMessage()
             }
         }
-
-//        TODO: Verificar se a transicao fica visualmente legal
-
-//        let mapViewController = MapViewController()
-
-//        guard let navigationController = self.navigationController else { return }
-
-//        UIView.transition(with: navigationController.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
-//            navigationController.pushViewController(mapViewController, animated: false)
-//        }, completion: { _ in
-//            if delay {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                 mapViewController.showWelcomeMessage()
-//                }
-//            }
-//        })
     }
 
     private func handleUnverifiedEmail(for user: User) {

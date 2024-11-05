@@ -86,7 +86,7 @@ class RegisterViewController: UIViewController {
        view.endEditing(true)
     }
 
-    private func validateFields() -> (isValid: Bool, errorMessage: String?) {
+    private func validateRegisterFields() -> (isValid: Bool, errorMessage: String?) {
         let username = usernameWithDescriptionView.getInputText() ?? ""
         let email = emailWithDescriptionView.getInputText() ?? ""
         let password = passwordWithDescriptionView.getInputText() ?? ""
@@ -108,7 +108,7 @@ class RegisterViewController: UIViewController {
     }
 
     @objc func registerUser() {
-        let validation = validateFields()
+        let validation = validateRegisterFields()
         guard validation.isValid else {
             showAlert(on: self, title: "Atenção", message: validation.errorMessage!)
             return
