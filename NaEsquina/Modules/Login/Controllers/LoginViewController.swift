@@ -13,7 +13,7 @@ import CoreData
 
 class LoginViewController: UIViewController {
 
-    // MARK: Variables
+    // MARK: Attributes
 
     var auth: Auth?
     var context: NSManagedObjectContext = {
@@ -163,10 +163,6 @@ class LoginViewController: UIViewController {
             }
 
             if user.isEmailVerified {
-                // TODO: CONTINUAR IMPLEMENTACAO DO CORE DATA, TESTAR SE OS DADOS FORAM SALVOS
-                let userSettings = UserSettings(userLogged: true, loggedDate: Date())
-                userSettings.save(context)
-                
                 self.navigateToMapView()
                 askToEnableFaceID()
             } else {
@@ -175,13 +171,33 @@ class LoginViewController: UIViewController {
         })
     }
 
+    private func getUserSettings() -> UserSettings? {
+        let fetchRequest: NSFetchRequest<UserSettings> = UserSettings.fetchRequest()
+
+        do {
+            let fetchedObjects = try context.fetch(fetchRequest)
+
+            if let lastLogin = fetchedObjects.last {
+                print(lastLogin)
+                return lastLogin
+            } else {
+                return nil
+            }
+        } catch {
+            print("Erro ao buscar UserSettings: \(error.localizedDescription)")
+            return nil
+        }
+    }
+
     private func navigateToMapView(_ delay: Bool = false) {
         let mapViewController = MapViewController()
         navigationController?.pushViewController(mapViewController, animated: true)
 
         if (delay) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                mapViewController.showWelcomeMessage()
+                if let lastLogin = self.getUserSettings(), !lastLogin.isFaceIDEnabled {
+                    mapViewController.showWelcomeMessage()
+                }
             }
         }
     }
@@ -257,7 +273,8 @@ class LoginViewController: UIViewController {
         let alertController = UIAlertController(title: "Habilitar Face ID", message: "Você gostaria de habilitar o login com Face ID para futuras sessões?", preferredStyle: .alert)
 
         let enableAction = UIAlertAction(title: "Habilitar", style: .default) { _ in
-            UserDefaults.standard.set(true, forKey: "isFaceIDEnabled")
+            let userSettings = UserSettings(isFaceIDEnabled: true, loggedDate: Date())
+            userSettings.save(self.context)
         }
 
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
@@ -272,9 +289,11 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UserDefaults.standard.bool(forKey: "isFaceIDEnabled") {
+
+        if let lastLogin = getUserSettings(), lastLogin.isFaceIDEnabled {
             authenticateUserWithFaceID()
         }
+
         self.auth = Auth.auth()
         setup()
     }
