@@ -61,7 +61,7 @@ class RecoveryViewController: UIViewController {
         let email = emailWithDescriptionView.getInputText() ?? ""
 
         guard !email.isEmpty else {
-            return (false, "\nPor favor, preencha o campo de email.")
+            return (false, "Por favor, preencha o campo de email.")
         }
 
         return (true, nil)

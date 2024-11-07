@@ -47,6 +47,9 @@
 		ECABB0542C8FC6C20030042E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0532C8FC6C20030042E /* RegisterViewController.swift */; };
 		ECABB0562C8FC97D0030042E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0552C8FC97D0030042E /* MapViewController.swift */; };
 		ECABB05B2C8FCDCA0030042E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = ECABB05A2C8FCDCA0030042E /* .swiftlint.yml */; };
+		ECB1607F2CDC1E1600B4E114 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB1607E2CDC1E0C00B4E114 /* CoreDataManager.swift */; };
+		ECB160822CDC398E00B4E114 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = ECB160812CDC398E00B4E114 /* RxCocoa */; };
+		ECB160842CDC398E00B4E114 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ECB160832CDC398E00B4E114 /* RxSwift */; };
 		ECB6338E2CB56D6200CD585B /* FilterButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6338D2CB56D6200CD585B /* FilterButtonCell.swift */; };
 		ECBA89252C9F9F920016AAB4 /* ImageWithInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBA89242C9F9F920016AAB4 /* ImageWithInfoView.swift */; };
 		ECBA89282C9FAE240016AAB4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBA89272C9FAE210016AAB4 /* Constants.swift */; };
@@ -99,6 +102,7 @@
 		ECABB0532C8FC6C20030042E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		ECABB0552C8FC97D0030042E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		ECABB05A2C8FCDCA0030042E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		ECB1607E2CDC1E0C00B4E114 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		ECB6338D2CB56D6200CD585B /* FilterButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonCell.swift; sourceTree = "<group>"; };
 		ECBA89242C9F9F920016AAB4 /* ImageWithInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithInfoView.swift; sourceTree = "<group>"; };
 		ECBA89272C9FAE210016AAB4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -118,12 +122,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECB160842CDC398E00B4E114 /* RxSwift in Frameworks */,
 				EC5A01952CD2E702003395D5 /* FirebaseDatabase in Frameworks */,
 				EC5025652CCEF45300D98868 /* SwiftFormat in Frameworks */,
 				EC5A01932CD2E702003395D5 /* FirebaseAuth in Frameworks */,
 				EC5A01912CD2E5EC003395D5 /* FirebaseFirestore in Frameworks */,
 				EC5A018F2CD2E5EC003395D5 /* FirebaseAuth in Frameworks */,
 				ECEF1DFC2CD0774B000F94FE /* FirebaseAuth in Frameworks */,
+				ECB160822CDC398E00B4E114 /* RxCocoa in Frameworks */,
 				EC5A01972CD2E702003395D5 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,6 +573,7 @@
 				EC4E2FF42CCC9C0D008CDFC3 /* Modules */,
 				EC821F662C8A69E900F35B96 /* Models */,
 				EC893CAE2CD9A61E00A94598 /* CoreData */,
+				ECB1607D2CDC1DED00B4E114 /* Data */,
 				EC821F672C8A69FD00F35B96 /* Views */,
 				EC821F692C8A6A1600F35B96 /* Services */,
 				EC821F6A2C8A6A1E00F35B96 /* Helpers */,
@@ -582,6 +589,14 @@
 				EC273DA92CCEF76300945369 /* .swiftformat */,
 			);
 			path = NaEsquina;
+			sourceTree = "<group>";
+		};
+		ECB1607D2CDC1DED00B4E114 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				ECB1607E2CDC1E0C00B4E114 /* CoreDataManager.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		ECBA89262C9FAE160016AAB4 /* Constants */ = {
@@ -641,6 +656,7 @@
 				ECABB0572C8FCD400030042E /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 				EC5025632CCEF45300D98868 /* XCRemoteSwiftPackageReference "SwiftFormat" */,
 				ECEF1DFA2CD0774B000F94FE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				ECB160802CDC393700B4E114 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = EC9E14ED2C87D22C007A9F88 /* Products */;
 			projectDirPath = "";
@@ -695,6 +711,7 @@
 				ECECD82B2CC31D500038B171 /* UserDataViewController.swift in Sources */,
 				ECBA89282C9FAE240016AAB4 /* Constants.swift in Sources */,
 				EC1D87332CACC874002363A4 /* AddBusinessViewController.swift in Sources */,
+				ECB1607F2CDC1E1600B4E114 /* CoreDataManager.swift in Sources */,
 				ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */,
 				ECA92BE22CBD5C8400C417E1 /* UserViewController.swift in Sources */,
 				EC95A7CF2CA0C13B00661DEA /* OtpViewController.swift in Sources */,
@@ -942,6 +959,14 @@
 				minimumVersion = 0.57.0;
 			};
 		};
+		ECB160802CDC393700B4E114 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.8.0;
+			};
+		};
 		ECEF1DFA2CD0774B000F94FE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -982,6 +1007,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ECEF1DFA2CD0774B000F94FE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		ECB160812CDC398E00B4E114 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECB160802CDC393700B4E114 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		ECB160832CDC398E00B4E114 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECB160802CDC393700B4E114 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 		ECEF1DFB2CD0774B000F94FE /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -16,10 +16,7 @@ class LoginViewController: UIViewController {
     // MARK: Attributes
 
     var auth: Auth?
-    var context: NSManagedObjectContext = {
-        let context = UIApplication.shared.delegate as! AppDelegate
-        return context.persistentContainer.viewContext
-    }()
+    var context = CoreDataManager.shared.context
 
     // MARK: UI Components
 
@@ -127,11 +124,11 @@ class LoginViewController: UIViewController {
         let password = passwordWithDescriptionView.getInputText() ?? ""
 
         guard !email.isEmpty, !password.isEmpty else {
-            return (false, "\nPor favor, preencha todos os campos.")
+            return (false, "Por favor, preencha todos os campos.")
         }
 
         if !isValidPassword(password) {
-            return (false, "\nA senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.")
+            return (false, "A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.")
         }
 
         return (true, nil)
@@ -176,13 +173,11 @@ class LoginViewController: UIViewController {
 
         do {
             let fetchedObjects = try context.fetch(fetchRequest)
-
-            if let lastLogin = fetchedObjects.last {
-                print(lastLogin)
-                return lastLogin
-            } else {
+            if fetchedObjects.isEmpty {
                 return nil
             }
+
+            return fetchedObjects.last
         } catch {
             print("Erro ao buscar UserSettings: \(error.localizedDescription)")
             return nil
@@ -211,11 +206,16 @@ class LoginViewController: UIViewController {
 
         user.sendEmailVerification { [weak self] error in
             guard let self = self else { return }
+            let authError = error as NSError?
 
             if let error = error {
-                showAlert(on: self, title: "Erro", message: "Erro ao enviar email de verificação: \(error.localizedDescription)")
+                if authError?.code == 17010 {
+                    showAlert(on: self, title: "Erro", message: "Houve um problema ao tentar reenviar o e-mail de autenticação. Por favor, tente novamente em alguns minutos.")
+                } else {
+                    showAlert(on: self, title: "Erro", message: "Erro ao enviar email de verificação: \(error.localizedDescription)")
+                }
             } else {
-                showAlert(on: self, title: "Verificação de\nE-mail Necessária", message: "Um novo email de autenticação foi enviado para seu email, por favor verifique seu e-mail para completar o login.")
+                showAlert(on: self, title: "Verificação de E-mail Necessária", message: "Um novo email de autenticação foi enviado para seu email, por favor verifique seu e-mail para completar o login.")
             }
         }
     }
@@ -226,6 +226,8 @@ class LoginViewController: UIViewController {
 
         if let errCode = AuthErrorCode(rawValue: authError.code) {
             switch errCode {
+            case .invalidEmail:
+                message = "O email informado não é válido."
             case .invalidCredential:
                 message = "Email ou senha não conferem, tente novamente."
             default:
@@ -273,12 +275,22 @@ class LoginViewController: UIViewController {
         let alertController = UIAlertController(title: "Habilitar Face ID", message: "Você gostaria de habilitar o login com Face ID para futuras sessões?", preferredStyle: .alert)
 
         let enableAction = UIAlertAction(title: "Habilitar", style: .default) { _ in
-            let userSettings = UserSettings(isFaceIDEnabled: true, loggedDate: Date())
-            userSettings.save(self.context)
+            let fetchRequest: NSFetchRequest<UserSettings> = UserSettings.fetchRequest()
+
+            do {
+                let fetchedObjects = try self.context.fetch(fetchRequest)
+                let userSettings = fetchedObjects.last ?? UserSettings(context: self.context)
+                
+                userSettings.isFaceIDEnabled = true
+                userSettings.loggedDate = Date()
+
+                try self.context.save()
+            } catch {
+                print("Erro ao salvar UserSettings: \(error.localizedDescription)")
+            }
         }
 
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
-
         alertController.addAction(enableAction)
         alertController.addAction(cancelAction)
 

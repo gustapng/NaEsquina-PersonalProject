@@ -8,6 +8,10 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import RxSwift
+import RxCocoa
+
+// TODO: CONTINUAR A IMPLEMENTACAO DO RX SWIFT PARA TERMOS UMA VISUALIZACAO DE LOADING DURANTE EXECUCAO DO FIREBASE
 
 class RegisterViewController: UIViewController {
 
@@ -93,15 +97,15 @@ class RegisterViewController: UIViewController {
         let rePassword = rePasswordWithDescriptionView.getInputText() ?? ""
 
         guard !username.isEmpty, !email.isEmpty, !password.isEmpty, !rePassword.isEmpty else {
-            return (false, "\nPor favor, preencha todos os campos.")
+            return (false, "Por favor, preencha todos os campos.")
         }
 
         if !isValidPassword(password) {
-            return (false, "\nA senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.")
+            return (false, "A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.")
         }
 
         if password != rePassword {
-            return (false, "\nAs senhas inseridas são diferentes.")
+            return (false, "As senhas inseridas são diferentes.")
         }
 
         return (true, nil)
