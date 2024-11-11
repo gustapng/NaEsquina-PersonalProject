@@ -10,6 +10,9 @@ import Firebase
 import FirebaseAuth
 import LocalAuthentication
 import CoreData
+import SwiftKeychainWrapper
+import RxSwift
+import RxCocoa
 
 class LoginViewController: UIViewController {
 
@@ -17,6 +20,8 @@ class LoginViewController: UIViewController {
 
     var auth: Auth?
     var context = CoreDataManager.shared.context
+    private let loadingSubject = BehaviorSubject<Bool>(value: false)
+    private let disposeBag = DisposeBag()
 
     // MARK: UI Components
 
@@ -98,6 +103,12 @@ class LoginViewController: UIViewController {
         button.setAttributedTitle(attributedString, for: .normal)
         return button
     }()
+    
+    private lazy var loadingView: LoadingView = {
+        let loading = LoadingView()
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        return loading
+    }()
 
     // MARK: Functions
 
@@ -145,27 +156,32 @@ class LoginViewController: UIViewController {
               let password = passwordWithDescriptionView.getInputText() else {
             return
         }
+        
+        loadingSubject.onNext(true)
 
-        self.auth?.signIn(withEmail: email, password: password, completion: { [weak self] authResult, error in
-            guard let self = self else { return }
+        auth?.rx.signIn(withEmail: email, password: password)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] authResult in
+                guard let self = self else { return }
 
-            if let error = error {
-                handleFirebaseLoginError(error)
-                return
-            }
+                self.loadingSubject.onNext(false)
 
-            guard let user = authResult?.user else {
-                showAlert(on: self, title: "Erro", message: "Tivemos um problema inesperado, tente novamente.")
-                return
-            }
+                if authResult.user.isEmailVerified {
+                    KeychainWrapper.standard.set(email, forKey: "userEmail")
+                    KeychainWrapper.standard.set(password, forKey: "userPassword")
 
-            if user.isEmailVerified {
-                self.navigateToMapView()
-                askToEnableFaceID()
-            } else {
-                self.handleUnverifiedEmail(for: user)
-            }
-        })
+                    self.navigateToMapView()
+                    askToEnableFaceID()
+                } else {
+                    self.handleUnverifiedEmail(for: authResult.user)
+                }
+            }, onFailure: { [weak self] error in
+                guard let self = self else { return }
+
+                self.loadingSubject.onNext(false)
+                self.handleFirebaseLoginError(error)
+            })
+            .disposed(by: disposeBag)
     }
 
     private func getUserSettings() -> UserSettings? {
@@ -248,6 +264,7 @@ class LoginViewController: UIViewController {
         }
     }
 
+    // TODO: REFATORAR TODAS AS REQUISICOES PARA PARA TER O LOADING DURANTE O PROCESSO
     private func authenticateUserWithFaceID() {
         let context = LAContext()
         var error: NSError?
@@ -258,6 +275,20 @@ class LoginViewController: UIViewController {
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
                 DispatchQueue.main.async {
                     if success {
+                        guard let email = KeychainWrapper.standard.string(forKey: "userEmail"),
+                              let password = KeychainWrapper.standard.string(forKey: "userPassword") else {
+                            print("Nenhuma credencial armazenada.")
+                            return
+                        }
+
+                        self.auth?.signIn(withEmail: email, password: password) { result, error in
+                            if let error = error {
+                                print("Erro ao fazer login no Firebase: \(error.localizedDescription)")
+                                return
+                            }
+                            print("Login via Face ID concluído com sucesso!")
+                        }
+
                         self.navigateToMapView(true)
                     } else {
                         if let error = authenticationError {
@@ -302,6 +333,17 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loadingSubject
+            .observe(on: MainScheduler.instance) // Garantir que a UI seja atualizada na thread principal
+            .bind { [weak self] isLoading in
+                if isLoading {
+                    self?.loadingView.startAnimating() // Exibe o loading
+                } else {
+                    self?.loadingView.stopAnimating() // Esconde o loading
+                }
+            }
+            .disposed(by: disposeBag) // Gerencia o ciclo de vida do binding
+
         if let lastLogin = getUserSettings(), lastLogin.isFaceIDEnabled {
             authenticateUserWithFaceID()
         }
@@ -328,6 +370,7 @@ extension LoginViewController: SetupView {
         view.addSubview(loginButton)
         view.addSubview(registerAccount)
         view.addSubview(registerAccountButton)
+        view.addSubview(loadingView)
     }
 
     func setupConstraints() {
@@ -356,7 +399,12 @@ extension LoginViewController: SetupView {
             registerAccount.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
             registerAccountButton.topAnchor.constraint(equalTo: registerAccount.bottomAnchor, constant: -2),
-            registerAccountButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            registerAccountButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingView.widthAnchor.constraint(equalToConstant: 120),
+            loadingView.heightAnchor.constraint(equalToConstant: 120)
         ])
     }
 }

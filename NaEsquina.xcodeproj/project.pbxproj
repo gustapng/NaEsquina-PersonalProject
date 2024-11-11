@@ -36,6 +36,9 @@
 		EC893CAD2CD9A20C00A94598 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC893CAC2CD9A20500A94598 /* UserSettings.swift */; };
 		EC8A86A82CC7EE080013524D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A86A72CC7EE080013524D /* MapView.swift */; };
 		EC95A7CF2CA0C13B00661DEA /* OtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */; };
+		EC98D83D2CE0FE26000040FF /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EC98D83C2CE0FE26000040FF /* SwiftKeychainWrapper */; };
+		EC98D8402CE1259E000040FF /* FirebaseAuth+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98D83F2CE12598000040FF /* FirebaseAuth+Extension.swift */; };
+		EC98D8432CE12804000040FF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98D8422CE12804000040FF /* LoadingView.swift */; };
 		EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14EF2C87D22C007A9F88 /* AppDelegate.swift */; };
 		EC9E14F22C87D22C007A9F88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14F12C87D22C007A9F88 /* SceneDelegate.swift */; };
 		EC9E14F42C87D22C007A9F88 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14F32C87D22C007A9F88 /* LoginViewController.swift */; };
@@ -89,6 +92,8 @@
 		EC893CAC2CD9A20500A94598 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		EC8A86A72CC7EE080013524D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewController.swift; sourceTree = "<group>"; };
+		EC98D83F2CE12598000040FF /* FirebaseAuth+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth+Extension.swift"; sourceTree = "<group>"; };
+		EC98D8422CE12804000040FF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		EC9E14EC2C87D22C007A9F88 /* NaEsquina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaEsquina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC9E14EF2C87D22C007A9F88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC9E14F12C87D22C007A9F88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +129,7 @@
 			files = (
 				ECB160842CDC398E00B4E114 /* RxSwift in Frameworks */,
 				EC5A01952CD2E702003395D5 /* FirebaseDatabase in Frameworks */,
+				EC98D83D2CE0FE26000040FF /* SwiftKeychainWrapper in Frameworks */,
 				EC5025652CCEF45300D98868 /* SwiftFormat in Frameworks */,
 				EC5A01932CD2E702003395D5 /* FirebaseAuth in Frameworks */,
 				EC5A01912CD2E5EC003395D5 /* FirebaseFirestore in Frameworks */,
@@ -218,6 +224,7 @@
 				ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */,
 				EC3AB3622C8A7D1700DEDC44 /* InputTextFieldView.swift */,
 				EC5A019A2CD2F2A8003395D5 /* InputEmailView.swift */,
+				EC98D8422CE12804000040FF /* LoadingView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -525,6 +532,7 @@
 		EC821F6A2C8A6A1E00F35B96 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				EC98D83F2CE12598000040FF /* FirebaseAuth+Extension.swift */,
 				EC2517612CD6D49200AE1ECF /* ShowAlert.swift */,
 				EC5A019C2CD2FE3B003395D5 /* PasswordValidator.swift */,
 				EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */,
@@ -657,6 +665,7 @@
 				EC5025632CCEF45300D98868 /* XCRemoteSwiftPackageReference "SwiftFormat" */,
 				ECEF1DFA2CD0774B000F94FE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				ECB160802CDC393700B4E114 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				EC98D83B2CE0FE26000040FF /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = EC9E14ED2C87D22C007A9F88 /* Products */;
 			projectDirPath = "";
@@ -700,12 +709,14 @@
 				ECE94DC22CC953ED0017BFC2 /* BusinessDetailsViewController.swift in Sources */,
 				EC2560412C92677800F076F5 /* UIButton+Extension.swift in Sources */,
 				EC8A86A82CC7EE080013524D /* MapView.swift in Sources */,
+				EC98D8402CE1259E000040FF /* FirebaseAuth+Extension.swift in Sources */,
 				EC5A01992CD2E8EF003395D5 /* FirebaseService.swift in Sources */,
 				EC2517622CD6D49900AE1ECF /* ShowAlert.swift in Sources */,
 				EC85914B2CA4D7E000621C33 /* ConfirmEmailViewController.swift in Sources */,
 				EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */,
 				ECBD55562CB2165A0020BCF8 /* InputWithLeftIconView.swift in Sources */,
 				ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */,
+				EC98D8432CE12804000040FF /* LoadingView.swift in Sources */,
 				ECABB0562C8FC97D0030042E /* MapViewController.swift in Sources */,
 				ECA947992CCA969C00B34811 /* SelectImageButton.swift in Sources */,
 				ECECD82B2CC31D500038B171 /* UserDataViewController.swift in Sources */,
@@ -951,6 +962,14 @@
 				minimumVersion = 0.54.6;
 			};
 		};
+		EC98D83B2CE0FE26000040FF /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		ECABB0572C8FCD400030042E /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
@@ -1007,6 +1026,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ECEF1DFA2CD0774B000F94FE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		EC98D83C2CE0FE26000040FF /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC98D83B2CE0FE26000040FF /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
 		};
 		ECB160812CDC398E00B4E114 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -3,6 +3,5 @@
     <entity name="UserSettings" representedClassName="UserSettings" syncable="YES">
         <attribute name="isFaceIDEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="loggedDate" optional="YES" attributeType="Date" usesScalarValueType="YES"/>
-        <attribute name="userLogged" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
 </model>

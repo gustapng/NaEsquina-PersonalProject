@@ -6,8 +6,17 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import CoreData
+import SwiftKeychainWrapper
 
 class UserViewController: UIViewController {
+
+    // MARK: Attributes
+
+    var auth: Auth?
+    var context = CoreDataManager.shared.context
 
     // MARK: - UI Components
 
@@ -54,14 +63,6 @@ class UserViewController: UIViewController {
         return button
     }()
 
-    // MARK: - Lifecycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
-        setupTableFooterView()
-    }
-
     // MARK: - Actions
 
     @objc func backButtonTapped() {
@@ -92,8 +93,23 @@ class UserViewController: UIViewController {
         navigationController?.pushViewController(suggestionViewController, animated: true)
     }
 
+    @objc func returnToLoginView() {
+        let loginViewController = LoginViewController()
+        navigationController?.setViewControllers([loginViewController], animated: true)
+    }
+
     @objc func logoutButtonTapped() {
-        print("ACTION DE LOGOUT")
+        do {
+            KeychainWrapper.standard.removeObject(forKey: "userEmail")
+            KeychainWrapper.standard.removeObject(forKey: "userPassword")
+
+            try self.auth?.signOut()
+            
+            deleteUserSettingsData()
+            returnToLoginView()
+        } catch {
+            print("Erro ao excluir UserSettings: \(error.localizedDescription)")
+        }
     }
 
     // MARK: - Function
@@ -111,6 +127,32 @@ class UserViewController: UIViewController {
         ])
 
         tableView.tableFooterView = footerView
+    }
+
+    private func deleteUserSettingsData() {
+        let fetchRequest: NSFetchRequest<UserSettings> = UserSettings.fetchRequest()
+
+        do {
+            let fetchedObjects = try context.fetch(fetchRequest)
+
+            for object in fetchedObjects {
+                context.delete(object)
+            }
+
+            try context.save()
+            print("Dados de UserSettings excluídos com sucesso!")
+        } catch {
+            print("Erro ao excluir UserSettings: \(error.localizedDescription)")
+        }
+    }
+
+    // MARK: - Initializers
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.auth = Auth.auth()
+        setup()
+        setupTableFooterView()
     }
 }
 
