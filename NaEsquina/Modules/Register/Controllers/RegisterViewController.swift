@@ -11,13 +11,13 @@ import FirebaseAuth
 import RxSwift
 import RxCocoa
 
-// TODO: CONTINUAR A IMPLEMENTACAO DO RX SWIFT PARA TERMOS UMA VISUALIZACAO DE LOADING DURANTE EXECUCAO DO FIREBASE
-
 class RegisterViewController: UIViewController {
 
     // MARK: Variables
 
     var auth: Auth?
+    private let loadingSubject = BehaviorSubject<Bool>(value: false)
+    private let disposeBag = DisposeBag()
 
     // MARK: UI Components
 
@@ -80,6 +80,12 @@ class RegisterViewController: UIViewController {
         return button
     }()
 
+    private lazy var loadingView: LoadingView = {
+        let loading = LoadingView()
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        return loading
+    }()
+
     // MARK: Functions
 
     @objc func backButtonTapped() {
@@ -124,34 +130,37 @@ class RegisterViewController: UIViewController {
             return
         }
 
-        self.auth?.createUser(withEmail: email, password: password) { result, error in
-            if let error = error {
-                self.handleFirebaseRegisterError(error)
-            } else {
-                self.saveUserData(username: username, email: email)
+        // TODO: Maybe review the user creation and data insertion logic
+        
+        loadingSubject.onNext(true)
 
-                result?.user.sendEmailVerification(completion: { (error) in
+        auth?.rx.createUser(withEmail: email, password: password)
+            .flatMap { authResult in
+                return self.auth?.rx.saveUserData(username: username, email: email) ?? .just(())
+            }
+            .observe(on: MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] _ in
+                guard let self = self else { return }
+
+                self.loadingSubject.onNext(false)
+
+                auth?.currentUser?.sendEmailVerification(completion: { error in
                     if let error = error {
                         showAlert(on: self, title: "Erro", message: "Erro ao enviar email de verificação: \(error.localizedDescription)")
                     }
                 })
-            }
-        }
-    }
 
-    private func saveUserData(username: String, email: String) {
-        let userData: [String: Any] = ["email": email, "username": username]
-
-        FirebaseService.shared.db.collection("users").document(email).setData(userData) { error in
-            if let error = error {
-                showAlert(on: self, title: "Erro", message: "Erro ao salvar os dados do usuário: \(error.localizedDescription)")
-            } else {
                 let successMessage = "Cadastro realizado com sucesso!\nPara concluir e liberar o acesso à sua conta, confirme o cadastro acessando o link enviado para o seu email."
                 showAlert(on: self, title: "Sucesso", message: successMessage) {
                     self.navigationController?.popViewController(animated: true)
                 }
-            }
-        }
+            }, onFailure: { [weak self] error in
+                guard let self = self else { return }
+
+                self.loadingSubject.onNext(false)
+                self.handleFirebaseRegisterError(error)
+            })
+            .disposed(by: disposeBag)
     }
 
     private func handleFirebaseRegisterError(_ error: Error) {
@@ -178,6 +187,18 @@ class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadingSubject
+            .observe(on: MainScheduler.instance)
+            .bind { [weak self] isLoading in
+                if isLoading {
+                    self?.loadingView.startAnimating()
+                } else {
+                    self?.loadingView.stopAnimating()
+                }
+            }
+            .disposed(by: disposeBag)
+        
         self.auth = Auth.auth()
         setup()
     }
@@ -201,6 +222,7 @@ extension RegisterViewController: SetupView {
         view.addSubview(passwordWithDescriptionView)
         view.addSubview(rePasswordWithDescriptionView)
         view.addSubview(registerButton)
+        view.addSubview(loadingView)
     }
 
     func setupConstraints() {
@@ -231,7 +253,12 @@ extension RegisterViewController: SetupView {
             registerButton.topAnchor.constraint(equalTo: rePasswordWithDescriptionView.bottomAnchor, constant: 50),
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            registerButton.heightAnchor.constraint(equalToConstant: 45)
+            registerButton.heightAnchor.constraint(equalToConstant: 45),
+
+            loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingView.widthAnchor.constraint(equalToConstant: 120),
+            loadingView.heightAnchor.constraint(equalToConstant: 120)
         ])
     }
 }

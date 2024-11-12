@@ -37,7 +37,7 @@
 		EC8A86A82CC7EE080013524D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A86A72CC7EE080013524D /* MapView.swift */; };
 		EC95A7CF2CA0C13B00661DEA /* OtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */; };
 		EC98D83D2CE0FE26000040FF /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EC98D83C2CE0FE26000040FF /* SwiftKeychainWrapper */; };
-		EC98D8402CE1259E000040FF /* FirebaseAuth+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98D83F2CE12598000040FF /* FirebaseAuth+Extension.swift */; };
+		EC98D8402CE1259E000040FF /* Firebase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98D83F2CE12598000040FF /* Firebase+Extension.swift */; };
 		EC98D8432CE12804000040FF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98D8422CE12804000040FF /* LoadingView.swift */; };
 		EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14EF2C87D22C007A9F88 /* AppDelegate.swift */; };
 		EC9E14F22C87D22C007A9F88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14F12C87D22C007A9F88 /* SceneDelegate.swift */; };
@@ -92,7 +92,7 @@
 		EC893CAC2CD9A20500A94598 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		EC8A86A72CC7EE080013524D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewController.swift; sourceTree = "<group>"; };
-		EC98D83F2CE12598000040FF /* FirebaseAuth+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth+Extension.swift"; sourceTree = "<group>"; };
+		EC98D83F2CE12598000040FF /* Firebase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Extension.swift"; sourceTree = "<group>"; };
 		EC98D8422CE12804000040FF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		EC9E14EC2C87D22C007A9F88 /* NaEsquina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaEsquina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC9E14EF2C87D22C007A9F88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -532,7 +532,7 @@
 		EC821F6A2C8A6A1E00F35B96 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				EC98D83F2CE12598000040FF /* FirebaseAuth+Extension.swift */,
+				EC98D83F2CE12598000040FF /* Firebase+Extension.swift */,
 				EC2517612CD6D49200AE1ECF /* ShowAlert.swift */,
 				EC5A019C2CD2FE3B003395D5 /* PasswordValidator.swift */,
 				EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */,
@@ -709,7 +709,7 @@
 				ECE94DC22CC953ED0017BFC2 /* BusinessDetailsViewController.swift in Sources */,
 				EC2560412C92677800F076F5 /* UIButton+Extension.swift in Sources */,
 				EC8A86A82CC7EE080013524D /* MapView.swift in Sources */,
-				EC98D8402CE1259E000040FF /* FirebaseAuth+Extension.swift in Sources */,
+				EC98D8402CE1259E000040FF /* Firebase+Extension.swift in Sources */,
 				EC5A01992CD2E8EF003395D5 /* FirebaseService.swift in Sources */,
 				EC2517622CD6D49900AE1ECF /* ShowAlert.swift in Sources */,
 				EC85914B2CA4D7E000621C33 /* ConfirmEmailViewController.swift in Sources */,

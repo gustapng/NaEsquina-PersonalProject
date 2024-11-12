@@ -7,12 +7,16 @@
 
 import UIKit
 import FirebaseAuth
+import RxSwift
+import RxCocoa
 
 class RecoveryViewController: UIViewController {
     
-    // MARK: Variables
+    // MARK: Attributes
 
     var auth: Auth?
+    private let loadingSubject = BehaviorSubject<Bool>(value: false)
+    private let disposeBag = DisposeBag()
 
     // MARK: UI Components
 
@@ -51,6 +55,12 @@ class RecoveryViewController: UIViewController {
         return button
     }()
 
+    private lazy var loadingView: LoadingView = {
+        let loading = LoadingView()
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        return loading
+    }()
+
     // MARK: Functions
 
     @objc func backButtonTapped() {
@@ -78,18 +88,26 @@ class RecoveryViewController: UIViewController {
             return
         }
 
-        self.auth?.sendPasswordReset(withEmail: email) { error in
-            if let error = error {
-                self.handleFirebasePasswordResetError(error)
-                return
-            }
+        self.loadingSubject.onNext(true)
 
-            let successMessage = "Um email com instruções para redefinir sua senha foi enviado para o endereço fornecido.\nVerifique sua caixa de entrada e siga as instruções para recuperar o acesso à sua conta."
+       auth?.rx.sendPasswordReset(withEmail: email)
+            .observe(on: MainScheduler.instance)
+           .subscribe(onSuccess: { [weak self] _ in
+               guard let self = self else { return }
 
-            showAlert(on: self, title: "Email de recuperação enviado", message: successMessage) {
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
+               self.loadingSubject.onNext(false)
+
+               let successMessage = "Um email com instruções para redefinir sua senha foi enviado para o endereço fornecido.\nVerifique sua caixa de entrada e siga as instruções para recuperar o acesso à sua conta."
+               showAlert(on: self, title: "Email de recuperação enviado", message: successMessage) {
+                   self.navigationController?.popViewController(animated: true)
+               }
+           }, onFailure: { [weak self] error in
+               guard let self = self else { return }
+
+               self.loadingSubject.onNext(false)
+               self.handleFirebasePasswordResetError(error)
+           })
+           .disposed(by: disposeBag)
     }
 
     private func handleFirebasePasswordResetError(_ error: Error) {
@@ -116,6 +134,18 @@ class RecoveryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        loadingSubject
+            .observe(on: MainScheduler.instance)
+            .bind { [weak self] isLoading in
+                if isLoading {
+                    self?.loadingView.startAnimating()
+                } else {
+                    self?.loadingView.stopAnimating()
+                }
+            }
+            .disposed(by: disposeBag)
+
         self.auth = Auth.auth()
         setup()
     }
@@ -134,6 +164,7 @@ extension RecoveryViewController: SetupView {
         view.addSubview(imageWithDescription)
         view.addSubview(emailWithDescriptionView)
         view.addSubview(sendCodeButton)
+        view.addSubview(loadingView)
     }
 
     func setupConstraints() {
@@ -153,7 +184,12 @@ extension RecoveryViewController: SetupView {
             sendCodeButton.topAnchor.constraint(equalTo: emailWithDescriptionView.bottomAnchor, constant: 33.5),
             sendCodeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             sendCodeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            sendCodeButton.heightAnchor.constraint(equalToConstant: 45)
+            sendCodeButton.heightAnchor.constraint(equalToConstant: 45),
+
+            loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingView.widthAnchor.constraint(equalToConstant: 120),
+            loadingView.heightAnchor.constraint(equalToConstant: 120)
         ])
     }
 }

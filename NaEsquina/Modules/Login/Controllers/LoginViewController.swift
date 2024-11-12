@@ -156,7 +156,7 @@ class LoginViewController: UIViewController {
               let password = passwordWithDescriptionView.getInputText() else {
             return
         }
-        
+
         loadingSubject.onNext(true)
 
         auth?.rx.signIn(withEmail: email, password: password)
@@ -231,7 +231,7 @@ class LoginViewController: UIViewController {
                     showAlert(on: self, title: "Erro", message: "Erro ao enviar email de verificação: \(error.localizedDescription)")
                 }
             } else {
-                showAlert(on: self, title: "Verificação de E-mail Necessária", message: "Um novo email de autenticação foi enviado para seu email, por favor verifique seu e-mail para completar o login.")
+                showAlert(on: self, title: "Verificação de\nE-mail Necessária", message: "Um novo email de autenticação foi enviado para seu email, por favor verifique seu e-mail para completar o login.")
             }
         }
     }
@@ -334,15 +334,15 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         loadingSubject
-            .observe(on: MainScheduler.instance) // Garantir que a UI seja atualizada na thread principal
+            .observe(on: MainScheduler.instance)
             .bind { [weak self] isLoading in
                 if isLoading {
-                    self?.loadingView.startAnimating() // Exibe o loading
+                    self?.loadingView.startAnimating()
                 } else {
-                    self?.loadingView.stopAnimating() // Esconde o loading
+                    self?.loadingView.stopAnimating()
                 }
             }
-            .disposed(by: disposeBag) // Gerencia o ciclo de vida do binding
+            .disposed(by: disposeBag)
 
         if let lastLogin = getUserSettings(), lastLogin.isFaceIDEnabled {
             authenticateUserWithFaceID()
