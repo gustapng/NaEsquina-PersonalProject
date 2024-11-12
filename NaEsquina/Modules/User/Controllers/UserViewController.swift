@@ -150,7 +150,6 @@ class UserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.auth = Auth.auth()
         setup()
         setupTableFooterView()
     }
@@ -160,6 +159,7 @@ extension UserViewController: SetupView {
     func setup() {
         navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
+        self.auth = Auth.auth()
         addSubviews()
         setupConstraints()
     }

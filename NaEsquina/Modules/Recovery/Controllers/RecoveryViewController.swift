@@ -67,6 +67,10 @@ class RecoveryViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    @objc private func dismissKeyboard() {
+       view.endEditing(true)
+    }
+
     private func validateRecoveryFields() -> (isValid: Bool, errorMessage: String?) {
         let email = emailWithDescriptionView.getInputText() ?? ""
 
@@ -134,7 +138,17 @@ class RecoveryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+}
 
+extension RecoveryViewController: SetupView {
+    func setup() {
+        navigationItem.setHidesBackButton(true, animated: true)
+        view.backgroundColor = .white
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        
         loadingSubject
             .observe(on: MainScheduler.instance)
             .bind { [weak self] isLoading in
@@ -147,14 +161,7 @@ class RecoveryViewController: UIViewController {
             .disposed(by: disposeBag)
 
         self.auth = Auth.auth()
-        setup()
-    }
-}
-
-extension RecoveryViewController: SetupView {
-    func setup() {
-        navigationItem.setHidesBackButton(true, animated: true)
-        view.backgroundColor = .white
+        
         addSubviews()
         setupConstraints()
     }

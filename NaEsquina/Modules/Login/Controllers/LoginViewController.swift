@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
     private lazy var recoverPassword: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .regular)
+        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
         button.setTitleColor(ColorsExtension.purpleMedium, for: .normal)
         button.addTarget(self, action: #selector(self.goToRecoverView), for: .touchUpInside)
 
@@ -332,7 +332,16 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+}
 
+extension LoginViewController: SetupView {
+    func setup() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.backgroundColor = .white
+        view.addGestureRecognizer(tap)
+        
         loadingSubject
             .observe(on: MainScheduler.instance)
             .bind { [weak self] isLoading in
@@ -349,15 +358,7 @@ class LoginViewController: UIViewController {
         }
 
         self.auth = Auth.auth()
-        setup()
-    }
-}
-
-extension LoginViewController: SetupView {
-    func setup() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.backgroundColor = .white
-        view.addGestureRecognizer(tap)
+        
         addSubviews()
         setupConstraints()
     }

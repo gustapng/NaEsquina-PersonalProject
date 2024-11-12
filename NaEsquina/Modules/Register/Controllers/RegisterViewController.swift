@@ -187,6 +187,16 @@ class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+}
+
+extension RegisterViewController: SetupView {
+    func setup() {
+        navigationItem.setHidesBackButton(true, animated: true)
+        view.backgroundColor = .white
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
         
         loadingSubject
             .observe(on: MainScheduler.instance)
@@ -200,16 +210,7 @@ class RegisterViewController: UIViewController {
             .disposed(by: disposeBag)
         
         self.auth = Auth.auth()
-        setup()
-    }
-}
-
-extension RegisterViewController: SetupView {
-    func setup() {
-        navigationItem.setHidesBackButton(true, animated: true)
-        view.backgroundColor = .white
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
+        
         addSubviews()
         setupConstraints()
     }
