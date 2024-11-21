@@ -11,6 +11,10 @@ class UserDataViewController: UIViewController {
 
     // MARK: - UI Components
 
+    var coordinator: UserDataCoordinator?
+
+    // MARK: - UI Components
+
     private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
                                                                     borderColor: ColorsExtension.lightGray ?? .black)
 
@@ -79,7 +83,7 @@ class UserDataViewController: UIViewController {
     // MARK: - Actions
 
     @objc func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
+        coordinator?.backToPreviousScreen()
     }
 
     @objc func resendUserData() {

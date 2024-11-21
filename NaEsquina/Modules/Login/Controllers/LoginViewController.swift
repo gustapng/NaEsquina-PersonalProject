@@ -16,6 +16,10 @@ import RxCocoa
 
 class LoginViewController: UIViewController {
 
+    // MARK: - Coordinator
+
+    var coordinator: LoginCoordinator?
+
     // MARK: Attributes
 
     var auth: Auth?
@@ -23,7 +27,7 @@ class LoginViewController: UIViewController {
     private let loadingSubject = BehaviorSubject<Bool>(value: false)
     private let disposeBag = DisposeBag()
 
-    // MARK: UI Components
+    // MARK: - UI Components
 
     private lazy var currentViewDescriptionView: CurrentViewDescriptionView = {
         let view = CurrentViewDescriptionView(viewTitle: "Login",
@@ -110,11 +114,7 @@ class LoginViewController: UIViewController {
         return loading
     }()
 
-    // MARK: Functions
-
-    @objc func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
-    }
+    // MARK: - Functions
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
@@ -170,8 +170,8 @@ class LoginViewController: UIViewController {
                     KeychainWrapper.standard.set(email, forKey: "userEmail")
                     KeychainWrapper.standard.set(password, forKey: "userPassword")
 
-                    self.navigateToMapView()
-                    askToEnableFaceID()
+                    self.coordinator?.navigateToMapView()
+                    self.askToEnableFaceID()
                 } else {
                     self.handleUnverifiedEmail(for: authResult.user)
                 }
@@ -264,16 +264,17 @@ class LoginViewController: UIViewController {
         }
     }
 
-    // TODO: REFATORAR TODAS AS REQUISICOES PARA PARA TER O LOADING DURANTE O PROCESSO
     private func authenticateUserWithFaceID() {
         let context = LAContext()
         var error: NSError?
 
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             let reason = "Autentique-se para acessar seu aplicativo"
+            loadingSubject.onNext(true)
 
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
                 DispatchQueue.main.async {
+                    self.loadingSubject.onNext(false)
                     if success {
                         guard let email = KeychainWrapper.standard.string(forKey: "userEmail"),
                               let password = KeychainWrapper.standard.string(forKey: "userPassword") else {
@@ -298,7 +299,8 @@ class LoginViewController: UIViewController {
                 }
             }
         } else {
-            showAlert(on: self,title: "Erro", message: "Face ID não está disponível neste dispositivo.")
+            loadingSubject.onNext(false)
+            showAlert(on: self, title: "Erro", message: "Face ID não está disponível neste dispositivo.")
         }
     }
 
@@ -328,7 +330,7 @@ class LoginViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
-    // MARK: Initializers
+    // MARK: - Initializers
 
     override func viewDidLoad() {
         super.viewDidLoad()

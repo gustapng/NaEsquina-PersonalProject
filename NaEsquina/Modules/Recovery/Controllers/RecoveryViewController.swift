@@ -11,14 +11,18 @@ import RxSwift
 import RxCocoa
 
 class RecoveryViewController: UIViewController {
-    
-    // MARK: Attributes
+
+    // MARK: - Coordinator
+
+    var coordinator: RecoveryCoordinator?
+
+    // MARK: - Attributes
 
     var auth: Auth?
     private let loadingSubject = BehaviorSubject<Bool>(value: false)
     private let disposeBag = DisposeBag()
 
-    // MARK: UI Components
+    // MARK: - UI Components
 
     private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
                                                                     borderColor: ColorsExtension.lightGray ?? .black)
@@ -33,8 +37,8 @@ class RecoveryViewController: UIViewController {
 
     private lazy var emailWithDescriptionView: InputEmailView = {
         let view = InputEmailView(descriptionText: "Email",
-                                            inputPlaceholder: "Seu email",
-                                            inputDisabled: false)
+                                  inputPlaceholder: "Seu email",
+                                  inputDisabled: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -61,14 +65,14 @@ class RecoveryViewController: UIViewController {
         return loading
     }()
 
-    // MARK: Functions
+    // MARK: - Functions
 
     @objc func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
+        coordinator?.backToPreviousScreen()
     }
 
     @objc private func dismissKeyboard() {
-       view.endEditing(true)
+        view.endEditing(true)
     }
 
     private func validateRecoveryFields() -> (isValid: Bool, errorMessage: String?) {
@@ -88,30 +92,29 @@ class RecoveryViewController: UIViewController {
             return
         }
 
-        guard let email = emailWithDescriptionView.getInputText() else {
-            return
-        }
+        guard let email = emailWithDescriptionView.getInputText() else { return }
 
         self.loadingSubject.onNext(true)
 
-       auth?.rx.sendPasswordReset(withEmail: email)
+        auth?.rx.sendPasswordReset(withEmail: email)
             .observe(on: MainScheduler.instance)
-           .subscribe(onSuccess: { [weak self] _ in
-               guard let self = self else { return }
+            .subscribe(onSuccess: { [weak self] _ in
+                guard let self = self else { return }
+                self.loadingSubject.onNext(false)
+                self.showSuccessMessage()
+            }, onFailure: { [weak self] error in
+                guard let self = self else { return }
+                self.loadingSubject.onNext(false)
+                self.handleFirebasePasswordResetError(error)
+            })
+            .disposed(by: disposeBag)
+    }
 
-               self.loadingSubject.onNext(false)
-
-               let successMessage = "Um email com instruções para redefinir sua senha foi enviado para o endereço fornecido.\nVerifique sua caixa de entrada e siga as instruções para recuperar o acesso à sua conta."
-               showAlert(on: self, title: "Email de recuperação enviado", message: successMessage) {
-                   self.navigationController?.popViewController(animated: true)
-               }
-           }, onFailure: { [weak self] error in
-               guard let self = self else { return }
-
-               self.loadingSubject.onNext(false)
-               self.handleFirebasePasswordResetError(error)
-           })
-           .disposed(by: disposeBag)
+    private func showSuccessMessage() {
+        let successMessage = "Um email com instruções para redefinir sua senha foi enviado para o endereço fornecido.\nVerifique sua caixa de entrada e siga as instruções para recuperar o acesso à sua conta."
+        showAlert(on: self, title: "Email de recuperação enviado", message: successMessage) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     private func handleFirebasePasswordResetError(_ error: Error) {
@@ -119,19 +122,23 @@ class RecoveryViewController: UIViewController {
         var message = "Falha ao enviar email de recuperação de senha."
 
         if let errCode = AuthErrorCode(rawValue: authError.code) {
-            switch errCode {
-            case .invalidEmail:
-                message = "O formato do email fornecido é inválido."
-            case .invalidRecipientEmail:
-                message = "O endereço de email fornecido não é válido."
-            case .userNotFound:
-                message = "Não existe um usuário cadastrado com o endereço de email fornecido."
-            default:
-                message = "Erro desconhecido: \(authError.localizedDescription)"
-            }
+            message = self.mapAuthErrorToMessage(errCode)
         }
 
         showAlert(on: self, title: "Erro", message: message)
+    }
+
+    private func mapAuthErrorToMessage(_ errorCode: AuthErrorCode) -> String {
+        switch errorCode {
+        case .invalidEmail:
+            return "O formato do email fornecido é inválido."
+        case .invalidRecipientEmail:
+            return "O endereço de email fornecido não é válido."
+        case .userNotFound:
+            return "Não existe um usuário cadastrado com o endereço de email fornecido."
+        default:
+            return "Erro desconhecido."
+        }
     }
 
     // MARK: Initializers
@@ -148,7 +155,7 @@ extension RecoveryViewController: SetupView {
         view.backgroundColor = .white
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
-        
+
         loadingSubject
             .observe(on: MainScheduler.instance)
             .bind { [weak self] isLoading in
@@ -161,7 +168,7 @@ extension RecoveryViewController: SetupView {
             .disposed(by: disposeBag)
 
         self.auth = Auth.auth()
-        
+
         addSubviews()
         setupConstraints()
     }

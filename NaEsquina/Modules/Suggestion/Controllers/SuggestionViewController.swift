@@ -9,6 +9,10 @@ import UIKit
 
 class SuggestionViewController: UIViewController {
 
+    // MARK: - Coordinator
+
+    var coordinator: SuggestionCoordinator?
+
     // MARK: - UI Components
 
     private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
@@ -70,7 +74,7 @@ class SuggestionViewController: UIViewController {
     // MARK: - Actions
 
     @objc func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
+        coordinator?.backToPreviousScreen()
     }
 
     @objc func sendSuggestion() {

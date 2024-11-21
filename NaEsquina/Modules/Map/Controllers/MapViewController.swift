@@ -3,6 +3,12 @@ import UIKit
 
 class MapViewController: UIViewController, MapViewDelegate {
 
+    // MARK: - Variables
+    
+    var coordinator: MapCoordinator?
+
+    var isSelectingLocation = false
+
     // MARK: - UI Components
 
     private lazy var backButton: UIButton = .createCustomBackButton(target: self,
@@ -30,20 +36,52 @@ class MapViewController: UIViewController, MapViewDelegate {
         tabBar.items = [homeItem, filterItem, perfilItem]
         return tabBar
     }()
+    
+    private lazy var selectionBar: UIView = {
+        let view = UIView()
+        view.backgroundColor = ColorsExtension.gray?.withAlphaComponent(0.7)
+        view.layer.cornerRadius = 8
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
 
-    // MARK: - Actions
+        let label = UILabel()
+        label.text = "Toque no mapa para selecionar o local"
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        let icon = UIImage(systemName: "xmark.circle")
+
+        let cancelButton = UIButton(type: .system)
+        cancelButton.setImage(icon, for: .normal)
+        cancelButton.imageView?.contentMode = .scaleAspectFit
+        cancelButton.tintColor = ColorsExtension.red
+        cancelButton.setTitleColor(.red, for: .normal)
+        cancelButton.addTarget(self, action: #selector(cancelSelection), for: .touchUpInside)
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(label)
+        view.addSubview(cancelButton)
+
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+
+            cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            cancelButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+
+        return view
+    }()
+
+    // MARK: - Functions
 
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
 
     @objc func openSheetAddBusiness() {
-        let businessViewController = AddBusinessViewController()
-        if let sheet = businessViewController.sheetPresentationController {
-            sheet.detents = [.custom(resolver: { _ in 600 })]
-            sheet.prefersGrabberVisible = true
-        }
-        present(businessViewController, animated: true, completion: nil)
+//        button.addTarget(self, action: #selector(showSelectionBar), for: .touchUpInside)
+        coordinator?.goToAddBusinessView()
     }
 
     func didTapOnPin(annotationTitle: String?) {
@@ -56,21 +94,26 @@ class MapViewController: UIViewController, MapViewDelegate {
     }
 
     @objc func openSheetFilter() {
-        let sheetViewController = FilterViewController()
-        if let sheet = sheetViewController.sheetPresentationController {
-            sheet.detents = [.medium()]
-            sheet.prefersGrabberVisible = true
-        }
-        present(sheetViewController, animated: true, completion: nil)
+        coordinator?.goToFilterView()
     }
 
     @objc func goToUserView() {
-        let userViewController = UserViewController()
-        navigationController?.pushViewController(userViewController, animated: true)
+        coordinator?.goToUserView()
     }
     
     func showWelcomeMessage() {
         showAlert(on: self, title: "Bem-vindo!", message: "Login realizado com sucesso!")
+    }
+
+    @objc func showSelectionBar() {
+        isSelectingLocation = true
+        selectionBar.isHidden = false
+    }
+
+    @objc func cancelSelection() {
+        isSelectingLocation = false
+        selectionBar.isHidden = true
+//        mapView.removeAnnotations(mapView.annotations)
     }
 
     // MARK: - Lifecycle
@@ -86,7 +129,8 @@ extension MapViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.tag {
         case 0:
-            openSheetAddBusiness()
+            showSelectionBar()
+//            openSheetAddBusiness()
         case 1:
             openSheetFilter()
         case 2:
@@ -109,6 +153,7 @@ extension MapViewController: SetupView {
         view.addSubview(backButton)
         view.addSubview(mapView)
         view.addSubview(bottomBar)
+        view.addSubview(selectionBar)
     }
 
     func setupConstraints() {
@@ -120,6 +165,11 @@ extension MapViewController: SetupView {
             mapView.bottomAnchor.constraint(equalTo: bottomBar.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
+            selectionBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            selectionBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            selectionBar.bottomAnchor.constraint(equalTo: bottomBar.topAnchor, constant: -34),
+            selectionBar.heightAnchor.constraint(equalToConstant: 50),
 
             bottomBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),

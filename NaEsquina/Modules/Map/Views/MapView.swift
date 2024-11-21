@@ -64,6 +64,27 @@ class MapView: UIView, MKMapViewDelegate {
         }
         return nil
     }
+    
+    @objc private func handleMapTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        print("Aqui")
+        guard let controller = delegate as? MapViewController, controller.isSelectingLocation else { return }
+
+        let location = gestureRecognizer.location(in: mapView)
+        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+
+        mapView.removeAnnotations(mapView.annotations)
+        print("Coordenadas selecionadas: \(coordinate.latitude), \(coordinate.longitude)")
+
+//        let annotation = MKPointAnnotation()
+//        annotation.coordinate = coordinate
+//        annotation.title = "Local Selecionado"
+//        mapView.addAnnotation(annotation)
+//
+//        print("Coordenadas selecionadas: \(coordinate.latitude), \(coordinate.longitude)")
+//
+//        // Ocultar a barra temporária após a seleção
+//        controller.cancelSelection()
+    }
 
     func mapView(_ mapView: MKMapView,
                  annotationView view: MKAnnotationView,
@@ -74,7 +95,7 @@ class MapView: UIView, MKMapViewDelegate {
         print("Pin clicado: \(annotationTitle ?? "")")
     }
 
-    // MARK: - Lifecycle
+    // MARK: - Initializers
 
     init() {
         super.init(frame: .zero)
@@ -111,5 +132,20 @@ extension MapView: SetupView {
             mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
             mapView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    private func configureGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleMapTap(_:)))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        tapGesture.delegate = self
+        mapView.addGestureRecognizer(tapGesture)
+    }
+    
+}
+
+extension MapView: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

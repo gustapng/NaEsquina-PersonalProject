@@ -13,6 +13,10 @@ import SwiftKeychainWrapper
 
 class UserViewController: UIViewController {
 
+    // MARK: Coordinator
+
+    var coordinator: UserCoordinator?
+
     // MARK: Attributes
 
     var auth: Auth?
@@ -75,9 +79,9 @@ class UserViewController: UIViewController {
 
         switch action {
         case "goToUserDataView":
-            goToUserDataView()
+            coordinator?.goToUserDataView()
         case "goToSuggestionView":
-            goToSuggestionView()
+            coordinator?.goToSuggestionView()
         default:
             print("Ação desconhecida")
         }
@@ -106,13 +110,13 @@ class UserViewController: UIViewController {
             try self.auth?.signOut()
             
             deleteUserSettingsData()
-            returnToLoginView()
+            coordinator?.returnToLoginView()
         } catch {
             print("Erro ao excluir UserSettings: \(error.localizedDescription)")
         }
     }
 
-    // MARK: - Function
+    // MARK: - Functions
 
     private func setupTableFooterView() {
         let footerView = UIView(frame: CGRect(x: 5, y: 0, width: view.frame.width, height: 70))
@@ -130,6 +134,7 @@ class UserViewController: UIViewController {
     }
 
     private func deleteUserSettingsData() {
+        let context = CoreDataManager.shared.context
         let fetchRequest: NSFetchRequest<UserSettings> = UserSettings.fetchRequest()
 
         do {

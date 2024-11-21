@@ -45,7 +45,7 @@ class LoadingView: UIView {
 extension LoadingView: SetupView {
     func setup() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        self.backgroundColor = ColorsExtension.gray?.withAlphaComponent(0.5)
         self.layer.cornerRadius = 8
         self.isHidden = true
         addSubviews()

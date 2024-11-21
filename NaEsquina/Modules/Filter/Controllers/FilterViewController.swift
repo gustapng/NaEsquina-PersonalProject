@@ -9,7 +9,7 @@ import UIKit
 
 class FilterViewController: UIViewController {
 
-    // MARK: UI Components
+    // MARK: - UI Components
 
     private lazy var sheetInfoView: SheetInfoView = {
         let sheetInfoView = SheetInfoView(title: "Filtros",
@@ -36,7 +36,7 @@ class FilterViewController: UIViewController {
         return collectionView
     }()
 
-    // MARK: Initializers
+    // MARK: - Initializers
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -13,13 +13,17 @@ import RxCocoa
 
 class RegisterViewController: UIViewController {
 
-    // MARK: Variables
+    // MARK: - Coordinators
+
+    var coordinator: RegisterCoordinator?
+
+    // MARK: - Variables
 
     var auth: Auth?
     private let loadingSubject = BehaviorSubject<Bool>(value: false)
     private let disposeBag = DisposeBag()
 
-    // MARK: UI Components
+    // MARK: - UI Components
 
     private lazy var backButton: UIButton = .createCustomBackButton(target: self, action: #selector(backButtonTapped),
                                                                     borderColor: ColorsExtension.lightGray ?? .black)
@@ -89,7 +93,7 @@ class RegisterViewController: UIViewController {
     // MARK: Functions
 
     @objc func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
+        coordinator?.backToPreviousScreen()
     }
 
     @objc private func dismissKeyboard() {
@@ -131,7 +135,7 @@ class RegisterViewController: UIViewController {
         }
 
         // TODO: Maybe review the user creation and data insertion logic
-        
+
         loadingSubject.onNext(true)
 
         auth?.rx.createUser(withEmail: email, password: password)
@@ -182,8 +186,8 @@ class RegisterViewController: UIViewController {
 
         showAlert(on: self, title: "Erro", message: message)
     }
-    
-    // MARK: Initializers
+
+    // MARK: - Initializers
 
     override func viewDidLoad() {
         super.viewDidLoad()

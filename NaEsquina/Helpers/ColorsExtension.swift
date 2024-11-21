@@ -15,4 +15,5 @@ enum ColorsExtension {
     static let lightGrayBackgroundDisabled = UIColor(named: "ColorLightGrayBackgroundDisabled")
     static let purpleMedium = UIColor(named: "ColorPurpleMedium")
     static let purpleLight = UIColor(named: "ColorPurpleLight")
+    static let red = UIColor(named: "ColorRed")
 }

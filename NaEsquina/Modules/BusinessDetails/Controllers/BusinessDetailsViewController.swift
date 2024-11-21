@@ -10,7 +10,7 @@ import UIKit
 
 class BusinessDetailsViewController: UIViewController {
 
-    // MARK: UI Components
+    // MARK: - UI Components
 
     private lazy var sheetDetailsView: SheetBusinessDetailsView = {
         let sheetView = SheetBusinessDetailsView()
@@ -18,7 +18,7 @@ class BusinessDetailsViewController: UIViewController {
         return sheetView
     }()
 
-    private lazy var addBussinessButton: UIButton = {
+    private lazy var reportProblemButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
@@ -28,14 +28,14 @@ class BusinessDetailsViewController: UIViewController {
         button.layer.cornerRadius = 9
         // TODO: CRIAR A ACAO DESSE BOTAO
 //        button.addTarget(self, action: #selector(goToMainMenuView), for: .touchUpInside)
-        button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
+        button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor ?? UIColor.purple.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.layer.shadowOpacity = 1
         button.layer.shadowRadius = 0
         return button
     }()
 
-    // MARK: Initializers
+    // MARK: - Initializers
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ extension BusinessDetailsViewController: SetupView {
 
     func addSubviews() {
         view.addSubview(sheetDetailsView)
-        view.addSubview(addBussinessButton)
+        view.addSubview(reportProblemButton)
     }
 
     func setupConstraints() {
@@ -61,10 +61,10 @@ extension BusinessDetailsViewController: SetupView {
             sheetDetailsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             sheetDetailsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            addBussinessButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            addBussinessButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            addBussinessButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            addBussinessButton.heightAnchor.constraint(equalToConstant: 50)
+            reportProblemButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            reportProblemButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            reportProblemButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            reportProblemButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }

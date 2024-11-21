@@ -2,8 +2,8 @@ import UIKit
 
 class FilterButtonCell: UICollectionViewCell {
 
-    // MARK: UI Components
-
+    // MARK: - UI Components
+ 
     private lazy var filterButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
