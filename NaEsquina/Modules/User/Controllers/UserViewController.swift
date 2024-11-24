@@ -13,11 +13,11 @@ import SwiftKeychainWrapper
 
 class UserViewController: UIViewController {
 
-    // MARK: Coordinator
+    // MARK: - Coordinator
 
-    var coordinator: UserCoordinator?
+    var coordinator: CoordinatorFlowController?
 
-    // MARK: Attributes
+    // MARK: - Attributes
 
     var auth: Auth?
     var context = CoreDataManager.shared.context
@@ -67,39 +67,15 @@ class UserViewController: UIViewController {
         return button
     }()
 
-    // MARK: - Actions
+    // MARK: - Functions
 
     @objc func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
+        coordinator?.backToPreviousScreen()
     }
 
     @objc func actionCell(sender: UIButton) {
         let index = sender.tag
-        let action = UserOptions.options[index].action
-
-        switch action {
-        case "goToUserDataView":
-            coordinator?.goToUserDataView()
-        case "goToSuggestionView":
-            coordinator?.goToSuggestionView()
-        default:
-            print("Ação desconhecida")
-        }
-    }
-
-    @objc func goToUserDataView() {
-        let userDataViewController = UserDataViewController()
-        navigationController?.pushViewController(userDataViewController, animated: true)
-    }
-
-    @objc func goToSuggestionView() {
-        let suggestionViewController = SuggestionViewController()
-        navigationController?.pushViewController(suggestionViewController, animated: true)
-    }
-
-    @objc func returnToLoginView() {
-        let loginViewController = LoginViewController()
-        navigationController?.setViewControllers([loginViewController], animated: true)
+        UserOptions.performAction(at: index, using: coordinator)
     }
 
     @objc func logoutButtonTapped() {
@@ -108,15 +84,13 @@ class UserViewController: UIViewController {
             KeychainWrapper.standard.removeObject(forKey: "userPassword")
 
             try self.auth?.signOut()
-            
+
             deleteUserSettingsData()
-            coordinator?.returnToLoginView()
+            navigateToLoginView()
         } catch {
             print("Erro ao excluir UserSettings: \(error.localizedDescription)")
         }
     }
-
-    // MARK: - Functions
 
     private func setupTableFooterView() {
         let footerView = UIView(frame: CGRect(x: 5, y: 0, width: view.frame.width, height: 70))
@@ -209,7 +183,9 @@ extension UserViewController: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        let option = UserOptions.options[indexPath.row]
+        let options = UserOptions.options
+        let option = options[indexPath.row]
+
         cell.configureCell(icon: UIImage(systemName: option.icon),
                            title: option.title,
                            subtitle: option.subtitle,
@@ -217,8 +193,20 @@ extension UserViewController: UITableViewDataSource {
                            action: #selector(actionCell),
                            index: indexPath.row)
 
-        cell.backgroundColor = .white
-
         return cell
+    }
+}
+
+extension UserViewController: UserCoordinator {
+    func navigateToUserDataView() {
+        // logic implemented in userOption
+    }
+    
+    func navigateToSuggestionView() {
+        // logic implemented in userOption
+    }
+    
+    func navigateToLoginView() {
+        coordinator?.navigateToLoginView()
     }
 }

@@ -5,7 +5,6 @@
 //  Created by Gustavo Ferreira dos Santos on 02/11/24.
 //
 
-import Foundation
 import UIKit
 
 func showAlert(on viewController: UIViewController, title: String, message: String, completion: (() -> Void)? = nil) {

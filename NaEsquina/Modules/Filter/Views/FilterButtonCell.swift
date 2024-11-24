@@ -11,16 +11,9 @@ class FilterButtonCell: UICollectionViewCell {
         button.layer.cornerRadius = 18
         return button
     }()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
+    
+    // MARK: - Functions
+    
     func configureButton(with title: String, isActive: Bool) {
         filterButton.setTitle(title, for: .normal)
 
@@ -29,6 +22,17 @@ class FilterButtonCell: UICollectionViewCell {
 
         filterButton.backgroundColor = backgroundColor
         filterButton.setTitleColor(titleColor, for: .normal)
+    }
+    
+    // MARK: - Initializers
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 

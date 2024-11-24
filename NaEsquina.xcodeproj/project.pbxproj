@@ -17,7 +17,6 @@
 		EC4E2FF32CCC84F8008CDFC3 /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E2FF22CCC84F8008CDFC3 /* FilterOption.swift */; };
 		EC5025652CCEF45300D98868 /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = EC5025642CCEF45300D98868 /* SwiftFormat */; };
 		EC5063BE2CA23A31009852FA /* OtpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5063BD2CA23A31009852FA /* OtpTextFieldView.swift */; };
-		EC598E512CAC8ED000BDF9B0 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */; };
 		EC5A018F2CD2E5EC003395D5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EC5A018E2CD2E5EC003395D5 /* FirebaseAuth */; };
 		EC5A01912CD2E5EC003395D5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EC5A01902CD2E5EC003395D5 /* FirebaseFirestore */; };
 		EC5A01932CD2E702003395D5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EC5A01922CD2E702003395D5 /* FirebaseAuth */; };
@@ -29,21 +28,14 @@
 		EC5A019F2CD31415003395D5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EC5A019E2CD3140E003395D5 /* .gitignore */; };
 		EC65642C2C9B926C00953563 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65642B2C9B926C00953563 /* FilterViewController.swift */; };
 		EC6BA7B42CC1C8B600D45065 /* SuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6BA7B32CC1C8B600D45065 /* SuggestionViewController.swift */; };
-		EC6DFE402CEE9DA700248A53 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DFE3F2CEE9DA600248A53 /* Coordinator.swift */; };
-		EC6DFE472CEEA44D00248A53 /* RecoveryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DFE462CEEA40D00248A53 /* RecoveryCoordinator.swift */; };
-		EC6DFE512CEEBB9000248A53 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DFE502CEEBB8B00248A53 /* LoginCoordinator.swift */; };
-		EC6DFE542CEEBBEA00248A53 /* SuggestionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DFE532CEEBBE600248A53 /* SuggestionCoordinator.swift */; };
-		EC6DFE572CEEC08C00248A53 /* UserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DFE562CEEC08600248A53 /* UserCoordinator.swift */; };
-		EC6DFE5A2CEEC28000248A53 /* UserDataCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DFE592CEEC27D00248A53 /* UserDataCoordinator.swift */; };
-		EC6DFE5D2CEEC3F700248A53 /* RegisterCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DFE5C2CEEC3EE00248A53 /* RegisterCoordinators.swift */; };
-		EC6DFE602CEEC62F00248A53 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DFE5F2CEEC62600248A53 /* MapCoordinator.swift */; };
+		EC6DFE402CEE9DA700248A53 /* CoordinatorFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DFE3F2CEE9DA600248A53 /* CoordinatorFlowController.swift */; };
+		EC7220F72CF39C4D0048B35B /* MenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7220F62CF39C420048B35B /* MenuCoordinator.swift */; };
+		EC7220FA2CF3AD9B0048B35B /* UserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7220F92CF3AD930048B35B /* UserCoordinator.swift */; };
 		EC7E16F02CBDDCDE00BFFE15 /* UserOptionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7E16EF2CBDDCDE00BFFE15 /* UserOptionButtonCell.swift */; };
 		EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */; };
-		EC85914B2CA4D7E000621C33 /* ConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */; };
 		EC893CAB2CD98B6400A94598 /* User_Settings.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC893CA92CD98B6400A94598 /* User_Settings.xcdatamodeld */; };
 		EC893CAD2CD9A20C00A94598 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC893CAC2CD9A20500A94598 /* UserSettings.swift */; };
 		EC8A86A82CC7EE080013524D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A86A72CC7EE080013524D /* MapView.swift */; };
-		EC95A7CF2CA0C13B00661DEA /* OtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */; };
 		EC98D83D2CE0FE26000040FF /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EC98D83C2CE0FE26000040FF /* SwiftKeychainWrapper */; };
 		EC98D8402CE1259E000040FF /* Firebase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98D83F2CE12598000040FF /* Firebase+Extension.swift */; };
 		EC98D8432CE12804000040FF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98D8422CE12804000040FF /* LoadingView.swift */; };
@@ -52,11 +44,12 @@
 		EC9E14F42C87D22C007A9F88 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14F32C87D22C007A9F88 /* LoginViewController.swift */; };
 		EC9E14F92C87D22D007A9F88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC9E14F82C87D22D007A9F88 /* Assets.xcassets */; };
 		EC9E14FC2C87D22D007A9F88 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EC9E14FB2C87D22D007A9F88 /* Base */; };
+		ECA30EA42CF29FFC003B3E95 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA30EA32CF29FF0003B3E95 /* LoginCoordinator.swift */; };
 		ECA92BE22CBD5C8400C417E1 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA92BE12CBD5C8400C417E1 /* UserViewController.swift */; };
 		ECA947992CCA969C00B34811 /* SelectImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA947982CCA969C00B34811 /* SelectImageButton.swift */; };
 		ECABB0522C8FB0740030042E /* InputPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0512C8FB0740030042E /* InputPasswordView.swift */; };
 		ECABB0542C8FC6C20030042E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0532C8FC6C20030042E /* RegisterViewController.swift */; };
-		ECABB0562C8FC97D0030042E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0552C8FC97D0030042E /* MapViewController.swift */; };
+		ECABB0562C8FC97D0030042E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABB0552C8FC97D0030042E /* MenuViewController.swift */; };
 		ECABB05B2C8FCDCA0030042E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = ECABB05A2C8FCDCA0030042E /* .swiftlint.yml */; };
 		ECB1607F2CDC1E1600B4E114 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB1607E2CDC1E0C00B4E114 /* CoreDataManager.swift */; };
 		ECB160822CDC398E00B4E114 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = ECB160812CDC398E00B4E114 /* RxCocoa */; };
@@ -86,28 +79,20 @@
 		EC3AB3622C8A7D1700DEDC44 /* InputTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextFieldView.swift; sourceTree = "<group>"; };
 		EC4E2FF22CCC84F8008CDFC3 /* FilterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
 		EC5063BD2CA23A31009852FA /* OtpTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpTextFieldView.swift; sourceTree = "<group>"; };
-		EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		EC5A01982CD2E8EB003395D5 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		EC5A019A2CD2F2A8003395D5 /* InputEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputEmailView.swift; sourceTree = "<group>"; };
 		EC5A019C2CD2FE3B003395D5 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
 		EC5A019E2CD3140E003395D5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		EC65642B2C9B926C00953563 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		EC6BA7B32CC1C8B600D45065 /* SuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewController.swift; sourceTree = "<group>"; };
-		EC6DFE3F2CEE9DA600248A53 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		EC6DFE462CEEA40D00248A53 /* RecoveryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryCoordinator.swift; sourceTree = "<group>"; };
-		EC6DFE502CEEBB8B00248A53 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		EC6DFE532CEEBBE600248A53 /* SuggestionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCoordinator.swift; sourceTree = "<group>"; };
-		EC6DFE562CEEC08600248A53 /* UserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoordinator.swift; sourceTree = "<group>"; };
-		EC6DFE592CEEC27D00248A53 /* UserDataCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataCoordinator.swift; sourceTree = "<group>"; };
-		EC6DFE5C2CEEC3EE00248A53 /* RegisterCoordinators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCoordinators.swift; sourceTree = "<group>"; };
-		EC6DFE5F2CEEC62600248A53 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		EC6DFE3F2CEE9DA600248A53 /* CoordinatorFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFlowController.swift; sourceTree = "<group>"; };
+		EC7220F62CF39C420048B35B /* MenuCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCoordinator.swift; sourceTree = "<group>"; };
+		EC7220F92CF3AD930048B35B /* UserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoordinator.swift; sourceTree = "<group>"; };
 		EC7E16EF2CBDDCDE00BFFE15 /* UserOptionButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOptionButtonCell.swift; sourceTree = "<group>"; };
 		EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewExtension.swift; sourceTree = "<group>"; };
-		EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmailViewController.swift; sourceTree = "<group>"; };
 		EC893CAA2CD98B6400A94598 /* User_Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User_Settings.xcdatamodel; sourceTree = "<group>"; };
 		EC893CAC2CD9A20500A94598 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		EC8A86A72CC7EE080013524D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewController.swift; sourceTree = "<group>"; };
 		EC98D83F2CE12598000040FF /* Firebase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Extension.swift"; sourceTree = "<group>"; };
 		EC98D8422CE12804000040FF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		EC9E14EC2C87D22C007A9F88 /* NaEsquina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaEsquina.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,11 +102,12 @@
 		EC9E14F82C87D22D007A9F88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC9E14FB2C87D22D007A9F88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC9E14FD2C87D22D007A9F88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECA30EA32CF29FF0003B3E95 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		ECA92BE12CBD5C8400C417E1 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		ECA947982CCA969C00B34811 /* SelectImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageButton.swift; sourceTree = "<group>"; };
 		ECABB0512C8FB0740030042E /* InputPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordView.swift; sourceTree = "<group>"; };
 		ECABB0532C8FC6C20030042E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		ECABB0552C8FC97D0030042E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		ECABB0552C8FC97D0030042E /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		ECABB05A2C8FCDCA0030042E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		ECB1607E2CDC1E0C00B4E114 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		ECB6338D2CB56D6200CD585B /* FilterButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonCell.swift; sourceTree = "<group>"; };
@@ -162,9 +148,6 @@
 		EC4E2FF42CCC9C0D008CDFC3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				EC4E301E2CCCAC22008CDFC3 /* NewPassword */,
-				EC4E301B2CCCAC04008CDFC3 /* ConfirmEmail */,
-				EC4E30182CCCABE0008CDFC3 /* Otp */,
 				EC4E30152CCCABB7008CDFC3 /* Recovery */,
 				EC4E30122CCCAB8C008CDFC3 /* Login */,
 				EC4E300F2CCCAAC9008CDFC3 /* BusinessDetails */,
@@ -174,25 +157,25 @@
 				EC4E30002CCCA591008CDFC3 /* UserData */,
 				EC4E30032CCCA651008CDFC3 /* Register */,
 				EC4E2FFC2CCC9E03008CDFC3 /* Filter */,
-				EC4E2FF92CCC9C48008CDFC3 /* Map */,
+				EC4E2FF92CCC9C48008CDFC3 /* Menu */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		EC4E2FF92CCC9C48008CDFC3 /* Map */ = {
+		EC4E2FF92CCC9C48008CDFC3 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				EC6DFE5E2CEEC61E00248A53 /* Coordinators */,
+				EC7220F52CF39C380048B35B /* Coordinator */,
 				EC4E2FFA2CCC9C4F008CDFC3 /* Controllers */,
 				EC4E2FFB2CCC9C5B008CDFC3 /* Views */,
 			);
-			path = Map;
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		EC4E2FFA2CCC9C4F008CDFC3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				ECABB0552C8FC97D0030042E /* MapViewController.swift */,
+				ECABB0552C8FC97D0030042E /* MenuViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -249,7 +232,6 @@
 		EC4E30002CCCA591008CDFC3 /* UserData */ = {
 			isa = PBXGroup;
 			children = (
-				EC6DFE582CEEC27600248A53 /* Coordinators */,
 				EC4E30022CCCA5AB008CDFC3 /* Controllers */,
 				EC4E30012CCCA5A6008CDFC3 /* Views */,
 			);
@@ -275,7 +257,6 @@
 		EC4E30032CCCA651008CDFC3 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				EC6DFE5B2CEEC3CE00248A53 /* Coordinators */,
 				EC4E30052CCCA680008CDFC3 /* Controllers */,
 				EC4E30042CCCA679008CDFC3 /* Views */,
 			);
@@ -326,7 +307,6 @@
 		EC4E30092CCCAA1E008CDFC3 /* Suggestion */ = {
 			isa = PBXGroup;
 			children = (
-				EC6DFE522CEEBBD100248A53 /* Coordinators */,
 				EC4E300B2CCCAA33008CDFC3 /* Controllers */,
 				EC4E300A2CCCAA2B008CDFC3 /* Views */,
 			);
@@ -351,7 +331,7 @@
 		EC4E300C2CCCAA93008CDFC3 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				EC6DFE552CEEC07C00248A53 /* Coordinators */,
+				EC7220F82CF3AD8A0048B35B /* Coordinator */,
 				EC4E300E2CCCAAAA008CDFC3 /* Controllers */,
 				EC4E300D2CCCAAA3008CDFC3 /* Views */,
 			);
@@ -401,7 +381,7 @@
 		EC4E30122CCCAB8C008CDFC3 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				EC6DFE4E2CEEBB7A00248A53 /* Coordinators */,
+				ECA30EA22CF29FE1003B3E95 /* Coordinator */,
 				EC4E30142CCCABA3008CDFC3 /* Controllers */,
 				EC4E30132CCCAB97008CDFC3 /* Views */,
 			);
@@ -426,7 +406,6 @@
 		EC4E30152CCCABB7008CDFC3 /* Recovery */ = {
 			isa = PBXGroup;
 			children = (
-				EC6DFE452CEEA3ED00248A53 /* Coordinators */,
 				EC4E30172CCCABC7008CDFC3 /* Controllers */,
 				EC4E30162CCCABC1008CDFC3 /* Views */,
 			);
@@ -448,78 +427,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		EC4E30182CCCABE0008CDFC3 /* Otp */ = {
-			isa = PBXGroup;
-			children = (
-				EC4E301A2CCCABEC008CDFC3 /* Controllers */,
-				EC4E30192CCCABE7008CDFC3 /* Views */,
-			);
-			path = Otp;
-			sourceTree = "<group>";
-		};
-		EC4E30192CCCABE7008CDFC3 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		EC4E301A2CCCABEC008CDFC3 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				EC95A7CE2CA0C13B00661DEA /* OtpViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		EC4E301B2CCCAC04008CDFC3 /* ConfirmEmail */ = {
-			isa = PBXGroup;
-			children = (
-				EC4E301D2CCCAC13008CDFC3 /* Controllers */,
-				EC4E301C2CCCAC0D008CDFC3 /* Views */,
-			);
-			path = ConfirmEmail;
-			sourceTree = "<group>";
-		};
-		EC4E301C2CCCAC0D008CDFC3 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		EC4E301D2CCCAC13008CDFC3 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				EC85914A2CA4D7E000621C33 /* ConfirmEmailViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		EC4E301E2CCCAC22008CDFC3 /* NewPassword */ = {
-			isa = PBXGroup;
-			children = (
-				EC4E30202CCCAC36008CDFC3 /* Controllers */,
-				EC4E301F2CCCAC30008CDFC3 /* Views */,
-			);
-			path = NewPassword;
-			sourceTree = "<group>";
-		};
-		EC4E301F2CCCAC30008CDFC3 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		EC4E30202CCCAC36008CDFC3 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				EC598E502CAC8ED000BDF9B0 /* NewPasswordViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		EC4E30212CCCAD49008CDFC3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,68 +435,28 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		EC6DFE3C2CEE99E000248A53 /* Coordinators */ = {
+		EC6DFE3C2CEE99E000248A53 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				EC6DFE3F2CEE9DA600248A53 /* Coordinator.swift */,
+				EC6DFE3F2CEE9DA600248A53 /* CoordinatorFlowController.swift */,
 			);
-			path = Coordinators;
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		EC6DFE452CEEA3ED00248A53 /* Coordinators */ = {
+		EC7220F52CF39C380048B35B /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				EC6DFE462CEEA40D00248A53 /* RecoveryCoordinator.swift */,
+				EC7220F62CF39C420048B35B /* MenuCoordinator.swift */,
 			);
-			path = Coordinators;
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		EC6DFE4E2CEEBB7A00248A53 /* Coordinators */ = {
+		EC7220F82CF3AD8A0048B35B /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				EC6DFE502CEEBB8B00248A53 /* LoginCoordinator.swift */,
+				EC7220F92CF3AD930048B35B /* UserCoordinator.swift */,
 			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		EC6DFE522CEEBBD100248A53 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				EC6DFE532CEEBBE600248A53 /* SuggestionCoordinator.swift */,
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		EC6DFE552CEEC07C00248A53 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				EC6DFE562CEEC08600248A53 /* UserCoordinator.swift */,
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		EC6DFE582CEEC27600248A53 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				EC6DFE592CEEC27D00248A53 /* UserDataCoordinator.swift */,
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		EC6DFE5B2CEEC3CE00248A53 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				EC6DFE5C2CEEC3EE00248A53 /* RegisterCoordinators.swift */,
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		EC6DFE5E2CEEC61E00248A53 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				EC6DFE5F2CEEC62600248A53 /* MapCoordinator.swift */,
-			);
-			path = Coordinators;
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		EC821F662C8A69E900F35B96 /* Models */ = {
@@ -674,7 +541,7 @@
 				EC821F6A2C8A6A1E00F35B96 /* Helpers */,
 				ECBA89262C9FAE160016AAB4 /* Constants */,
 				EC821F6B2C8A6A2900F35B96 /* Resources */,
-				EC6DFE3C2CEE99E000248A53 /* Coordinators */,
+				EC6DFE3C2CEE99E000248A53 /* Coordinator */,
 				EC9E14EF2C87D22C007A9F88 /* AppDelegate.swift */,
 				EC9E14F12C87D22C007A9F88 /* SceneDelegate.swift */,
 				EC9E14FA2C87D22D007A9F88 /* LaunchScreen.storyboard */,
@@ -685,6 +552,14 @@
 				EC273DA92CCEF76300945369 /* .swiftformat */,
 			);
 			path = NaEsquina;
+			sourceTree = "<group>";
+		};
+		ECA30EA22CF29FE1003B3E95 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				ECA30EA32CF29FF0003B3E95 /* LoginCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		ECB1607D2CDC1DED00B4E114 /* Data */ = {
@@ -788,40 +663,35 @@
 				EC5A019B2CD2F2A8003395D5 /* InputEmailView.swift in Sources */,
 				EC6BA7B42CC1C8B600D45065 /* SuggestionViewController.swift in Sources */,
 				EC5063BE2CA23A31009852FA /* OtpTextFieldView.swift in Sources */,
-				EC6DFE572CEEC08C00248A53 /* UserCoordinator.swift in Sources */,
+				EC7220FA2CF3AD9B0048B35B /* UserCoordinator.swift in Sources */,
 				EC65642C2C9B926C00953563 /* FilterViewController.swift in Sources */,
-				EC6DFE542CEEBBEA00248A53 /* SuggestionCoordinator.swift in Sources */,
 				EC1D87352CACCB2A002363A4 /* SheetInfoView.swift in Sources */,
 				ECEF1DF72CD05ED5000F94FE /* UserOptions.swift in Sources */,
-				EC6DFE472CEEA44D00248A53 /* RecoveryCoordinator.swift in Sources */,
 				ECABB0522C8FB0740030042E /* InputPasswordView.swift in Sources */,
 				EC9E14F42C87D22C007A9F88 /* LoginViewController.swift in Sources */,
-				EC6DFE5D2CEEC3F700248A53 /* RegisterCoordinators.swift in Sources */,
 				ECE94DC42CC9551B0017BFC2 /* SheetBusinessDetailsView.swift in Sources */,
 				ECE94DC22CC953ED0017BFC2 /* BusinessDetailsViewController.swift in Sources */,
+				ECA30EA42CF29FFC003B3E95 /* LoginCoordinator.swift in Sources */,
 				EC2560412C92677800F076F5 /* UIButton+Extension.swift in Sources */,
 				EC8A86A82CC7EE080013524D /* MapView.swift in Sources */,
 				EC98D8402CE1259E000040FF /* Firebase+Extension.swift in Sources */,
 				EC5A01992CD2E8EF003395D5 /* FirebaseService.swift in Sources */,
+				EC7220F72CF39C4D0048B35B /* MenuCoordinator.swift in Sources */,
 				EC2517622CD6D49900AE1ECF /* ShowAlert.swift in Sources */,
-				EC85914B2CA4D7E000621C33 /* ConfirmEmailViewController.swift in Sources */,
-				EC6DFE402CEE9DA700248A53 /* Coordinator.swift in Sources */,
+				EC6DFE402CEE9DA700248A53 /* CoordinatorFlowController.swift in Sources */,
 				EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */,
 				ECBD55562CB2165A0020BCF8 /* InputWithLeftIconView.swift in Sources */,
 				ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */,
 				EC98D8432CE12804000040FF /* LoadingView.swift in Sources */,
-				ECABB0562C8FC97D0030042E /* MapViewController.swift in Sources */,
+				ECABB0562C8FC97D0030042E /* MenuViewController.swift in Sources */,
 				ECA947992CCA969C00B34811 /* SelectImageButton.swift in Sources */,
-				EC6DFE602CEEC62F00248A53 /* MapCoordinator.swift in Sources */,
 				ECECD82B2CC31D500038B171 /* UserDataViewController.swift in Sources */,
 				ECBA89282C9FAE240016AAB4 /* Constants.swift in Sources */,
 				EC1D87332CACC874002363A4 /* AddBusinessViewController.swift in Sources */,
 				ECB1607F2CDC1E1600B4E114 /* CoreDataManager.swift in Sources */,
 				ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */,
 				ECA92BE22CBD5C8400C417E1 /* UserViewController.swift in Sources */,
-				EC95A7CF2CA0C13B00661DEA /* OtpViewController.swift in Sources */,
 				EC893CAD2CD9A20C00A94598 /* UserSettings.swift in Sources */,
-				EC6DFE5A2CEEC28000248A53 /* UserDataCoordinator.swift in Sources */,
 				ECBA89252C9F9F920016AAB4 /* ImageWithInfoView.swift in Sources */,
 				EC7E16F02CBDDCDE00BFFE15 /* UserOptionButtonCell.swift in Sources */,
 				EC5A019D2CD2FE41003395D5 /* PasswordValidator.swift in Sources */,
@@ -830,11 +700,9 @@
 				ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */,
 				ECABB0542C8FC6C20030042E /* RegisterViewController.swift in Sources */,
 				EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */,
-				EC6DFE512CEEBB9000248A53 /* LoginCoordinator.swift in Sources */,
 				EC9E14F22C87D22C007A9F88 /* SceneDelegate.swift in Sources */,
 				EC4E2FF32CCC84F8008CDFC3 /* FilterOption.swift in Sources */,
 				EC3AB3632C8A7D1700DEDC44 /* InputTextFieldView.swift in Sources */,
-				EC598E512CAC8ED000BDF9B0 /* NewPasswordViewController.swift in Sources */,
 				EC3AB3612C8A75A100DEDC44 /* ColorsExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

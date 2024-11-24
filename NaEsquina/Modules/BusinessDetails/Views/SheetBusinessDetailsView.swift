@@ -10,7 +10,7 @@ import UIKit
 
 class SheetBusinessDetailsView: UIView {
 
-    // MARK: UI Components
+    // MARK: - UI Components
 
     private lazy var businessImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "comercio"))
@@ -50,7 +50,7 @@ class SheetBusinessDetailsView: UIView {
         return label
     }()
 
-    // MARK: Initializers
+    // MARK: - Initializers
 
     init() {
         super.init(frame: .zero)

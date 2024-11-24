@@ -9,9 +9,9 @@ import UIKit
 
 class UserDataViewController: UIViewController {
 
-    // MARK: - UI Components
+    // MARK: - Coordinator
 
-    var coordinator: UserDataCoordinator?
+    var coordinator: CoordinatorFlowController?
 
     // MARK: - UI Components
 
@@ -80,7 +80,7 @@ class UserDataViewController: UIViewController {
         setup()
     }
 
-    // MARK: - Actions
+    // MARK: - Functions
 
     @objc func backButtonTapped() {
         coordinator?.backToPreviousScreen()

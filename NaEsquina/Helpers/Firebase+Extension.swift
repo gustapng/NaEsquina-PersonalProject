@@ -36,7 +36,7 @@ extension Reactive where Base: Auth {
             return Disposables.create()
         }
     }
-    
+
     func sendPasswordReset(withEmail email: String) -> Single<Void> {
         return Single.create { single in
             self.base.sendPasswordReset(withEmail: email) { error in

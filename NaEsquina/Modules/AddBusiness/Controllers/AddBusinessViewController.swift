@@ -10,7 +10,7 @@ import MapKit
 
 class AddBusinessViewController: UIViewController {
 
-    // MARK: - Variables
+    // MARK: - Attributes
 
     var selectedCoordinate: CLLocationCoordinate2D?
 

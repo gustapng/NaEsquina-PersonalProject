@@ -11,7 +11,7 @@ class SuggestionViewController: UIViewController {
 
     // MARK: - Coordinator
 
-    var coordinator: SuggestionCoordinator?
+    var coordinator: CoordinatorFlowController?
 
     // MARK: - UI Components
 
@@ -71,7 +71,7 @@ class SuggestionViewController: UIViewController {
         setup()
     }
 
-    // MARK: - Actions
+    // MARK: - Functions
 
     @objc func backButtonTapped() {
         coordinator?.backToPreviousScreen()

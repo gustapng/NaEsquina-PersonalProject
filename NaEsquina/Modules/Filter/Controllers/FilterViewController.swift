@@ -9,6 +9,10 @@ import UIKit
 
 class FilterViewController: UIViewController {
 
+    // MARK: - Coordinator
+
+    var coordinator: CoordinatorFlowController?
+
     // MARK: - UI Components
 
     private lazy var sheetInfoView: SheetInfoView = {

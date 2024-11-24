@@ -1,19 +1,17 @@
 import MapKit
 import UIKit
 
-class MapViewController: UIViewController, MapViewDelegate {
+class MenuViewController: UIViewController, MapViewDelegate {
 
-    // MARK: - Variables
-    
-    var coordinator: MapCoordinator?
+    // MARK: - Coordinator
+
+    var coordinator: CoordinatorFlowController?
+
+    // MARK: - Attributes
 
     var isSelectingLocation = false
 
     // MARK: - UI Components
-
-    private lazy var backButton: UIButton = .createCustomBackButton(target: self,
-                                                                    action: #selector(backButtonTapped),
-                                                                    borderColor: ColorsExtension.lightGray ?? .black)
 
     private lazy var mapView: MapView = {
         let map = MapView()
@@ -75,30 +73,21 @@ class MapViewController: UIViewController, MapViewDelegate {
 
     // MARK: - Functions
 
-    @objc func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
-    }
-
     @objc func openSheetAddBusiness() {
 //        button.addTarget(self, action: #selector(showSelectionBar), for: .touchUpInside)
-        coordinator?.goToAddBusinessView()
+//        self.coordinator?.goToAddBusinessView()
     }
 
     func didTapOnPin(annotationTitle: String?) {
-        let sheetViewController = BusinessDetailsViewController()
-        if let sheet = sheetViewController.sheetPresentationController {
-            sheet.detents = [.medium()]
-            sheet.prefersGrabberVisible = true
-        }
-        present(sheetViewController, animated: true, completion: nil)
+        openBusinessDetailsSheet()
     }
 
     @objc func openSheetFilter() {
-        coordinator?.goToFilterView()
+        openFilterSheet()
     }
 
-    @objc func goToUserView() {
-        coordinator?.goToUserView()
+    @objc func navigateToRegisterViewController() {
+        navigateToUserView()
     }
     
     func showWelcomeMessage() {
@@ -116,7 +105,7 @@ class MapViewController: UIViewController, MapViewDelegate {
 //        mapView.removeAnnotations(mapView.annotations)
     }
 
-    // MARK: - Lifecycle
+    // MARK: - Initializers
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,7 +114,7 @@ class MapViewController: UIViewController, MapViewDelegate {
     }
 }
 
-extension MapViewController: UITabBarDelegate {
+extension MenuViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.tag {
         case 0:
@@ -134,14 +123,14 @@ extension MapViewController: UITabBarDelegate {
         case 1:
             openSheetFilter()
         case 2:
-            goToUserView()
+            navigateToRegisterViewController()
         default:
             break
         }
     }
 }
 
-extension MapViewController: SetupView {
+extension MenuViewController: SetupView {
     func setup() {
         navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
@@ -150,7 +139,6 @@ extension MapViewController: SetupView {
     }
 
     func addSubviews() {
-        view.addSubview(backButton)
         view.addSubview(mapView)
         view.addSubview(bottomBar)
         view.addSubview(selectionBar)
@@ -158,9 +146,6 @@ extension MapViewController: SetupView {
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.bottomAnchor.constraint(equalTo: bottomBar.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -176,5 +161,19 @@ extension MapViewController: SetupView {
             bottomBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             bottomBar.heightAnchor.constraint(equalToConstant: 60)
         ])
+    }
+}
+
+extension MenuViewController: MenuCoordinator {
+    func openFilterSheet() {
+        coordinator?.openFilterSheet()
+    }
+
+    func openBusinessDetailsSheet() {
+        coordinator?.openBusinessDetailsSheet()
+    }
+
+    func navigateToUserView() {
+        coordinator?.navigateToUserView()
     }
 }

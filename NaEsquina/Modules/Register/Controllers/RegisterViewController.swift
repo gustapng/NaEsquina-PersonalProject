@@ -13,11 +13,11 @@ import RxCocoa
 
 class RegisterViewController: UIViewController {
 
-    // MARK: - Coordinators
+    // MARK: - Coordinator
 
-    var coordinator: RegisterCoordinator?
-
-    // MARK: - Variables
+    var coordinator: CoordinatorFlowController?
+    
+    // MARK: - Attributes
 
     var auth: Auth?
     private let loadingSubject = BehaviorSubject<Bool>(value: false)
@@ -90,7 +90,7 @@ class RegisterViewController: UIViewController {
         return loading
     }()
 
-    // MARK: Functions
+    // MARK: - Functions
 
     @objc func backButtonTapped() {
         coordinator?.backToPreviousScreen()

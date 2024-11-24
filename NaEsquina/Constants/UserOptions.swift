@@ -9,7 +9,7 @@ struct Option {
     let icon: String
     let title: String
     let subtitle: String
-    let action: String
+    let action: (UserCoordinator?) -> Void
 }
 
 enum UserOptions {
@@ -17,11 +17,17 @@ enum UserOptions {
         Option(icon: "info.square",
                title: "Dados da conta",
                subtitle: "Minhas informações da conta.",
-               action: "goToUserDataView"),
+               action: { coordinator in coordinator?.navigateToUserDataView() }),
 
         Option(icon: "lightbulb",
                title: "Sugestões",
                subtitle: "Tem alguma sugestão? Conte para nós.",
-               action: "goToSuggestionView")
+               action: { coordinator in coordinator?.navigateToSuggestionView() })
     ]
+    
+    static func performAction(at index: Int, using coordinator: UserCoordinator?) {
+        guard index < options.count else { return }
+        let option = options[index]
+        option.action(coordinator)
+    }
 }

@@ -14,7 +14,7 @@ class RecoveryViewController: UIViewController {
 
     // MARK: - Coordinator
 
-    var coordinator: RecoveryCoordinator?
+    var coordinator: CoordinatorFlowController?
 
     // MARK: - Attributes
 
@@ -141,7 +141,7 @@ class RecoveryViewController: UIViewController {
         }
     }
 
-    // MARK: Initializers
+    // MARK: - Initializers
 
     override func viewDidLoad() {
         super.viewDidLoad()

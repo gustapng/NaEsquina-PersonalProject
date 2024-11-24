@@ -9,7 +9,7 @@ import UIKit
 
 class InputWithLeftIconView: UIView {
 
-    // MARK: UI Components
+    // MARK: - UI Components
 
     private lazy var inputTextField: UITextField = {
         let leftView = UIView(frame: CGRect(x: 10, y: 0, width: 50, height: 40))

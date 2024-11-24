@@ -43,7 +43,7 @@ class UserOptionButtonCell: UITableViewCell {
         return button
     }()
 
-    // MARK: - Lifecycle
+    // MARK: - Initializers
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

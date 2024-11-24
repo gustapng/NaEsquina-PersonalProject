@@ -18,7 +18,7 @@ class LoginViewController: UIViewController {
 
     // MARK: - Coordinator
 
-    var coordinator: LoginCoordinator?
+    var coordinator: CoordinatorFlowController?
 
     // MARK: Attributes
 
@@ -53,12 +53,12 @@ class LoginViewController: UIViewController {
         return view
     }()
 
-    private lazy var recoverPassword: UIButton = {
+    private lazy var recoveryPassword: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
         button.setTitleColor(ColorsExtension.purpleMedium, for: .normal)
-        button.addTarget(self, action: #selector(self.goToRecoverView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.navigateToRecoveryViewController), for: .touchUpInside)
 
         let attributedString = NSMutableAttributedString(string: "Esqueceu sua senha?")
         attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue,
@@ -98,7 +98,7 @@ class LoginViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
         button.setTitleColor(ColorsExtension.purpleMedium, for: .normal)
-        button.addTarget(self, action: #selector(goToRegisterView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(navigateToRegisterViewController), for: .touchUpInside)
 
         let attributedString = NSMutableAttributedString(string: "Registre-se")
         attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue,
@@ -120,14 +120,12 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
 
-    @objc private func goToRecoverView() {
-        let recoveryViewController = RecoveryViewController()
-        navigationController?.pushViewController(recoveryViewController, animated: true)
+    @objc private func navigateToRecoveryViewController() {
+        navigateToRecoveryView()
     }
 
-    @objc private func goToRegisterView() {
-        let registerViewController = RegisterViewController()
-        navigationController?.pushViewController(registerViewController, animated: true)
+    @objc private func navigateToRegisterViewController() {
+        navigateToRegisterView()
     }
 
     private func validateLoginFields() -> (isValid: Bool, errorMessage: String?) {
@@ -170,7 +168,7 @@ class LoginViewController: UIViewController {
                     KeychainWrapper.standard.set(email, forKey: "userEmail")
                     KeychainWrapper.standard.set(password, forKey: "userPassword")
 
-                    self.coordinator?.navigateToMapView()
+                    coordinator?.navigateToMenuView()
                     self.askToEnableFaceID()
                 } else {
                     self.handleUnverifiedEmail(for: authResult.user)
@@ -197,19 +195,6 @@ class LoginViewController: UIViewController {
         } catch {
             print("Erro ao buscar UserSettings: \(error.localizedDescription)")
             return nil
-        }
-    }
-
-    private func navigateToMapView(_ delay: Bool = false) {
-        let mapViewController = MapViewController()
-        navigationController?.pushViewController(mapViewController, animated: true)
-
-        if (delay) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if let lastLogin = self.getUserSettings(), !lastLogin.isFaceIDEnabled {
-                    mapViewController.showWelcomeMessage()
-                }
-            }
         }
     }
 
@@ -254,16 +239,6 @@ class LoginViewController: UIViewController {
         showAlert(on: self, title: "Erro", message: message)
     }
 
-    private func showWelcomeMessage() {
-        let alertController = UIAlertController(title: "Bem-vindo!", message: "Login realizado com sucesso!", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(okAction)
-
-        if let mapVC = self.navigationController?.topViewController as? MapViewController {
-            mapVC.present(alertController, animated: true, completion: nil)
-        }
-    }
-
     private func authenticateUserWithFaceID() {
         let context = LAContext()
         var error: NSError?
@@ -290,7 +265,7 @@ class LoginViewController: UIViewController {
                             print("Login via Face ID concluído com sucesso!")
                         }
 
-                        self.navigateToMapView(true)
+                        self.navigateToMenuViewWithAlert()
                     } else {
                         if let error = authenticationError {
                             showAlert(on: self, title: "Erro", message: error.localizedDescription)
@@ -369,7 +344,7 @@ extension LoginViewController: SetupView {
         view.addSubview(currentViewDescriptionView)
         view.addSubview(emailWithDescriptionView)
         view.addSubview(passwordWithDescriptionView)
-        view.addSubview(recoverPassword)
+        view.addSubview(recoveryPassword)
         view.addSubview(loginButton)
         view.addSubview(registerAccount)
         view.addSubview(registerAccountButton)
@@ -390,10 +365,10 @@ extension LoginViewController: SetupView {
             passwordWithDescriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             passwordWithDescriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            recoverPassword.topAnchor.constraint(equalTo: passwordWithDescriptionView.bottomAnchor, constant: 12),
-            recoverPassword.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            recoveryPassword.topAnchor.constraint(equalTo: passwordWithDescriptionView.bottomAnchor, constant: 12),
+            recoveryPassword.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            loginButton.topAnchor.constraint(equalTo: recoverPassword.bottomAnchor, constant: 84),
+            loginButton.topAnchor.constraint(equalTo: recoveryPassword.bottomAnchor, constant: 84),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
@@ -409,5 +384,23 @@ extension LoginViewController: SetupView {
             loadingView.widthAnchor.constraint(equalToConstant: 120),
             loadingView.heightAnchor.constraint(equalToConstant: 120)
         ])
+    }
+}
+
+extension LoginViewController: LoginCoordinator {
+    func navigateToRecoveryView() {
+        coordinator?.navigateToRecoveryView()
+    }
+    
+    func navigateToRegisterView() {
+        coordinator?.navigateToRegisterView()
+    }
+    
+    func navigateToMenuView() {
+        coordinator?.navigateToMenuView()
+    }
+    
+    func navigateToMenuViewWithAlert() {
+        coordinator?.navigateToMenuViewWithAlert()
     }
 }

@@ -14,7 +14,7 @@ protocol MapViewDelegate: AnyObject {
 
 class MapView: UIView, MKMapViewDelegate {
 
-    // MARK: - Variables
+    // MARK: - Attributes
 
     weak var delegate: MapViewDelegate?
 
@@ -67,7 +67,7 @@ class MapView: UIView, MKMapViewDelegate {
     
     @objc private func handleMapTap(_ gestureRecognizer: UITapGestureRecognizer) {
         print("Aqui")
-        guard let controller = delegate as? MapViewController, controller.isSelectingLocation else { return }
+        guard let controller = delegate as? MenuViewController, controller.isSelectingLocation else { return }
 
         let location = gestureRecognizer.location(in: mapView)
         let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
