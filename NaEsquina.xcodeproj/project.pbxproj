@@ -31,6 +31,9 @@
 		EC6DFE402CEE9DA700248A53 /* CoordinatorFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DFE3F2CEE9DA600248A53 /* CoordinatorFlowController.swift */; };
 		EC7220F72CF39C4D0048B35B /* MenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7220F62CF39C420048B35B /* MenuCoordinator.swift */; };
 		EC7220FA2CF3AD9B0048B35B /* UserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7220F92CF3AD930048B35B /* UserCoordinator.swift */; };
+		EC7220FD2CF3E1350048B35B /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7220FC2CF3E1300048B35B /* FirebaseAuthService.swift */; };
+		EC7221012CF3E1BA0048B35B /* CoreDataUserSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7221002CF3E1A70048B35B /* CoreDataUserSettingsService.swift */; };
+		EC7221042CF3E1F50048B35B /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7221032CF3E1F00048B35B /* LoginModel.swift */; };
 		EC7E16F02CBDDCDE00BFFE15 /* UserOptionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7E16EF2CBDDCDE00BFFE15 /* UserOptionButtonCell.swift */; };
 		EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */; };
 		EC893CAB2CD98B6400A94598 /* User_Settings.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC893CA92CD98B6400A94598 /* User_Settings.xcdatamodeld */; };
@@ -88,6 +91,9 @@
 		EC6DFE3F2CEE9DA600248A53 /* CoordinatorFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFlowController.swift; sourceTree = "<group>"; };
 		EC7220F62CF39C420048B35B /* MenuCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCoordinator.swift; sourceTree = "<group>"; };
 		EC7220F92CF3AD930048B35B /* UserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoordinator.swift; sourceTree = "<group>"; };
+		EC7220FC2CF3E1300048B35B /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		EC7221002CF3E1A70048B35B /* CoreDataUserSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserSettingsService.swift; sourceTree = "<group>"; };
+		EC7221032CF3E1F00048B35B /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		EC7E16EF2CBDDCDE00BFFE15 /* UserOptionButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOptionButtonCell.swift; sourceTree = "<group>"; };
 		EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewExtension.swift; sourceTree = "<group>"; };
 		EC893CAA2CD98B6400A94598 /* User_Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User_Settings.xcdatamodel; sourceTree = "<group>"; };
@@ -384,6 +390,7 @@
 				ECA30EA22CF29FE1003B3E95 /* Coordinator */,
 				EC4E30142CCCABA3008CDFC3 /* Controllers */,
 				EC4E30132CCCAB97008CDFC3 /* Views */,
+				EC7221022CF3E1DE0048B35B /* Model */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -459,6 +466,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		EC7221022CF3E1DE0048B35B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC7221032CF3E1F00048B35B /* LoginModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		EC821F662C8A69E900F35B96 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,7 +493,9 @@
 		EC821F692C8A6A1600F35B96 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				EC7221002CF3E1A70048B35B /* CoreDataUserSettingsService.swift */,
 				EC5A01982CD2E8EB003395D5 /* FirebaseService.swift */,
+				EC7220FC2CF3E1300048B35B /* FirebaseAuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -668,6 +685,7 @@
 				EC1D87352CACCB2A002363A4 /* SheetInfoView.swift in Sources */,
 				ECEF1DF72CD05ED5000F94FE /* UserOptions.swift in Sources */,
 				ECABB0522C8FB0740030042E /* InputPasswordView.swift in Sources */,
+				EC7221012CF3E1BA0048B35B /* CoreDataUserSettingsService.swift in Sources */,
 				EC9E14F42C87D22C007A9F88 /* LoginViewController.swift in Sources */,
 				ECE94DC42CC9551B0017BFC2 /* SheetBusinessDetailsView.swift in Sources */,
 				ECE94DC22CC953ED0017BFC2 /* BusinessDetailsViewController.swift in Sources */,
@@ -696,10 +714,12 @@
 				EC7E16F02CBDDCDE00BFFE15 /* UserOptionButtonCell.swift in Sources */,
 				EC5A019D2CD2FE41003395D5 /* PasswordValidator.swift in Sources */,
 				ECB6338E2CB56D6200CD585B /* FilterButtonCell.swift in Sources */,
+				EC7221042CF3E1F50048B35B /* LoginModel.swift in Sources */,
 				EC893CAB2CD98B6400A94598 /* User_Settings.xcdatamodeld in Sources */,
 				ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */,
 				ECABB0542C8FC6C20030042E /* RegisterViewController.swift in Sources */,
 				EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */,
+				EC7220FD2CF3E1350048B35B /* FirebaseAuthService.swift in Sources */,
 				EC9E14F22C87D22C007A9F88 /* SceneDelegate.swift in Sources */,
 				EC4E2FF32CCC84F8008CDFC3 /* FilterOption.swift in Sources */,
 				EC3AB3632C8A7D1700DEDC44 /* InputTextFieldView.swift in Sources */,

@@ -128,36 +128,20 @@ class LoginViewController: UIViewController {
         navigateToRegisterView()
     }
 
-    private func validateLoginFields() -> (isValid: Bool, errorMessage: String?) {
+    @objc private func loginUser() {
         let email = emailWithDescriptionView.getInputText() ?? ""
         let password = passwordWithDescriptionView.getInputText() ?? ""
+        let loginModel = LoginModel(email: email, password: password)
 
-        guard !email.isEmpty, !password.isEmpty else {
-            return (false, "Por favor, preencha todos os campos.")
-        }
-
-        if !isValidPassword(password) {
-            return (false, "A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.")
-        }
-
-        return (true, nil)
-    }
-
-    @objc private func loginUser() {
-        let validation = validateLoginFields()
-        guard validation.isValid else {
-            showAlert(on: self, title: "Atenção", message: validation.errorMessage!)
+        if let errorMessage = loginModel.validationError {
+            showAlert(on: self, title: "Atenção", message: errorMessage)
             return
         }
-
-        guard let email = emailWithDescriptionView.getInputText(),
-              let password = passwordWithDescriptionView.getInputText() else {
-            return
-        }
-
+        
         loadingSubject.onNext(true)
 
-        auth?.rx.signIn(withEmail: email, password: password)
+        let firebaseAuthService = FirebaseAuthService(auth: Auth.auth())
+        firebaseAuthService.login(email: email, password: password)
             .observe(on: MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] authResult in
                 guard let self = self else { return }
@@ -199,26 +183,32 @@ class LoginViewController: UIViewController {
     }
 
     private func handleUnverifiedEmail(for user: User) {
-        do {
-            try Auth.auth().signOut()
-        } catch let signOutError {
-            print("Erro ao fazer signOut: \(signOutError)")
-        }
+        loadingSubject.onNext(true)
 
-        user.sendEmailVerification { [weak self] error in
-            guard let self = self else { return }
-            let authError = error as NSError?
+        let firebaseAuthService = FirebaseAuthService(auth: Auth.auth())
+        let result = firebaseAuthService.signOut()
+            switch result {
+            case .success:
+                user.sendEmailVerification { [weak self] error in
+                    guard let self = self else { return }
+                    self.loadingSubject.onNext(false)
 
-            if let error = error {
-                if authError?.code == 17010 {
-                    showAlert(on: self, title: "Erro", message: "Houve um problema ao tentar reenviar o e-mail de autenticação. Por favor, tente novamente em alguns minutos.")
-                } else {
-                    showAlert(on: self, title: "Erro", message: "Erro ao enviar email de verificação: \(error.localizedDescription)")
+                    if let error = error {
+                        let authError = error as NSError?
+                        if authError?.code == 17010 {
+                            showAlert(on: self, title: "Erro", message: "Houve um problema ao tentar reenviar o e-mail de autenticação. Por favor, tente novamente em alguns minutos.")
+                        } else {
+                            showAlert(on: self, title: "Erro", message: "Erro ao enviar email de verificação: \(error.localizedDescription)")
+                        }
+                    } else {
+                        showAlert(on: self, title: "Verificação de\nE-mail Necessária", message: "Um novo email de autenticação foi enviado para seu email. Por favor, verifique seu e-mail para completar o login.")
+                    }
                 }
-            } else {
-                showAlert(on: self, title: "Verificação de\nE-mail Necessária", message: "Um novo email de autenticação foi enviado para seu email, por favor verifique seu e-mail para completar o login.")
+            case .failure(let error):
+                loadingSubject.onNext(false)
+                print("Erro ao fazer signOut: \(error.localizedDescription)")
+                showAlert(on: self, title: "Erro", message: "Erro ao fazer logout: \(error.localizedDescription)")
             }
-        }
     }
 
     private func handleFirebaseLoginError(_ error: Error) {
