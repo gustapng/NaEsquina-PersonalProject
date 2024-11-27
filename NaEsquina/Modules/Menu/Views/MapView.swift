@@ -16,6 +16,7 @@ class MapView: UIView, MKMapViewDelegate {
 
     // MARK: - Attributes
 
+    private var temporaryAnnotation: MKPointAnnotation?
     weak var delegate: MapViewDelegate?
 
     // MARK: - UI Components
@@ -52,7 +53,8 @@ class MapView: UIView, MKMapViewDelegate {
 
                 // Adicione a cor do pin
                 annotationView?.markerTintColor = ColorsExtension.purpleMedium // Cor personalizada do pin
-                annotationView?.glyphImage = UIImage(systemName: "cart.fill")
+                // ICONE
+//                annotationView?.glyphImage = UIImage(systemName: "cart.fill")
 
                 // Adiciona um botão de detalhe ao callout
                 let detailButton = UIButton(type: .detailDisclosure)
@@ -72,8 +74,31 @@ class MapView: UIView, MKMapViewDelegate {
         let location = gestureRecognizer.location(in: mapView)
         let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
 
-        mapView.removeAnnotations(mapView.annotations)
+//        mapView.removeAnnotations(mapView.annotations)
         print("Coordenadas selecionadas: \(coordinate.latitude), \(coordinate.longitude)")
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        annotation.title = "Local Selecionado"
+        self.mapView.addAnnotation(annotation)
+        
+        let alertController = UIAlertController(title: "Localização", message: "Deseja adicionar está localização?", preferredStyle: .actionSheet)
+        alertController.view.tintColor = ColorsExtension.purpleMedium
+        
+        let okAction = UIAlertAction(title: "Sim", style: .default) { UIAlertAction in
+            print("a")
+
+            controller.cancelSelection()
+            controller.openNewBusinessSheet()
+        }
+        let cancelAction = UIAlertAction(title: "Não", style: .cancel) { UIAlertAction in
+            print("b")
+        }
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        controller.present(alertController, animated: true)
+        
 
 //        let annotation = MKPointAnnotation()
 //        annotation.coordinate = coordinate
@@ -119,6 +144,7 @@ extension MapView: SetupView {
     func setup() {
         addSubviews()
         setupConstraints()
+        configureGestureRecognizer()
     }
 
     func addSubviews() {

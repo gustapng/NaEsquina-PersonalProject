@@ -18,22 +18,13 @@ class AddBusinessViewController: UIViewController {
 
     private lazy var sheetInfoView: SheetInfoView = {
         let sheetInfoView = SheetInfoView(title: "Adicionar comércio",
-                                          subtitle: """
-                                            Os dados enviados serão analisados e, se aprovados, o comércio
-                                            será adicionado ao app em até 48 horas.
-                                            """.trimmingCharacters(in: .whitespacesAndNewlines))
+                                          subtitle: "Os dados enviados são analisados, se aprovados o comércio é adicionado em até 48 horas.")
         sheetInfoView.translatesAutoresizingMaskIntoConstraints = false
         return sheetInfoView
     }()
 
     private lazy var inputTextFieldName: InputWithLeftIconView = {
         let input = InputWithLeftIconView(placeholder: "Nome do comércio", icon: "bag")
-        input.translatesAutoresizingMaskIntoConstraints = false
-        return input
-    }()
-
-    private lazy var inputTextFieldAddress: InputWithLeftIconView = {
-        let input = InputWithLeftIconView(placeholder: "Endereço", icon: "location")
         input.translatesAutoresizingMaskIntoConstraints = false
         return input
     }()
@@ -91,7 +82,6 @@ extension AddBusinessViewController: SetupView {
     func addSubviews() {
         view.addSubview(sheetInfoView)
         view.addSubview(inputTextFieldName)
-        view.addSubview(inputTextFieldAddress)
         view.addSubview(inputTextFieldPhone)
         view.addSubview(inputTextFieldBussinessType)
         view.addSubview(inputSelectImageButton)
@@ -108,11 +98,7 @@ extension AddBusinessViewController: SetupView {
             inputTextFieldName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             inputTextFieldName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            inputTextFieldAddress.topAnchor.constraint(equalTo: inputTextFieldName.bottomAnchor, constant: 65),
-            inputTextFieldAddress.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            inputTextFieldAddress.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-
-            inputTextFieldPhone.topAnchor.constraint(equalTo: inputTextFieldAddress.bottomAnchor, constant: 65),
+            inputTextFieldPhone.topAnchor.constraint(equalTo: inputTextFieldName.bottomAnchor, constant: 65),
             inputTextFieldPhone.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             inputTextFieldPhone.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 

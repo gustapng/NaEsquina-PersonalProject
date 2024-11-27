@@ -93,6 +93,18 @@ extension CoordinatorFlowController: LoginCoordinator {
 }
 
 extension CoordinatorFlowController: MenuCoordinator {
+    func openNewBusinessSheet() {
+        let addBusinessViewController = AddBusinessViewController()
+        
+        if let sheet = addBusinessViewController.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersGrabberVisible = true
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+        }
+        
+        navigationController.topViewController?.present(addBusinessViewController, animated: true)
+    }
+    
     func openFilterSheet() {
         let filterViewController = FilterViewController()
         
@@ -106,15 +118,15 @@ extension CoordinatorFlowController: MenuCoordinator {
     }
     
     func openBusinessDetailsSheet() {
-        let businessViewController = BusinessDetailsViewController()
+        let businessDetailsViewController = BusinessDetailsViewController()
         
-        if let sheet = businessViewController.sheetPresentationController {
+        if let sheet = businessDetailsViewController.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
             sheet.prefersGrabberVisible = true
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false
         }
         
-        navigationController.topViewController?.present(businessViewController, animated: true)
+        navigationController.topViewController?.present(businessDetailsViewController, animated: true)
     }
     
     func navigateToUserView() {

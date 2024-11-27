@@ -6,6 +6,7 @@
 //
 
 protocol MenuCoordinator {
+    func openNewBusinessSheet()
     func openFilterSheet()
     func navigateToUserView()
     func openBusinessDetailsSheet()

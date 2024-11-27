@@ -165,6 +165,10 @@ extension MenuViewController: SetupView {
 }
 
 extension MenuViewController: MenuCoordinator {
+    func openNewBusinessSheet() {
+        coordinator?.openNewBusinessSheet()
+    }
+
     func openFilterSheet() {
         coordinator?.openFilterSheet()
     }
