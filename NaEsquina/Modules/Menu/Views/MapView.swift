@@ -17,6 +17,7 @@ class MapView: UIView, MKMapViewDelegate {
     // MARK: - Attributes
 
     private var temporaryAnnotation: MKPointAnnotation?
+    var isPinConfirmed: Bool = false
     weak var delegate: MapViewDelegate?
 
     // MARK: - UI Components
@@ -41,27 +42,25 @@ class MapView: UIView, MKMapViewDelegate {
     // MARK: - MKMapViewDelegate
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKPointAnnotation {
+        if let pointAnottation = annotation as? MKPointAnnotation {
             let identifier = "customPin"
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
 
             if annotationView == nil {
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-
-                // Adicione a cor do pin
-                annotationView?.canShowCallout = true // Permite que o callout seja exibido
-
-                // Adicione a cor do pin
-                annotationView?.markerTintColor = ColorsExtension.purpleMedium // Cor personalizada do pin
-                // ICONE
-//                annotationView?.glyphImage = UIImage(systemName: "cart.fill")
-
-                // Adiciona um botão de detalhe ao callout
-                let detailButton = UIButton(type: .detailDisclosure)
-                annotationView?.rightCalloutAccessoryView = detailButton
+                annotationView?.canShowCallout = true
             } else {
                 annotationView?.annotation = annotation
             }
+            
+            if annotation.subtitle == "temporaryPin" {
+                 annotationView?.markerTintColor = ColorsExtension.purpleMedium
+            } else {
+                // TODO - HERE YOU NEED A LOGIC TO CHANGE ICON ACCORDING TO BUSINESS OPTION
+                annotationView?.markerTintColor = ColorsExtension.purpleMedium
+                annotationView?.glyphImage = UIImage(systemName: "cart.fill")
+            }
+
             return annotationView
         }
         return nil
@@ -80,7 +79,11 @@ class MapView: UIView, MKMapViewDelegate {
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         annotation.title = "Local Selecionado"
+        annotation.subtitle = "temporaryPin"
         self.mapView.addAnnotation(annotation)
+        
+        temporaryAnnotation = annotation
+        isPinConfirmed = false
         
         let alertController = UIAlertController(title: "Localização", message: "Deseja adicionar está localização?", preferredStyle: .actionSheet)
         alertController.view.tintColor = ColorsExtension.purpleMedium
@@ -93,6 +96,9 @@ class MapView: UIView, MKMapViewDelegate {
         }
         let cancelAction = UIAlertAction(title: "Não", style: .cancel) { UIAlertAction in
             print("b")
+            if let annotationToRemove = self.temporaryAnnotation {
+                self.mapView.removeAnnotation(annotationToRemove)
+            }
         }
         alertController.addAction(okAction)
         alertController.addAction(cancelAction)
@@ -109,6 +115,13 @@ class MapView: UIView, MKMapViewDelegate {
 //
 //        // Ocultar a barra temporária após a seleção
 //        controller.cancelSelection()
+    }
+    
+    func removeTemporaryAnnotation() {
+        if let annotationToRemove = temporaryAnnotation {
+            mapView.removeAnnotation(annotationToRemove)
+            temporaryAnnotation = nil
+        }
     }
 
     func mapView(_ mapView: MKMapView,

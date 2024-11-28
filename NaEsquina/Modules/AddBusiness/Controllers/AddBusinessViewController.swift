@@ -70,6 +70,16 @@ class AddBusinessViewController: UIViewController {
         super.viewDidLoad()
         setup()
     }
+    
+    // TODO - PAREI AQUI
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("testandoooo")
+        // Informa ao MenuViewController que o sheet foi fechado
+        if let parentVC = presentingViewController as? MenuViewController {
+            parentVC.sheetDidDismiss()
+        }
+    }
 }
 
 extension AddBusinessViewController: SetupView {

@@ -104,6 +104,15 @@ class MenuViewController: UIViewController, MapViewDelegate {
         selectionBar.isHidden = true
 //        mapView.removeAnnotations(mapView.annotations)
     }
+    
+    func sheetDidDismiss() {
+        print("dentro da func")
+        // Verifica se o pin não foi confirmado
+        if !mapView.isPinConfirmed {
+            mapView.removeTemporaryAnnotation() // Remove a anotação temporária
+        }
+        mapView.isPinConfirmed = false // Restaura a flag
+    }
 
     // MARK: - Initializers
 
