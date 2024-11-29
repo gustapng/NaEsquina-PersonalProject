@@ -1,6 +1,10 @@
 import MapKit
 import UIKit
 
+protocol RemovePinDelegate: AnyObject {
+    func removeTemporaryPin()
+}
+
 class MenuViewController: UIViewController, MapViewDelegate {
 
     // MARK: - Coordinator
@@ -73,11 +77,6 @@ class MenuViewController: UIViewController, MapViewDelegate {
 
     // MARK: - Functions
 
-    @objc func openSheetAddBusiness() {
-//        button.addTarget(self, action: #selector(showSelectionBar), for: .touchUpInside)
-//        self.coordinator?.goToAddBusinessView()
-    }
-
     func didTapOnPin(annotationTitle: String?) {
         openBusinessDetailsSheet()
     }
@@ -102,16 +101,6 @@ class MenuViewController: UIViewController, MapViewDelegate {
     @objc func cancelSelection() {
         isSelectingLocation = false
         selectionBar.isHidden = true
-//        mapView.removeAnnotations(mapView.annotations)
-    }
-    
-    func sheetDidDismiss() {
-        print("dentro da func")
-        // Verifica se o pin não foi confirmado
-        if !mapView.isPinConfirmed {
-            mapView.removeTemporaryAnnotation() // Remove a anotação temporária
-        }
-        mapView.isPinConfirmed = false // Restaura a flag
     }
 
     // MARK: - Initializers
@@ -128,7 +117,6 @@ extension MenuViewController: UITabBarDelegate {
         switch item.tag {
         case 0:
             showSelectionBar()
-//            openSheetAddBusiness()
         case 1:
             openSheetFilter()
         case 2:
@@ -190,3 +178,10 @@ extension MenuViewController: MenuCoordinator {
         coordinator?.navigateToUserView()
     }
 }
+
+extension MenuViewController: RemovePinDelegate {
+    func removeTemporaryPin() {
+        mapView.removeTemporaryAnnotation()
+    }
+}
+

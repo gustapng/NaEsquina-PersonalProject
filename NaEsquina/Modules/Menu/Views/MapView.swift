@@ -42,7 +42,7 @@ class MapView: UIView, MKMapViewDelegate {
     // MARK: - MKMapViewDelegate
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let pointAnottation = annotation as? MKPointAnnotation {
+        if annotation is MKPointAnnotation {
             let identifier = "customPin"
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
 
@@ -67,13 +67,11 @@ class MapView: UIView, MKMapViewDelegate {
     }
     
     @objc private func handleMapTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        print("Aqui")
         guard let controller = delegate as? MenuViewController, controller.isSelectingLocation else { return }
 
         let location = gestureRecognizer.location(in: mapView)
         let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
 
-//        mapView.removeAnnotations(mapView.annotations)
         print("Coordenadas selecionadas: \(coordinate.latitude), \(coordinate.longitude)")
         
         let annotation = MKPointAnnotation()
@@ -89,13 +87,10 @@ class MapView: UIView, MKMapViewDelegate {
         alertController.view.tintColor = ColorsExtension.purpleMedium
         
         let okAction = UIAlertAction(title: "Sim", style: .default) { UIAlertAction in
-            print("a")
-
             controller.cancelSelection()
             controller.openNewBusinessSheet()
         }
         let cancelAction = UIAlertAction(title: "Não", style: .cancel) { UIAlertAction in
-            print("b")
             if let annotationToRemove = self.temporaryAnnotation {
                 self.mapView.removeAnnotation(annotationToRemove)
             }
@@ -104,17 +99,6 @@ class MapView: UIView, MKMapViewDelegate {
         alertController.addAction(cancelAction)
         
         controller.present(alertController, animated: true)
-        
-
-//        let annotation = MKPointAnnotation()
-//        annotation.coordinate = coordinate
-//        annotation.title = "Local Selecionado"
-//        mapView.addAnnotation(annotation)
-//
-//        print("Coordenadas selecionadas: \(coordinate.latitude), \(coordinate.longitude)")
-//
-//        // Ocultar a barra temporária após a seleção
-//        controller.cancelSelection()
     }
     
     func removeTemporaryAnnotation() {

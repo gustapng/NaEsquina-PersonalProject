@@ -8,7 +8,7 @@
 import UIKit
 import LocalAuthentication
 
-class CoordinatorFlowController {
+class CoordinatorFlowController: NSObject, UIAdaptivePresentationControllerDelegate {
     private var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -96,11 +96,17 @@ extension CoordinatorFlowController: MenuCoordinator {
     func openNewBusinessSheet() {
         let addBusinessViewController = AddBusinessViewController()
         
+        if let menuViewController = navigationController.topViewController as? MenuViewController {
+            addBusinessViewController.delegate = menuViewController
+        }
+
         if let sheet = addBusinessViewController.sheetPresentationController {
             sheet.detents = [.large()]
             sheet.prefersGrabberVisible = true
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false
         }
+        
+        addBusinessViewController.presentationController?.delegate = self
         
         navigationController.topViewController?.present(addBusinessViewController, animated: true)
     }
@@ -134,6 +140,12 @@ extension CoordinatorFlowController: MenuCoordinator {
         userViewController.coordinator = self
         navigationController.pushViewController(userViewController, animated: true)
     }
+
+//    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+//        if let menuViewController = navigationController.topViewController as? MenuViewController {
+//            menuViewController.sheetDidDismiss()
+//        }
+//    }
 }
 
 extension CoordinatorFlowController: UserCoordinator {

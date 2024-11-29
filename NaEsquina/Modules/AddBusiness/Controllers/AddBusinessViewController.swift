@@ -13,6 +13,7 @@ class AddBusinessViewController: UIViewController {
     // MARK: - Attributes
 
     var selectedCoordinate: CLLocationCoordinate2D?
+    weak var delegate: RemovePinDelegate?
 
     // MARK: - UI Components
 
@@ -71,14 +72,9 @@ class AddBusinessViewController: UIViewController {
         setup()
     }
     
-    // TODO - PAREI AQUI
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print("testandoooo")
-        // Informa ao MenuViewController que o sheet foi fechado
-        if let parentVC = presentingViewController as? MenuViewController {
-            parentVC.sheetDidDismiss()
-        }
+        delegate?.removeTemporaryPin()
     }
 }
 
