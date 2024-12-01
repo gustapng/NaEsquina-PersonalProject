@@ -8,12 +8,13 @@
 import UIKit
 import MapKit		
 
-class AddBusinessViewController: UIViewController {
+class AddBusinessViewController: UIViewController, ImagePickerViewDelegate {
 
     // MARK: - Attributes
 
     var selectedCoordinate: CLLocationCoordinate2D?
     weak var delegate: RemovePinDelegate?
+    private var selectedImage: UIImage?
 
     // MARK: - UI Components
 
@@ -44,6 +45,7 @@ class AddBusinessViewController: UIViewController {
 
     private lazy var inputSelectImageButton: SelectImageButton = {
         let button = SelectImageButton()
+        button.delegate = self
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -56,7 +58,6 @@ class AddBusinessViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorsExtension.purpleMedium
         button.layer.cornerRadius = 9
-        // TODO: CREATE ACTION FOR THIS BUTTON
         button.addTarget(self, action: #selector(saveBusinessData), for: .touchUpInside)
         button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -65,15 +66,23 @@ class AddBusinessViewController: UIViewController {
         return button
     }()
 
-    // MARK: - Function
+    // MARK: - Functions
+
+    func didSelectImage(_ image: UIImage) {
+        selectedImage = image
+    }
 
     @objc func saveBusinessData() {
         let name = inputTextFieldName.getValue() ?? ""
         let phone = inputTextFieldPhone.getValue() ?? ""
         let option = inputTextFieldBussinessType.getValue() ?? ""
-        print(name)
-        print(phone)
-        print(option)
+        
+        // TODO: PAREI AQUI -> IMPLEMENTAR A FUNÇÃO DE SALVAR OS DADOS E INTEGRAR COM O AWS S3 PARA SALVAR A IMAGEM OU FTP, OU AMBOS
+        
+        print("Nome: \(name)")
+        print("Telefone: \(phone)")
+        print("Tipo de comércio: \(option)")
+        print(selectedImage ?? "teste")
     }
 
     // MARK: - Initializers

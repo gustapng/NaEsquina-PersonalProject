@@ -76,7 +76,7 @@ class RecoveryViewController: UIViewController {
     }
 
     private func validateRecoveryFields() -> (isValid: Bool, errorMessage: String?) {
-        let email = emailWithDescriptionView.getInputText() ?? ""
+        let email = emailWithDescriptionView.getValue() ?? ""
 
         guard !email.isEmpty else {
             return (false, "Por favor, preencha o campo de email.")
@@ -92,7 +92,7 @@ class RecoveryViewController: UIViewController {
             return
         }
 
-        guard let email = emailWithDescriptionView.getInputText() else { return }
+        guard let email = emailWithDescriptionView.getValue() else { return }
 
         self.loadingSubject.onNext(true)
 

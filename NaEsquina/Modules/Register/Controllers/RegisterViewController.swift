@@ -101,10 +101,10 @@ class RegisterViewController: UIViewController {
     }
 
     private func validateRegisterFields() -> (isValid: Bool, errorMessage: String?) {
-        let username = usernameWithDescriptionView.getInputText() ?? ""
-        let email = emailWithDescriptionView.getInputText() ?? ""
-        let password = passwordWithDescriptionView.getInputText() ?? ""
-        let rePassword = rePasswordWithDescriptionView.getInputText() ?? ""
+        let username = usernameWithDescriptionView.getValue() ?? ""
+        let email = emailWithDescriptionView.getValue() ?? ""
+        let password = passwordWithDescriptionView.getValue() ?? ""
+        let rePassword = rePasswordWithDescriptionView.getValue() ?? ""
 
         guard !username.isEmpty, !email.isEmpty, !password.isEmpty, !rePassword.isEmpty else {
             return (false, "Por favor, preencha todos os campos.")
@@ -128,9 +128,9 @@ class RegisterViewController: UIViewController {
             return
         }
 
-        guard let email = emailWithDescriptionView.getInputText(),
-              let password = passwordWithDescriptionView.getInputText(),
-              let username = usernameWithDescriptionView.getInputText() else {
+        guard let email = emailWithDescriptionView.getValue(),
+              let password = passwordWithDescriptionView.getValue(),
+              let username = usernameWithDescriptionView.getValue() else {
             return
         }
 

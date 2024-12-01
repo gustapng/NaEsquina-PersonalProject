@@ -51,17 +51,11 @@ class InputTextFieldView: UIView {
         setup()
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Functions
-
-    // MARK: - Public Property
-    func getInputText() -> String? {
-        return inputLabel.text
-    }
 
     private func configureInputLabel(inputPlaceholder: String, icon: String, inputDisabled: Bool) {
         if inputDisabled {
@@ -116,5 +110,11 @@ extension InputTextFieldView: SetupView {
             inputLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
             inputLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+}
+
+extension InputTextFieldView: GetInputValue {
+    func getValue() -> String? {
+        return inputLabel.text
     }
 }

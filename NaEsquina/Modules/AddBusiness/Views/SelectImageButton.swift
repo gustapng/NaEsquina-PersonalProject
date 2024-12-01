@@ -12,7 +12,12 @@ protocol ImagePickerViewDelegate: AnyObject {
 }
 
 class SelectImageButton: UIButton, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    // MARK: - Attributes
+
     weak var delegate: ImagePickerViewDelegate?
+
+    // MARK: - UI Components
 
     private lazy var imagePickerButton: UIButton = {
         let button = UIButton(type: .system)
@@ -38,24 +43,7 @@ class SelectImageButton: UIButton, UIImagePickerControllerDelegate, UINavigation
         return button
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setup()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setup() {
-        addSubview(imagePickerButton)
-
-        NSLayoutConstraint.activate([
-            imagePickerButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imagePickerButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            imagePickerButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
+    // MARK: - Functions
 
     @objc private func selectImage() {
         let imagePickerController = UIImagePickerController()
@@ -79,6 +67,34 @@ class SelectImageButton: UIButton, UIImagePickerControllerDelegate, UINavigation
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension SelectImageButton: SetupView {
+    func setup() {
+        addSubviews()
+        setupConstraints()
+    }
+
+    func addSubviews() {
+        addSubview(imagePickerButton)
+    }
+
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            imagePickerButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imagePickerButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imagePickerButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
 }
 
