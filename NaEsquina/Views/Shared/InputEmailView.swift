@@ -35,10 +35,6 @@ class InputEmailView: UIView {
 
     // MARK: - Functions
 
-    func getInputText() -> String? {
-        return inputLabel.text
-    }
-
     private func configureInputLabel(inputPlaceholder: String, icon: String, inputDisabled: Bool) {
         if inputDisabled {
            applyDisabledStyle(inputPlaceholder: inputPlaceholder, icon: icon)
@@ -116,5 +112,11 @@ extension InputEmailView: SetupView {
             inputLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
             inputLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+}
+
+extension InputEmailView: GetInputValue {
+    func getValue() -> String? {
+        return inputLabel.text
     }
 }

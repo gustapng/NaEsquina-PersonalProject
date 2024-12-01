@@ -129,8 +129,8 @@ class LoginViewController: UIViewController {
     }
 
     @objc private func loginUser() {
-        let email = emailWithDescriptionView.getInputText() ?? ""
-        let password = passwordWithDescriptionView.getInputText() ?? ""
+        let email = emailWithDescriptionView.getValue() ?? ""
+        let password = passwordWithDescriptionView.getValue() ?? ""
         let loginModel = LoginModel(email: email, password: password)
 
         if let errorMessage = loginModel.validationError {

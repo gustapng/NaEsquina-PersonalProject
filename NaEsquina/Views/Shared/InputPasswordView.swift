@@ -134,3 +134,9 @@ extension InputPasswordView: UITextFieldDelegate {
         return true
     }
 }
+
+extension InputPasswordView: GetInputValue {
+    func getValue() -> String? {
+        return inputLabel.text
+    }
+}

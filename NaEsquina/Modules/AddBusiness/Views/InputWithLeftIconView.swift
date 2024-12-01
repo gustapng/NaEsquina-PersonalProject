@@ -23,7 +23,7 @@ class InputWithLeftIconView: UIView {
         return textField
     }()
 
-    // MARK: Initializers
+    // MARK: - Initializers
 
     init(placeholder: String, icon: String) {
         super.init(frame: .zero)
@@ -64,5 +64,11 @@ extension InputWithLeftIconView: SetupView {
             inputTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
             inputTextField.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+}
+
+extension InputWithLeftIconView: GetInputValue {
+    func getValue() -> String? {
+        return inputTextField.text
     }
 }

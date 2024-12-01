@@ -71,6 +71,8 @@
 		ECEF1DF72CD05ED5000F94FE /* UserOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF1DF62CD05ECB000F94FE /* UserOptions.swift */; };
 		ECEF1DF92CD0765C000F94FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECEF1DF82CD0765C000F94FE /* GoogleService-Info.plist */; };
 		ECEF1DFC2CD0774B000F94FE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = ECEF1DFB2CD0774B000F94FE /* FirebaseAuth */; };
+		ECF69EEB2CFCA05600D55279 /* PhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF69EEA2CFCA05600D55279 /* PhoneNumberView.swift */; };
+		ECF69EED2CFCB4DC00D55279 /* GetInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF69EEC2CFCB4CE00D55279 /* GetInputValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +132,8 @@
 		ECECD82A2CC31D500038B171 /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
 		ECEF1DF62CD05ECB000F94FE /* UserOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOptions.swift; sourceTree = "<group>"; };
 		ECEF1DF82CD0765C000F94FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ECF69EEA2CFCA05600D55279 /* PhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberView.swift; sourceTree = "<group>"; };
+		ECF69EEC2CFCB4CE00D55279 /* GetInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInputValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +304,7 @@
 			children = (
 				ECA947982CCA969C00B34811 /* SelectImageButton.swift */,
 				ECBD55552CB2165A0020BCF8 /* InputWithLeftIconView.swift */,
+				ECF69EEA2CFCA05600D55279 /* PhoneNumberView.swift */,
 				EC7D56172CFBCE0300F90F06 /* FilterPickerView.swift */,
 			);
 			path = Views;
@@ -506,6 +511,7 @@
 		EC821F6A2C8A6A1E00F35B96 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				ECF69EEC2CFCB4CE00D55279 /* GetInputValue.swift */,
 				EC98D83F2CE12598000040FF /* Firebase+Extension.swift */,
 				EC2517612CD6D49200AE1ECF /* ShowAlert.swift */,
 				EC5A019C2CD2FE3B003395D5 /* PasswordValidator.swift */,
@@ -698,10 +704,12 @@
 				EC8A86A82CC7EE080013524D /* MapView.swift in Sources */,
 				EC98D8402CE1259E000040FF /* Firebase+Extension.swift in Sources */,
 				EC5A01992CD2E8EF003395D5 /* FirebaseService.swift in Sources */,
+				ECF69EEB2CFCA05600D55279 /* PhoneNumberView.swift in Sources */,
 				EC7220F72CF39C4D0048B35B /* MenuCoordinator.swift in Sources */,
 				EC2517622CD6D49900AE1ECF /* ShowAlert.swift in Sources */,
 				EC6DFE402CEE9DA700248A53 /* CoordinatorFlowController.swift in Sources */,
 				EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */,
+				ECF69EED2CFCB4DC00D55279 /* GetInputValue.swift in Sources */,
 				ECBD55562CB2165A0020BCF8 /* InputWithLeftIconView.swift in Sources */,
 				ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */,
 				EC98D8432CE12804000040FF /* LoadingView.swift in Sources */,

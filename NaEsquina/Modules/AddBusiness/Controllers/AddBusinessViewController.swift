@@ -30,8 +30,8 @@ class AddBusinessViewController: UIViewController {
         return view
     }()
 
-    private lazy var inputTextFieldPhone: InputWithLeftIconView = {
-        let view = InputWithLeftIconView(placeholder: "Telefone", icon: "phone")
+    private lazy var inputTextFieldPhone: PhoneNumberView = {
+        let view = PhoneNumberView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -57,13 +57,24 @@ class AddBusinessViewController: UIViewController {
         button.backgroundColor = ColorsExtension.purpleMedium
         button.layer.cornerRadius = 9
         // TODO: CREATE ACTION FOR THIS BUTTON
-//        button.addTarget(self, action: #selector(goToMainMenuView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(saveBusinessData), for: .touchUpInside)
         button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.layer.shadowOpacity = 1
         button.layer.shadowRadius = 0
         return button
     }()
+
+    // MARK: - Function
+
+    @objc func saveBusinessData() {
+        let name = inputTextFieldName.getValue() ?? ""
+        let phone = inputTextFieldPhone.getValue() ?? ""
+        let option = inputTextFieldBussinessType.getValue() ?? ""
+        print(name)
+        print(phone)
+        print(option)
+    }
 
     // MARK: - Initializers
 
