@@ -25,21 +25,21 @@ class AddBusinessViewController: UIViewController {
     }()
 
     private lazy var inputTextFieldName: InputWithLeftIconView = {
-        let input = InputWithLeftIconView(placeholder: "Nome do comércio", icon: "bag")
-        input.translatesAutoresizingMaskIntoConstraints = false
-        return input
+        let view = InputWithLeftIconView(placeholder: "Nome do comércio", icon: "bag")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     private lazy var inputTextFieldPhone: InputWithLeftIconView = {
-        let input = InputWithLeftIconView(placeholder: "Telefone", icon: "phone")
-        input.translatesAutoresizingMaskIntoConstraints = false
-        return input
+        let view = InputWithLeftIconView(placeholder: "Telefone", icon: "phone")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
-    private lazy var inputTextFieldBussinessType: InputWithLeftIconView = {
-        let input = InputWithLeftIconView(placeholder: "Tipo de comércio", icon: "option")
-        input.translatesAutoresizingMaskIntoConstraints = false
-        return input
+    private lazy var inputTextFieldBussinessType: FilterPickerView = {
+        let view = FilterPickerView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     private lazy var inputSelectImageButton: SelectImageButton = {
@@ -71,7 +71,7 @@ class AddBusinessViewController: UIViewController {
         super.viewDidLoad()
         setup()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         delegate?.removeTemporaryPin()
@@ -104,15 +104,15 @@ extension AddBusinessViewController: SetupView {
             inputTextFieldName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             inputTextFieldName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            inputTextFieldPhone.topAnchor.constraint(equalTo: inputTextFieldName.bottomAnchor, constant: 65),
+            inputTextFieldPhone.topAnchor.constraint(equalTo: inputTextFieldName.bottomAnchor, constant: 30),
             inputTextFieldPhone.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             inputTextFieldPhone.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            inputTextFieldBussinessType.topAnchor.constraint(equalTo: inputTextFieldPhone.bottomAnchor, constant: 65),
+            inputTextFieldBussinessType.topAnchor.constraint(equalTo: inputTextFieldPhone.bottomAnchor, constant: 30),
             inputTextFieldBussinessType.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             inputTextFieldBussinessType.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            inputSelectImageButton.topAnchor.constraint(equalTo: inputTextFieldBussinessType.bottomAnchor, constant: 65),
+            inputSelectImageButton.topAnchor.constraint(equalTo: inputTextFieldBussinessType.bottomAnchor, constant: 30),
             inputSelectImageButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             inputSelectImageButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 

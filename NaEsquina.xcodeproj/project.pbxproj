@@ -34,6 +34,7 @@
 		EC7220FD2CF3E1350048B35B /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7220FC2CF3E1300048B35B /* FirebaseAuthService.swift */; };
 		EC7221012CF3E1BA0048B35B /* CoreDataUserSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7221002CF3E1A70048B35B /* CoreDataUserSettingsService.swift */; };
 		EC7221042CF3E1F50048B35B /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7221032CF3E1F00048B35B /* LoginModel.swift */; };
+		EC7D56182CFBCE0300F90F06 /* FilterPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D56172CFBCE0300F90F06 /* FilterPickerView.swift */; };
 		EC7E16F02CBDDCDE00BFFE15 /* UserOptionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7E16EF2CBDDCDE00BFFE15 /* UserOptionButtonCell.swift */; };
 		EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */; };
 		EC893CAB2CD98B6400A94598 /* User_Settings.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC893CA92CD98B6400A94598 /* User_Settings.xcdatamodeld */; };
@@ -94,6 +95,7 @@
 		EC7220FC2CF3E1300048B35B /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		EC7221002CF3E1A70048B35B /* CoreDataUserSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserSettingsService.swift; sourceTree = "<group>"; };
 		EC7221032CF3E1F00048B35B /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		EC7D56172CFBCE0300F90F06 /* FilterPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPickerView.swift; sourceTree = "<group>"; };
 		EC7E16EF2CBDDCDE00BFFE15 /* UserOptionButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOptionButtonCell.swift; sourceTree = "<group>"; };
 		EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewExtension.swift; sourceTree = "<group>"; };
 		EC893CAA2CD98B6400A94598 /* User_Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User_Settings.xcdatamodel; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 			children = (
 				ECA947982CCA969C00B34811 /* SelectImageButton.swift */,
 				ECBD55552CB2165A0020BCF8 /* InputWithLeftIconView.swift */,
+				EC7D56172CFBCE0300F90F06 /* FilterPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				EC5063BE2CA23A31009852FA /* OtpTextFieldView.swift in Sources */,
 				EC7220FA2CF3AD9B0048B35B /* UserCoordinator.swift in Sources */,
 				EC65642C2C9B926C00953563 /* FilterViewController.swift in Sources */,
+				EC7D56182CFBCE0300F90F06 /* FilterPickerView.swift in Sources */,
 				EC1D87352CACCB2A002363A4 /* SheetInfoView.swift in Sources */,
 				ECEF1DF72CD05ED5000F94FE /* UserOptions.swift in Sources */,
 				ECABB0522C8FB0740030042E /* InputPasswordView.swift in Sources */,

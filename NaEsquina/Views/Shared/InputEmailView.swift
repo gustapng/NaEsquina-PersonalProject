@@ -33,33 +33,8 @@ class InputEmailView: UIView {
         return textField
     }()
 
-    // MARK: - Initializers
-
-    init(descriptionText: String, inputPlaceholder: String, inputDisabled: Bool) {
-        if inputDisabled {
-            iconColor = ColorsExtension.lightGrayDisabled ?? UIColor()
-        } else {
-            iconColor = ColorsExtension.lightGray ?? UIColor()
-        }
-        super.init(frame: .zero)
-        descriptionLabel.text = descriptionText
-        configureInputLabel(inputPlaceholder: inputPlaceholder, icon: "envelope", inputDisabled: inputDisabled)
-        inputLabel.addPaddingAndIcon(UIImage(systemName: "envelope") ?? UIImage(),
-                                          iconColor,
-                                          leftPad: 15,
-                                          rightPad: 12,
-                                          isLeftView: true,
-                                          horRotation: false)
-        setup()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     // MARK: - Functions
 
-    // MARK: - Public Property
     func getInputText() -> String? {
         return inputLabel.text
     }
@@ -90,6 +65,30 @@ class InputEmailView: UIView {
         inputLabel.attributedPlaceholder = NSAttributedString(string: inputPlaceholder,
                                                               attributes: [NSAttributedString.Key.foregroundColor: ColorsExtension
                                                                 .lightGray ?? UIColor.black])
+    }
+
+    // MARK: - Initializers
+
+    init(descriptionText: String, inputPlaceholder: String, inputDisabled: Bool) {
+        if inputDisabled {
+            iconColor = ColorsExtension.lightGrayDisabled ?? UIColor()
+        } else {
+            iconColor = ColorsExtension.lightGray ?? UIColor()
+        }
+        super.init(frame: .zero)
+        descriptionLabel.text = descriptionText
+        configureInputLabel(inputPlaceholder: inputPlaceholder, icon: "envelope", inputDisabled: inputDisabled)
+        inputLabel.addPaddingAndIcon(UIImage(systemName: "envelope") ?? UIImage(),
+                                          iconColor,
+                                          leftPad: 15,
+                                          rightPad: 12,
+                                          isLeftView: true,
+                                          horRotation: false)
+        setup()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 

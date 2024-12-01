@@ -52,7 +52,7 @@ class MapView: UIView, MKMapViewDelegate {
             } else {
                 annotationView?.annotation = annotation
             }
-            
+
             if annotation.subtitle == "temporaryPin" {
                  annotationView?.markerTintColor = ColorsExtension.purpleMedium
             } else {
@@ -65,7 +65,7 @@ class MapView: UIView, MKMapViewDelegate {
         }
         return nil
     }
-    
+
     @objc private func handleMapTap(_ gestureRecognizer: UITapGestureRecognizer) {
         guard let controller = delegate as? MenuViewController, controller.isSelectingLocation else { return }
 
@@ -73,19 +73,19 @@ class MapView: UIView, MKMapViewDelegate {
         let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
 
         print("Coordenadas selecionadas: \(coordinate.latitude), \(coordinate.longitude)")
-        
+
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         annotation.title = "Local Selecionado"
         annotation.subtitle = "temporaryPin"
         self.mapView.addAnnotation(annotation)
-        
+
         temporaryAnnotation = annotation
         isPinConfirmed = false
-        
+
         let alertController = UIAlertController(title: "Localização", message: "Deseja adicionar está localização?", preferredStyle: .actionSheet)
         alertController.view.tintColor = ColorsExtension.purpleMedium
-        
+
         let okAction = UIAlertAction(title: "Sim", style: .default) { UIAlertAction in
             controller.cancelSelection()
             controller.openNewBusinessSheet()
@@ -97,10 +97,10 @@ class MapView: UIView, MKMapViewDelegate {
         }
         alertController.addAction(okAction)
         alertController.addAction(cancelAction)
-        
+
         controller.present(alertController, animated: true)
     }
-    
+
     func removeTemporaryAnnotation() {
         if let annotationToRemove = temporaryAnnotation {
             mapView.removeAnnotation(annotationToRemove)
@@ -156,7 +156,7 @@ extension MapView: SetupView {
             mapView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
+
     private func configureGestureRecognizer() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleMapTap(_:)))
         tapGesture.numberOfTapsRequired = 1

@@ -38,7 +38,7 @@ class MenuViewController: UIViewController, MapViewDelegate {
         tabBar.items = [homeItem, filterItem, perfilItem]
         return tabBar
     }()
-    
+
     private lazy var selectionBar: UIView = {
         let view = UIView()
         view.backgroundColor = ColorsExtension.gray?.withAlphaComponent(0.7)
@@ -88,7 +88,7 @@ class MenuViewController: UIViewController, MapViewDelegate {
     @objc func navigateToRegisterViewController() {
         navigateToUserView()
     }
-    
+
     func showWelcomeMessage() {
         showAlert(on: self, title: "Bem-vindo!", message: "Login realizado com sucesso!")
     }
