@@ -6,7 +6,10 @@
 //
 
 import UIKit
-import MapKit		
+import MapKit
+import Firebase
+import FirebaseStorage
+import RxSwift
 
 class AddBusinessViewController: UIViewController, ImagePickerViewDelegate {
 
@@ -15,7 +18,10 @@ class AddBusinessViewController: UIViewController, ImagePickerViewDelegate {
     var selectedCoordinate: CLLocationCoordinate2D?
     weak var delegate: RemovePinDelegate?
     private var selectedImage: UIImage?
-
+    private let loadingSubject = BehaviorSubject<Bool>(value: false)
+    private let disposeBag = DisposeBag()
+    private var sendControl = false
+    
     // MARK: - UI Components
 
     private lazy var sheetInfoView: SheetInfoView = {
@@ -66,6 +72,12 @@ class AddBusinessViewController: UIViewController, ImagePickerViewDelegate {
         return button
     }()
 
+    private lazy var loadingView: LoadingView = {
+        let loading = LoadingView()
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        return loading
+    }()
+
     // MARK: - Functions
 
     func didSelectImage(_ image: UIImage) {
@@ -73,16 +85,47 @@ class AddBusinessViewController: UIViewController, ImagePickerViewDelegate {
     }
 
     @objc func saveBusinessData() {
-        let name = inputTextFieldName.getValue() ?? ""
-        let phone = inputTextFieldPhone.getValue() ?? ""
-        let option = inputTextFieldBussinessType.getValue() ?? ""
-        
-        // TODO: PAREI AQUI -> IMPLEMENTAR A FUNÇÃO DE SALVAR OS DADOS E INTEGRAR COM O AWS S3 PARA SALVAR A IMAGEM OU FTP, OU AMBOS
-        
-        print("Nome: \(name)")
-        print("Telefone: \(phone)")
-        print("Tipo de comércio: \(option)")
-        print(selectedImage ?? "teste")
+        guard let name = inputTextFieldName.getValue(), !name.isEmpty,
+              let phone = inputTextFieldPhone.getValue(), !phone.isEmpty,
+              let businessType = inputTextFieldBussinessType.getValue(), !businessType.isEmpty,
+              let selectedImage = selectedImage else {
+            showAlert(on: self, title: "Erro", message: "Por favor preencha todos os campos")
+            return
+        }
+
+        loadingSubject.onNext(true)
+
+        FirebaseStorageService.shared.uploadImage(image: selectedImage)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] imageUrl in
+                guard let self = self else { return }
+
+                self.saveDataToFirestore(name: name, phone: phone, businessType: businessType, imageUrl: imageUrl)
+
+            }, onFailure: { [weak self] error in
+                guard let self = self else { return }
+                loadingSubject.onNext(false)
+                showAlert(on: self, title: "Erro", message: "Falha ao fazer upload da imagem: \(error.localizedDescription)")
+            })
+            .disposed(by: disposeBag)
+    }
+
+    private func saveDataToFirestore(name: String, phone: String, businessType: String, imageUrl: String) {
+        FirebaseStorageService.shared.saveBusinessData(name: name, phone: phone, businessType: businessType, imageUrl: imageUrl)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] in
+                guard let self = self else { return }
+                loadingSubject.onNext(false)
+                showAlert(on: self, title: "Sucesso", message: "Dados salvos com sucesso!", completion: {
+                    self.sendControl = true
+                    self.dismiss(animated: true, completion: nil)
+                })
+            }, onFailure: { [weak self] error in
+                guard let self = self else { return }
+                loadingSubject.onNext(false)
+                showAlert(on: self, title: "Erro", message: "Erro ao salvar os dados: \(error.localizedDescription)")
+            })
+            .disposed(by: disposeBag)
     }
 
     // MARK: - Initializers
@@ -94,13 +137,27 @@ class AddBusinessViewController: UIViewController, ImagePickerViewDelegate {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        delegate?.removeTemporaryPin()
+        if (!sendControl) {
+            delegate?.removeTemporaryPin()
+        }
     }
 }
 
 extension AddBusinessViewController: SetupView {
     func setup() {
         view.backgroundColor = .white
+        
+        loadingSubject
+            .observe(on: MainScheduler.instance)
+            .bind { [weak self] isLoading in
+                if isLoading {
+                    self?.loadingView.startAnimating()
+                } else {
+                    self?.loadingView.stopAnimating()
+                }
+            }
+            .disposed(by: disposeBag)
+        
         addSubviews()
         setupConstraints()
     }
@@ -112,6 +169,7 @@ extension AddBusinessViewController: SetupView {
         view.addSubview(inputTextFieldBussinessType)
         view.addSubview(inputSelectImageButton)
         view.addSubview(addBussinessButton)
+        view.addSubview(loadingView)
     }
 
     func setupConstraints() {
@@ -139,7 +197,12 @@ extension AddBusinessViewController: SetupView {
             addBussinessButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             addBussinessButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             addBussinessButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            addBussinessButton.heightAnchor.constraint(equalToConstant: 50)
+            addBussinessButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingView.widthAnchor.constraint(equalToConstant: 120),
+            loadingView.heightAnchor.constraint(equalToConstant: 120)
         ])
     }
 }

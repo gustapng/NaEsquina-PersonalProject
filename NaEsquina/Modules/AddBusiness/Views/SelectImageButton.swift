@@ -12,7 +12,7 @@ protocol ImagePickerViewDelegate: AnyObject {
 }
 
 class SelectImageButton: UIButton, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+
     // MARK: - Attributes
 
     weak var delegate: ImagePickerViewDelegate?
