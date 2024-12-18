@@ -11,5 +11,5 @@ class FirebaseService {
     static let shared = FirebaseService()
     let db = Firestore.firestore()
     
-    private init() {} // Impede a criação de outras instâncias
+    private init() {}
 }

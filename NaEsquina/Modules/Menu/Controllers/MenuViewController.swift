@@ -10,6 +10,7 @@ class MenuViewController: UIViewController, MapViewDelegate {
     // MARK: - Coordinator
 
     var coordinator: CoordinatorFlowController?
+    var allBusiness: [BusinessLocationFirebaseResponse] = []
 
     // MARK: - Attributes
 
@@ -109,6 +110,18 @@ class MenuViewController: UIViewController, MapViewDelegate {
         super.viewDidLoad()
         mapView.delegate = self
         setup()
+
+        FirebaseStorageService.fetchAllBusiness { [weak self] businessLocations in
+            guard let self = self else { return }
+            
+            if let businessLocations = businessLocations {
+                self.allBusiness = businessLocations
+                print(businessLocations)
+                // TODO - PUT PINS IN MAP
+            } else {
+                showAlert(on: self, title: "Erro", message: "Falha ao carregar comercios. Tente novamente mais tarde.")
+            }
+        }
     }
 }
 
@@ -162,8 +175,8 @@ extension MenuViewController: SetupView {
 }
 
 extension MenuViewController: MenuCoordinator {
-    func openNewBusinessSheet() {
-        coordinator?.openNewBusinessSheet()
+    func openNewBusinessSheet(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        coordinator?.openNewBusinessSheet(latitude: latitude, longitude: longitude)
     }
 
     func openFilterSheet() {

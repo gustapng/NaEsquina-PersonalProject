@@ -38,6 +38,7 @@
 		EC7221042CF3E1F50048B35B /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7221032CF3E1F00048B35B /* LoginModel.swift */; };
 		EC7D56182CFBCE0300F90F06 /* FilterPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D56172CFBCE0300F90F06 /* FilterPickerView.swift */; };
 		EC7E16F02CBDDCDE00BFFE15 /* UserOptionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7E16EF2CBDDCDE00BFFE15 /* UserOptionButtonCell.swift */; };
+		EC7E6B322D1241CD00B56498 /* BusinessLocationFirebaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7E6B312D1241BF00B56498 /* BusinessLocationFirebaseResponse.swift */; };
 		EC821F6D2C8A6ACA00F35B96 /* SetupViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */; };
 		EC893CAB2CD98B6400A94598 /* User_Settings.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC893CA92CD98B6400A94598 /* User_Settings.xcdatamodeld */; };
 		EC893CAD2CD9A20C00A94598 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC893CAC2CD9A20500A94598 /* UserSettings.swift */; };
@@ -101,6 +102,7 @@
 		EC7221032CF3E1F00048B35B /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		EC7D56172CFBCE0300F90F06 /* FilterPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPickerView.swift; sourceTree = "<group>"; };
 		EC7E16EF2CBDDCDE00BFFE15 /* UserOptionButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOptionButtonCell.swift; sourceTree = "<group>"; };
+		EC7E6B312D1241BF00B56498 /* BusinessLocationFirebaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLocationFirebaseResponse.swift; sourceTree = "<group>"; };
 		EC821F6C2C8A6ACA00F35B96 /* SetupViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewExtension.swift; sourceTree = "<group>"; };
 		EC893CAA2CD98B6400A94598 /* User_Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User_Settings.xcdatamodel; sourceTree = "<group>"; };
 		EC893CAC2CD9A20500A94598 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 		EC821F662C8A69E900F35B96 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EC7E6B312D1241BF00B56498 /* BusinessLocationFirebaseResponse.swift */,
 				EC893CAC2CD9A20500A94598 /* UserSettings.swift */,
 			);
 			path = Models;
@@ -777,6 +780,7 @@
 				ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */,
 				ECABB0542C8FC6C20030042E /* RegisterViewController.swift in Sources */,
 				EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */,
+				EC7E6B322D1241CD00B56498 /* BusinessLocationFirebaseResponse.swift in Sources */,
 				EC7220FD2CF3E1350048B35B /* FirebaseAuthService.swift in Sources */,
 				EC9E14F22C87D22C007A9F88 /* SceneDelegate.swift in Sources */,
 				EC4E2FF32CCC84F8008CDFC3 /* FilterOption.swift in Sources */,

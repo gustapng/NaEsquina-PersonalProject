@@ -19,6 +19,8 @@ class MapView: UIView, MKMapViewDelegate {
     private var temporaryAnnotation: MKPointAnnotation?
     var isPinConfirmed: Bool = false
     weak var delegate: MapViewDelegate?
+    var latitude: CLLocationDegrees?
+    var longitude: CLLocationDegrees?
 
     // MARK: - UI Components
 
@@ -88,7 +90,7 @@ class MapView: UIView, MKMapViewDelegate {
 
         let okAction = UIAlertAction(title: "Sim", style: .default) { UIAlertAction in
             controller.cancelSelection()
-            controller.openNewBusinessSheet()
+            controller.openNewBusinessSheet(latitude: coordinate.latitude, longitude: coordinate.longitude)
         }
         let cancelAction = UIAlertAction(title: "Não", style: .cancel) { UIAlertAction in
             if let annotationToRemove = self.temporaryAnnotation {

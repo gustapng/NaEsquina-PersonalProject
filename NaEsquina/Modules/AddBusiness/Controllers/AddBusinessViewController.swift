@@ -21,7 +21,9 @@ class AddBusinessViewController: UIViewController, ImagePickerViewDelegate {
     private let loadingSubject = BehaviorSubject<Bool>(value: false)
     private let disposeBag = DisposeBag()
     private var sendControl = false
-    
+    var latitude: CLLocationDegrees?
+    var longitude: CLLocationDegrees?
+
     // MARK: - UI Components
 
     private lazy var sheetInfoView: SheetInfoView = {
@@ -88,7 +90,10 @@ class AddBusinessViewController: UIViewController, ImagePickerViewDelegate {
         guard let name = inputTextFieldName.getValue(), !name.isEmpty,
               let phone = inputTextFieldPhone.getValue(), !phone.isEmpty,
               let businessType = inputTextFieldBussinessType.getValue(), !businessType.isEmpty,
-              let selectedImage = selectedImage else {
+              let lati = self.latitude,
+              let long = self.longitude,
+              let selectedImage = selectedImage
+        else {
             showAlert(on: self, title: "Erro", message: "Por favor preencha todos os campos")
             return
         }
@@ -100,7 +105,7 @@ class AddBusinessViewController: UIViewController, ImagePickerViewDelegate {
             .subscribe(onSuccess: { [weak self] imageUrl in
                 guard let self = self else { return }
 
-                self.saveDataToFirestore(name: name, phone: phone, businessType: businessType, imageUrl: imageUrl)
+                self.saveDataToFirestore(name: name, phone: phone, businessType: businessType, latitude: lati, longitude: long, imageUrl: imageUrl)
 
             }, onFailure: { [weak self] error in
                 guard let self = self else { return }
@@ -110,8 +115,19 @@ class AddBusinessViewController: UIViewController, ImagePickerViewDelegate {
             .disposed(by: disposeBag)
     }
 
-    private func saveDataToFirestore(name: String, phone: String, businessType: String, imageUrl: String) {
-        FirebaseStorageService.shared.saveBusinessData(name: name, phone: phone, businessType: businessType, imageUrl: imageUrl)
+    private func saveDataToFirestore(name: String,
+                                     phone: String,
+                                     businessType: String,
+                                     latitude: CLLocationDegrees,
+                                     longitude: CLLocationDegrees,
+                                     imageUrl: String) {
+
+        FirebaseStorageService.shared.saveBusinessData(name: name,
+                                                       phone: phone,
+                                                       businessType: businessType,
+                                                       latitude: latitude,
+                                                       longitude: longitude,
+                                                       imageUrl: imageUrl)
             .observe(on: MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] in
                 guard let self = self else { return }

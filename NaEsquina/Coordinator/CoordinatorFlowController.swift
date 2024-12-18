@@ -7,6 +7,7 @@
 
 import UIKit
 import LocalAuthentication
+import CoreLocation
 
 class CoordinatorFlowController: NSObject, UIAdaptivePresentationControllerDelegate {
     private var navigationController: UINavigationController
@@ -93,11 +94,13 @@ extension CoordinatorFlowController: LoginCoordinator {
 }
 
 extension CoordinatorFlowController: MenuCoordinator {
-    func openNewBusinessSheet() {
+    func openNewBusinessSheet(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let addBusinessViewController = AddBusinessViewController()
 
         if let menuViewController = navigationController.topViewController as? MenuViewController {
             addBusinessViewController.delegate = menuViewController
+            addBusinessViewController.latitude = latitude
+            addBusinessViewController.longitude = longitude
         }
 
         if let sheet = addBusinessViewController.sheetPresentationController {
