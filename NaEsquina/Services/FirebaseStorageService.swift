@@ -85,39 +85,41 @@ class FirebaseStorageService {
         }
     }
     
-    static func fetchAllBusiness(completion: @escaping ([BusinessLocationFirebaseResponse]?) -> Void) {
-        var allBusiness: [BusinessLocationFirebaseResponse] = []
+    static func fetchAllBusiness() -> Single<[BusinessLocationFirebaseResponse]> {
+       return Single.create { single in
+           var allBusiness: [BusinessLocationFirebaseResponse] = []
 
-        FirebaseService.shared.db.collection("business").getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Erro ao buscar negócios: \(error.localizedDescription)")
-                completion(nil)
-                return
-            }
+           FirebaseService.shared.db.collection("business").getDocuments { (querySnapshot, error) in
+               if let error = error {
+                   single(.failure(error))
+                   return
+               }
 
-            guard let documents = querySnapshot?.documents else {
-                print("Nenhum documento encontrado na coleção.")
-                completion(nil)
-                return
-            }
+               guard let documents = querySnapshot?.documents else {
+                   single(.failure(NSError(domain: "FirebaseError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Nenhum documento encontrado."])))
+                   return
+               }
 
-            for document in documents {
-                let data = document.data()
-                
-                if let latitude = data["latitude"] as? Double,
-                   let longitude = data["longitude"] as? Double,
-                   let name = data["name"] as? String {
-                   let businessLocation = BusinessLocationFirebaseResponse(
-                        name: name,
-                        latitude: latitude,
-                        longitude: longitude,
-                        documentReference: document.reference
-                    )
-                    allBusiness.append(businessLocation)
-                }
-            }
+               for document in documents {
+                   let data = document.data()
+                   if let latitude = data["latitude"] as? Double,
+                      let longitude = data["longitude"] as? Double,
+                      let name = data["name"] as? String {
+                       
+                       let businessLocation = BusinessLocationFirebaseResponse(
+                           name: name,
+                           latitude: latitude,
+                           longitude: longitude,
+                           documentReference: document.reference
+                       )
+                       allBusiness.append(businessLocation)
+                   }
+               }
 
-            completion(allBusiness)
-        }
-    }
+               single(.success(allBusiness))
+           }
+
+           return Disposables.create()
+       }
+   }
 }

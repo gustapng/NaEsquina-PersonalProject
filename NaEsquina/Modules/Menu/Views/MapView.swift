@@ -119,6 +119,16 @@ class MapView: UIView, MKMapViewDelegate {
         print("Pin clicado: \(annotationTitle ?? "")")
     }
 
+    func addAnnotations(annotations: [BusinessLocationFirebaseResponse]) {
+        annotations.forEach { business in
+            let annotation = CustomPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: business.latitude, longitude: business.longitude)
+            annotation.title = business.name
+            annotation.documentReference = business.documentReference.documentID
+            mapView.addAnnotation(annotation)
+        }
+    }
+
     // MARK: - Initializers
 
     init() {

@@ -63,6 +63,7 @@
 		ECBA89252C9F9F920016AAB4 /* ImageWithInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBA89242C9F9F920016AAB4 /* ImageWithInfoView.swift */; };
 		ECBA89282C9FAE240016AAB4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBA89272C9FAE210016AAB4 /* Constants.swift */; };
 		ECBD55562CB2165A0020BCF8 /* InputWithLeftIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD55552CB2165A0020BCF8 /* InputWithLeftIconView.swift */; };
+		ECBF82C52D13B2EA009390F2 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF82C42D13B2E7009390F2 /* CustomPointAnnotation.swift */; };
 		ECE919242C8E31C00094B898 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919232C8E31C00094B898 /* UITextField+Extension.swift */; };
 		ECE919272C8E4C6D0094B898 /* CurrentViewDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */; };
 		ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919282C8E66150094B898 /* RecoveryViewController.swift */; };
@@ -129,6 +130,7 @@
 		ECBA89242C9F9F920016AAB4 /* ImageWithInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithInfoView.swift; sourceTree = "<group>"; };
 		ECBA89272C9FAE210016AAB4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ECBD55552CB2165A0020BCF8 /* InputWithLeftIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputWithLeftIconView.swift; sourceTree = "<group>"; };
+		ECBF82C42D13B2E7009390F2 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		ECE919232C8E31C00094B898 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		ECE919262C8E4C6D0094B898 /* CurrentViewDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewDescriptionView.swift; sourceTree = "<group>"; };
 		ECE919282C8E66150094B898 /* RecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		EC4E2FFB2CCC9C5B008CDFC3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ECBF82C42D13B2E7009390F2 /* CustomPointAnnotation.swift */,
 				EC8A86A72CC7EE080013524D /* MapView.swift */,
 			);
 			path = Views;
@@ -786,6 +789,7 @@
 				EC4E2FF32CCC84F8008CDFC3 /* FilterOption.swift in Sources */,
 				EC3AB3632C8A7D1700DEDC44 /* InputTextFieldView.swift in Sources */,
 				EC3AB3612C8A75A100DEDC44 /* ColorsExtension.swift in Sources */,
+				ECBF82C52D13B2EA009390F2 /* CustomPointAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

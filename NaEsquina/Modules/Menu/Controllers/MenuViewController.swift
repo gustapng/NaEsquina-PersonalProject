@@ -1,5 +1,7 @@
 import MapKit
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol RemovePinDelegate: AnyObject {
     func removeTemporaryPin()
@@ -10,11 +12,12 @@ class MenuViewController: UIViewController, MapViewDelegate {
     // MARK: - Coordinator
 
     var coordinator: CoordinatorFlowController?
-    var allBusiness: [BusinessLocationFirebaseResponse] = []
 
     // MARK: - Attributes
 
     var isSelectingLocation = false
+    private let loadingSubject = BehaviorSubject<Bool>(value: false)
+    private let disposeBag = DisposeBag()
 
     // MARK: - UI Components
 
@@ -76,6 +79,12 @@ class MenuViewController: UIViewController, MapViewDelegate {
         return view
     }()
 
+    private lazy var loadingView: LoadingView = {
+        let loading = LoadingView()
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        return loading
+    }()
+
     // MARK: - Functions
 
     func didTapOnPin(annotationTitle: String?) {
@@ -103,6 +112,25 @@ class MenuViewController: UIViewController, MapViewDelegate {
         isSelectingLocation = false
         selectionBar.isHidden = true
     }
+    
+    private func fetchBusinessLocations() {
+        loadingSubject.onNext(true)
+
+        FirebaseStorageService.fetchAllBusiness()
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] result in
+                guard let self = self else { return }
+                self.loadingSubject.onNext(false)
+
+                switch result {
+                case .success(let businessLocations):
+                    self.mapView.addAnnotations(annotations: businessLocations)
+                case .failure(let error):
+                    showAlert(on: self, title: "Erro", message: "Falha ao carregar comércios: \(error.localizedDescription)")
+                }
+            }
+            .disposed(by: disposeBag)
+    }
 
     // MARK: - Initializers
 
@@ -110,18 +138,7 @@ class MenuViewController: UIViewController, MapViewDelegate {
         super.viewDidLoad()
         mapView.delegate = self
         setup()
-
-        FirebaseStorageService.fetchAllBusiness { [weak self] businessLocations in
-            guard let self = self else { return }
-            
-            if let businessLocations = businessLocations {
-                self.allBusiness = businessLocations
-                print(businessLocations)
-                // TODO - PUT PINS IN MAP
-            } else {
-                showAlert(on: self, title: "Erro", message: "Falha ao carregar comercios. Tente novamente mais tarde.")
-            }
-        }
+        fetchBusinessLocations()
     }
 }
 
@@ -152,6 +169,7 @@ extension MenuViewController: SetupView {
         view.addSubview(mapView)
         view.addSubview(bottomBar)
         view.addSubview(selectionBar)
+        view.addSubview(loadingView)
     }
 
     func setupConstraints() {
@@ -169,7 +187,12 @@ extension MenuViewController: SetupView {
             bottomBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            bottomBar.heightAnchor.constraint(equalToConstant: 60)
+            bottomBar.heightAnchor.constraint(equalToConstant: 60),
+
+            loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingView.widthAnchor.constraint(equalToConstant: 120),
+            loadingView.heightAnchor.constraint(equalToConstant: 120)
         ])
     }
 }
