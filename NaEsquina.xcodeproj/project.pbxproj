@@ -74,6 +74,7 @@
 		ECEF1DF92CD0765C000F94FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECEF1DF82CD0765C000F94FE /* GoogleService-Info.plist */; };
 		ECF69EEB2CFCA05600D55279 /* PhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF69EEA2CFCA05600D55279 /* PhoneNumberView.swift */; };
 		ECF69EED2CFCB4DC00D55279 /* GetInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF69EEC2CFCB4CE00D55279 /* GetInputValue.swift */; };
+		ECF853062D18EC4900059DEF /* BusinessDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF853052D18EC3F00059DEF /* BusinessDetailsCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,6 +142,7 @@
 		ECEF1DF82CD0765C000F94FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ECF69EEA2CFCA05600D55279 /* PhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberView.swift; sourceTree = "<group>"; };
 		ECF69EEC2CFCB4CE00D55279 /* GetInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInputValue.swift; sourceTree = "<group>"; };
+		ECF853052D18EC3F00059DEF /* BusinessDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailsCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,6 +395,7 @@
 		EC4E300F2CCCAAC9008CDFC3 /* BusinessDetails */ = {
 			isa = PBXGroup;
 			children = (
+				ECF853042D18EC3700059DEF /* Coordinator */,
 				EC4E30112CCCAAE2008CDFC3 /* Controllers */,
 				EC4E30102CCCAAD3008CDFC3 /* Views */,
 			);
@@ -632,6 +635,14 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		ECF853042D18EC3700059DEF /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				ECF853052D18EC3F00059DEF /* BusinessDetailsCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -777,6 +788,7 @@
 				ECBA89252C9F9F920016AAB4 /* ImageWithInfoView.swift in Sources */,
 				EC7E16F02CBDDCDE00BFFE15 /* UserOptionButtonCell.swift in Sources */,
 				EC5A019D2CD2FE41003395D5 /* PasswordValidator.swift in Sources */,
+				ECF853062D18EC4900059DEF /* BusinessDetailsCoordinator.swift in Sources */,
 				ECB6338E2CB56D6200CD585B /* FilterButtonCell.swift in Sources */,
 				EC7221042CF3E1F50048B35B /* LoginModel.swift in Sources */,
 				EC893CAB2CD98B6400A94598 /* User_Settings.xcdatamodeld in Sources */,

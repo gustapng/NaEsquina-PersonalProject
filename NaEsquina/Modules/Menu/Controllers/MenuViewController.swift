@@ -221,3 +221,8 @@ extension MenuViewController: RemovePinDelegate {
     }
 }
 
+extension MenuViewController: AddBusinessViewControllerDelegate {
+    func didSaveBusiness() {
+        fetchBusinessLocations()
+    }
+}

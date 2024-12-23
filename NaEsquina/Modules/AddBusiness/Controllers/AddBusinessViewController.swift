@@ -11,12 +11,17 @@ import Firebase
 import FirebaseStorage
 import RxSwift
 
+protocol AddBusinessViewControllerDelegate: AnyObject {
+    func didSaveBusiness()
+}
+
 class AddBusinessViewController: UIViewController, ImagePickerViewDelegate {
 
     // MARK: - Attributes
 
     var selectedCoordinate: CLLocationCoordinate2D?
     weak var delegate: RemovePinDelegate?
+    weak var delegateBusiness: AddBusinessViewControllerDelegate?
     private var selectedImage: UIImage?
     private let loadingSubject = BehaviorSubject<Bool>(value: false)
     private let disposeBag = DisposeBag()
@@ -134,6 +139,7 @@ class AddBusinessViewController: UIViewController, ImagePickerViewDelegate {
                 loadingSubject.onNext(false)
                 showAlert(on: self, title: "Sucesso", message: "Dados salvos com sucesso!", completion: {
                     self.sendControl = true
+                    self.delegateBusiness?.didSaveBusiness()
                     self.dismiss(animated: true, completion: nil)
                 })
             }, onFailure: { [weak self] error in

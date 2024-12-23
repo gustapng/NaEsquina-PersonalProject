@@ -99,6 +99,7 @@ extension CoordinatorFlowController: MenuCoordinator {
 
         if let menuViewController = navigationController.topViewController as? MenuViewController {
             addBusinessViewController.delegate = menuViewController
+            addBusinessViewController.delegateBusiness = menuViewController
             addBusinessViewController.latitude = latitude
             addBusinessViewController.longitude = longitude
         }

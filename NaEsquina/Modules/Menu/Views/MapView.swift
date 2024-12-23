@@ -14,6 +14,10 @@ protocol MapViewDelegate: AnyObject {
 
 class MapView: UIView, MKMapViewDelegate {
 
+    // MARK: - Coordinator
+
+    var coordinator: CoordinatorFlowController?
+
     // MARK: - Attributes
 
     private var temporaryAnnotation: MKPointAnnotation?
@@ -51,6 +55,9 @@ class MapView: UIView, MKMapViewDelegate {
             if annotationView == nil {
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 annotationView?.canShowCallout = true
+
+                let button = UIButton(type: .detailDisclosure)
+                annotationView?.rightCalloutAccessoryView = button
             } else {
                 annotationView?.annotation = annotation
             }
@@ -113,6 +120,9 @@ class MapView: UIView, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView,
                  annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
+        // TODO: SEARCH WITH CUSTOM POINT ANNOTATION THIS DATA IN FIREBASE
+        guard let annotation = view.annotation as? CustomPointAnnotation else { return }
+        print(annotation)
 
         guard let annotationTitle = view.annotation?.title else { return }
         delegate?.didTapOnPin(annotationTitle: annotationTitle)
@@ -120,6 +130,8 @@ class MapView: UIView, MKMapViewDelegate {
     }
 
     func addAnnotations(annotations: [BusinessLocationFirebaseResponse]) {
+        mapView.removeAnnotations(mapView.annotations)
+
         annotations.forEach { business in
             let annotation = CustomPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: business.latitude, longitude: business.longitude)
@@ -135,11 +147,6 @@ class MapView: UIView, MKMapViewDelegate {
         super.init(frame: .zero)
         setup()
         let initialLocation = CLLocation(latitude: -23.55052, longitude: -46.63331)
-        let annotation = MKPointAnnotation()
-        // ADICIONA O PIN DA COORDENADA
-        annotation.coordinate = CLLocationCoordinate2D(latitude: -23.55052, longitude: -46.63331)
-        annotation.title = "Mais Variedades"
-        mapView.addAnnotation(annotation)
         setInitialLocation(location: initialLocation)
         mapView.delegate = self
     }
@@ -176,7 +183,6 @@ extension MapView: SetupView {
         tapGesture.delegate = self
         mapView.addGestureRecognizer(tapGesture)
     }
-    
 }
 
 extension MapView: UIGestureRecognizerDelegate {
@@ -184,3 +190,9 @@ extension MapView: UIGestureRecognizerDelegate {
         return true
     }
 }
+
+//extension MapView: BusinessDetailsCoordinator {
+//    func navigateToBusinessDetailsSheet() {
+//        coordinator?.navigateToBusinessDetailsSheet()
+//    }
+//}
