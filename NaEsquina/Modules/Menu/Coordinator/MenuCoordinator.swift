@@ -11,5 +11,5 @@ protocol MenuCoordinator {
     func openNewBusinessSheet(latitude: CLLocationDegrees, longitude: CLLocationDegrees)
     func openFilterSheet()
     func navigateToUserView()
-    func openBusinessDetailsSheet()
+    func openBusinessDetailsSheet(businessData: BusinessLocationFirebaseResponse)
 }

@@ -87,8 +87,8 @@ class MenuViewController: UIViewController, MapViewDelegate {
 
     // MARK: - Functions
 
-    func didTapOnPin(annotationTitle: String?) {
-        openBusinessDetailsSheet()
+    func didTapOnPin(businessData: BusinessLocationFirebaseResponse) {
+        openBusinessDetailsSheet(businessData: businessData)
     }
 
     @objc func openSheetFilter() {
@@ -206,8 +206,8 @@ extension MenuViewController: MenuCoordinator {
         coordinator?.openFilterSheet()
     }
 
-    func openBusinessDetailsSheet() {
-        coordinator?.openBusinessDetailsSheet()
+    func openBusinessDetailsSheet(businessData: BusinessLocationFirebaseResponse) {
+        coordinator?.openBusinessDetailsSheet(businessData: businessData)
     }
 
     func navigateToUserView() {

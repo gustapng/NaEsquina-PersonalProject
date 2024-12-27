@@ -127,16 +127,19 @@ extension CoordinatorFlowController: MenuCoordinator {
         navigationController.topViewController?.present(filterViewController, animated: true)
     }
 
-    func openBusinessDetailsSheet() {
-        let businessDetailsViewController = BusinessDetailsViewController()
+    func openBusinessDetailsSheet(businessData: BusinessLocationFirebaseResponse) {
+        DispatchQueue.main.async {
+            let businessDetailsViewController = BusinessDetailsViewController()
+            businessDetailsViewController.businessData = businessData
 
-        if let sheet = businessDetailsViewController.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-            sheet.prefersGrabberVisible = true
-            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            if let sheet = businessDetailsViewController.sheetPresentationController {
+                sheet.detents = [.medium(), .large()]
+                sheet.prefersGrabberVisible = true
+                sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            }
+
+            self.navigationController.topViewController?.present(businessDetailsViewController, animated: true)
         }
-
-        navigationController.topViewController?.present(businessDetailsViewController, animated: true)
     }
 
     func navigateToUserView() {

@@ -43,6 +43,7 @@
 		EC893CAB2CD98B6400A94598 /* User_Settings.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC893CA92CD98B6400A94598 /* User_Settings.xcdatamodeld */; };
 		EC893CAD2CD9A20C00A94598 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC893CAC2CD9A20500A94598 /* UserSettings.swift */; };
 		EC8A86A82CC7EE080013524D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A86A72CC7EE080013524D /* MapView.swift */; };
+		EC8B4B2F2D1A475200876B2E /* GetAddressFromCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B4B2E2D1A474200876B2E /* GetAddressFromCoordinates.swift */; };
 		EC98D8402CE1259E000040FF /* Firebase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98D83F2CE12598000040FF /* Firebase+Extension.swift */; };
 		EC98D8432CE12804000040FF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98D8422CE12804000040FF /* LoadingView.swift */; };
 		EC9E14F02C87D22C007A9F88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E14EF2C87D22C007A9F88 /* AppDelegate.swift */; };
@@ -109,6 +110,7 @@
 		EC893CAA2CD98B6400A94598 /* User_Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User_Settings.xcdatamodel; sourceTree = "<group>"; };
 		EC893CAC2CD9A20500A94598 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		EC8A86A72CC7EE080013524D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		EC8B4B2E2D1A474200876B2E /* GetAddressFromCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAddressFromCoordinates.swift; sourceTree = "<group>"; };
 		EC98D83F2CE12598000040FF /* Firebase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Extension.swift"; sourceTree = "<group>"; };
 		EC98D8422CE12804000040FF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		EC9E14EC2C87D22C007A9F88 /* NaEsquina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaEsquina.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -539,6 +541,7 @@
 		EC821F6A2C8A6A1E00F35B96 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				EC8B4B2E2D1A474200876B2E /* GetAddressFromCoordinates.swift */,
 				ECF69EEC2CFCB4CE00D55279 /* GetInputValue.swift */,
 				EC98D83F2CE12598000040FF /* Firebase+Extension.swift */,
 				EC2517612CD6D49200AE1ECF /* ShowAlert.swift */,
@@ -756,6 +759,7 @@
 				EC7D56182CFBCE0300F90F06 /* FilterPickerView.swift in Sources */,
 				EC1D87352CACCB2A002363A4 /* SheetInfoView.swift in Sources */,
 				ECEF1DF72CD05ED5000F94FE /* UserOptions.swift in Sources */,
+				EC8B4B2F2D1A475200876B2E /* GetAddressFromCoordinates.swift in Sources */,
 				ECABB0522C8FB0740030042E /* InputPasswordView.swift in Sources */,
 				EC7221012CF3E1BA0048B35B /* CoreDataUserSettingsService.swift in Sources */,
 				EC9E14F42C87D22C007A9F88 /* LoginViewController.swift in Sources */,

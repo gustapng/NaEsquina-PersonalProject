@@ -10,6 +10,9 @@ import UIKit
 
 class BusinessDetailsViewController: UIViewController {
 
+    // MARK: - Attributes
+    var businessData: BusinessLocationFirebaseResponse?
+
     // MARK: - UI Components
 
     private lazy var sheetDetailsView: SheetBusinessDetailsView = {
@@ -40,6 +43,9 @@ class BusinessDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        if let businessData = businessData {
+            sheetDetailsView.configure(with: businessData)
+        }
     }
 }
 

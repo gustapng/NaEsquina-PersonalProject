@@ -7,9 +7,10 @@
 
 import MapKit
 import UIKit
+import RxSwift
 
 protocol MapViewDelegate: AnyObject {
-    func didTapOnPin(annotationTitle: String?)
+    func didTapOnPin(businessData: BusinessLocationFirebaseResponse)
 }
 
 class MapView: UIView, MKMapViewDelegate {
@@ -21,6 +22,8 @@ class MapView: UIView, MKMapViewDelegate {
     // MARK: - Attributes
 
     private var temporaryAnnotation: MKPointAnnotation?
+    private let disposeBag = DisposeBag()
+    private let loadingSubject = BehaviorSubject<Bool>(value: false)
     var isPinConfirmed: Bool = false
     weak var delegate: MapViewDelegate?
     var latitude: CLLocationDegrees?
@@ -34,6 +37,12 @@ class MapView: UIView, MKMapViewDelegate {
         mapView.pointOfInterestFilter = .excludingAll
         mapView.overrideUserInterfaceStyle = .light
         return mapView
+    }()
+
+    private lazy var loadingView: LoadingView = {
+        let loading = LoadingView()
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        return loading
     }()
 
     // MARK: - Functions
@@ -81,8 +90,6 @@ class MapView: UIView, MKMapViewDelegate {
         let location = gestureRecognizer.location(in: mapView)
         let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
 
-        print("Coordenadas selecionadas: \(coordinate.latitude), \(coordinate.longitude)")
-
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         annotation.title = "Local Selecionado"
@@ -120,13 +127,31 @@ class MapView: UIView, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView,
                  annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
-        // TODO: SEARCH WITH CUSTOM POINT ANNOTATION THIS DATA IN FIREBASE
-        guard let annotation = view.annotation as? CustomPointAnnotation else { return }
-        print(annotation)
 
-        guard let annotationTitle = view.annotation?.title else { return }
-        delegate?.didTapOnPin(annotationTitle: annotationTitle)
-        print("Pin clicado: \(annotationTitle ?? "")")
+        DispatchQueue.main.async {
+            self.loadingView.startAnimating()
+        }
+
+        guard let annotation = view.annotation as? CustomPointAnnotation,
+              let documentPath = annotation.documentReference else {
+            return
+        }
+
+        let documentReference = FirebaseService.shared.db.document("business/\(documentPath)")
+
+        FirebaseStorageService.fetchBusiness(documentReference: documentReference)
+            .subscribe(onSuccess: { business in
+                self.delegate?.didTapOnPin(businessData: business)
+                DispatchQueue.main.async {
+                    self.loadingView.stopAnimating()
+                }
+            }, onFailure: { error in
+                print("Erro ao buscar os dados: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.loadingView.stopAnimating()
+                }
+            })
+            .disposed(by: disposeBag)
     }
 
     func addAnnotations(annotations: [BusinessLocationFirebaseResponse]) {
@@ -134,9 +159,9 @@ class MapView: UIView, MKMapViewDelegate {
 
         annotations.forEach { business in
             let annotation = CustomPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: business.latitude, longitude: business.longitude)
+            annotation.coordinate = CLLocationCoordinate2D(latitude: business.latitude ?? 0.0, longitude: business.longitude ?? 0.0)
             annotation.title = business.name
-            annotation.documentReference = business.documentReference.documentID
+            annotation.documentReference = business.documentReference?.documentID
             mapView.addAnnotation(annotation)
         }
     }
@@ -165,6 +190,7 @@ extension MapView: SetupView {
 
     func addSubviews() {
         addSubview(mapView)
+        addSubview(loadingView)
     }
 
     func setupConstraints() {
@@ -172,7 +198,12 @@ extension MapView: SetupView {
             mapView.topAnchor.constraint(equalTo: topAnchor),
             mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            mapView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            mapView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            loadingView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            loadingView.widthAnchor.constraint(equalToConstant: 120),
+            loadingView.heightAnchor.constraint(equalToConstant: 120)
         ])
     }
 
@@ -190,9 +221,3 @@ extension MapView: UIGestureRecognizerDelegate {
         return true
     }
 }
-
-//extension MapView: BusinessDetailsCoordinator {
-//    func navigateToBusinessDetailsSheet() {
-//        coordinator?.navigateToBusinessDetailsSheet()
-//    }
-//}

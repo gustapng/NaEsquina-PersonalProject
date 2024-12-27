@@ -8,8 +8,12 @@
 import FirebaseFirestore
 
 struct BusinessLocationFirebaseResponse {
-    let name: String
-    let latitude: Double
-    let longitude: Double
-    let documentReference: DocumentReference
+    var name: String?
+    var phone: String?
+    var address: String?
+    var imageUrl: String?
+    var image: UIImage?
+    var latitude: Double?
+    var longitude: Double?
+    var documentReference: DocumentReference?
 }
