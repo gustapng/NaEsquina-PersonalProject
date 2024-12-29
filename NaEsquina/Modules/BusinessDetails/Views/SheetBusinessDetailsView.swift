@@ -63,7 +63,6 @@ class SheetBusinessDetailsView: UIView {
     // MARK: - Functions
 
     func configure(with data: BusinessLocationFirebaseResponse) {
-        // TODO - fix report button and finish project
         self.businessImageView.image = data.image ?? UIImage(named: "comercio")
         self.viewTitleLabel.text = data.name
         self.addressLabel.text = data.address

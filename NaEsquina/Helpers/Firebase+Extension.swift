@@ -34,9 +34,9 @@ extension Reactive where Base: Auth {
                     changeRequest.displayName = username
                     changeRequest.commitChanges { error in
                         if let error = error {
-                            single(.failure(error)) // Caso haja erro ao salvar o displayName
+                            single(.failure(error))
                         } else {
-                            single(.success(authResult)) // Sucesso
+                            single(.success(authResult))
                         }
                     }
                 }
