@@ -24,8 +24,16 @@
    ```bash
    git clone https://github.com/your-username/NaEsquina.git
 2. Open the project in Xcode.
-3. Configure the environment:
-  Ensure that location permissions are correctly set in the project.
+3. Set up the environment:
+  * Ensure location permissions are properly configured in the project.
+  * Create a project in the Firebase Console.
+  * Enable and configure the following Firebase services:
+     * Firestore Database: To store data.
+     * Storage: To save files and images.
+     * Authentication: To manage accounts and authentication.
+  * Download the GoogleService-Info.plist file from Firebase and add it to the root of the NaEsquina project.
+  * In the FirebaseStorageService file, set the URL for your Firebase storage in the following line:
+     * self.storage = Storage.storage(url: "<sua-url-do-storage>")
 4. Run the project on an iOS simulator or device.
 
 ## 🛠️ Technologies Used
@@ -57,7 +65,15 @@ Architecture: MVC, focused on maintaining an organized and easily manageable str
    git clone https://github.com/seu-usuario/NaEsquina.git
 2. Abra o projeto no Xcode.
 3. Configure o ambiente:
-  Certifique-se de que as permissões de localização estão corretamente definidas no projeto.
+  * Certifique-se de que as permissões de localização estão corretamente definidas no projeto.
+  * Crie um projeto no Firebase Console.
+  * Ative e configure os seguintes serviços no Firebase:
+     * Firestore Database: Para armazenar dados.
+     * Storage: Para salvar arquivos e imagens.
+     * Authentication: Para gerenciar contas e autenticação.
+  * Baixe o arquivo GoogleService-Info.plist do Firebase e adicione-o na raiz do projeto NaEsquina.
+  * No arquivo FirebaseStorageService, configure a URL do seu storage Firebase na linha:
+     * self.storage = Storage.storage(url: "<sua-url-do-storage>")
 4. Rode o projeto em um simulador ou dispositivo iOS.
    
 ## 🛠️ Tecnologias Utilizadas
