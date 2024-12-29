@@ -68,7 +68,6 @@
 		ECE919292C8E66150094B898 /* RecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE919282C8E66150094B898 /* RecoveryViewController.swift */; };
 		ECE94DC22CC953ED0017BFC2 /* BusinessDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE94DC12CC953ED0017BFC2 /* BusinessDetailsViewController.swift */; };
 		ECE94DC42CC9551B0017BFC2 /* SheetBusinessDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE94DC32CC9551B0017BFC2 /* SheetBusinessDetailsView.swift */; };
-		ECEF1DF92CD0765C000F94FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECEF1DF82CD0765C000F94FE /* GoogleService-Info.plist */; };
 		ECF69EEB2CFCA05600D55279 /* PhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF69EEA2CFCA05600D55279 /* PhoneNumberView.swift */; };
 		ECF69EED2CFCB4DC00D55279 /* GetInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF69EEC2CFCB4CE00D55279 /* GetInputValue.swift */; };
 		ECF853062D18EC4900059DEF /* BusinessDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF853052D18EC3F00059DEF /* BusinessDetailsCoordinator.swift */; };
@@ -133,7 +132,6 @@
 		ECE919282C8E66150094B898 /* RecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryViewController.swift; sourceTree = "<group>"; };
 		ECE94DC12CC953ED0017BFC2 /* BusinessDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailsViewController.swift; sourceTree = "<group>"; };
 		ECE94DC32CC9551B0017BFC2 /* SheetBusinessDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetBusinessDetailsView.swift; sourceTree = "<group>"; };
-		ECEF1DF82CD0765C000F94FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ECF69EEA2CFCA05600D55279 /* PhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberView.swift; sourceTree = "<group>"; };
 		ECF69EEC2CFCB4CE00D55279 /* GetInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInputValue.swift; sourceTree = "<group>"; };
 		ECF853052D18EC3F00059DEF /* BusinessDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailsCoordinator.swift; sourceTree = "<group>"; };
@@ -546,7 +544,6 @@
 				EC9E14F12C87D22C007A9F88 /* SceneDelegate.swift */,
 				EC9E14FA2C87D22D007A9F88 /* LaunchScreen.storyboard */,
 				EC9E14FD2C87D22D007A9F88 /* Info.plist */,
-				ECEF1DF82CD0765C000F94FE /* GoogleService-Info.plist */,
 				EC5A019E2CD3140E003395D5 /* .gitignore */,
 				ECABB05A2C8FCDCA0030042E /* .swiftlint.yml */,
 				EC273DA92CCEF76300945369 /* .swiftformat */,
@@ -652,7 +649,6 @@
 			files = (
 				EC273DAA2CCEF76300945369 /* .swiftformat in Resources */,
 				ECABB05B2C8FCDCA0030042E /* .swiftlint.yml in Resources */,
-				ECEF1DF92CD0765C000F94FE /* GoogleService-Info.plist in Resources */,
 				EC9E14F92C87D22D007A9F88 /* Assets.xcassets in Resources */,
 				EC5A019F2CD31415003395D5 /* .gitignore in Resources */,
 				EC9E14FC2C87D22D007A9F88 /* Base in Resources */,
