@@ -21,7 +21,7 @@ class FirebaseStorageService {
 
     private init() {
         // Your storage url here
-        self.storage = Storage.storage(url: "gs://testando-6cf3f.firebasestorage.app")
+        self.storage = Storage.storage(url: "")
         self.storageRef = storage.reference()
     }
 
