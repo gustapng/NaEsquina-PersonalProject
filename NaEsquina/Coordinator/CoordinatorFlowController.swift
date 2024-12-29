@@ -150,18 +150,6 @@ extension CoordinatorFlowController: MenuCoordinator {
 }
 
 extension CoordinatorFlowController: UserCoordinator {
-    func navigateToUserDataView() {
-        let userDataViewController = UserDataViewController()
-        userDataViewController.coordinator = self
-        navigationController.pushViewController(userDataViewController, animated: true)
-    }
-
-    func navigateToSuggestionView() {
-        let suggestionViewController = SuggestionViewController()
-        suggestionViewController.coordinator = self
-        navigationController.pushViewController(suggestionViewController, animated: true)
-    }
-
     func navigateToLoginView() {
         let loginViewController = LoginViewController()
         loginViewController.coordinator = self

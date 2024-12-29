@@ -30,40 +30,24 @@ class UserViewController: UIViewController {
     private lazy var userNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        // TODO: O NOME DO USUARIO E DINAMICO
-        label.text = "Nome do usuário"
         label.font = .systemFont(ofSize: 22, weight: .semibold)
         label.textColor = .black
         return label
     }()
 
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .white
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(UserOptionButtonCell.self, forCellReuseIdentifier: "UserOptionButtonCell")
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
-        tableView.separatorColor = ColorsExtension.lightGray
-        return tableView
-    }()
-
     private lazy var logoutButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-
-        var config = UIButton.Configuration.plain()
-        config.image = UIImage(systemName: "door.left.hand.open")
-        config.title = "Sair"
-        config.baseForegroundColor = ColorsExtension.lightGray
-        config.imagePadding = 17
-        config.imagePlacement = .leading
-
-        button.configuration = config
-        button.contentHorizontalAlignment = .leading
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
+        button.setTitle("Sair", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = ColorsExtension.purpleMedium
+        button.layer.cornerRadius = 9
         button.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
-
+        button.layer.shadowColor = ColorsExtension.purpleLight?.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 2)
+        button.layer.shadowOpacity = 1
+        button.layer.shadowRadius = 0
         return button
     }()
 
@@ -71,11 +55,6 @@ class UserViewController: UIViewController {
 
     @objc func backButtonTapped() {
         coordinator?.backToPreviousScreen()
-    }
-
-    @objc func actionCell(sender: UIButton) {
-        let index = sender.tag
-        UserOptions.performAction(at: index, using: coordinator)
     }
 
     @objc func logoutButtonTapped() {
@@ -90,21 +69,6 @@ class UserViewController: UIViewController {
         } catch {
             print("Erro ao excluir UserSettings: \(error.localizedDescription)")
         }
-    }
-
-    private func setupTableFooterView() {
-        let footerView = UIView(frame: CGRect(x: 5, y: 0, width: view.frame.width, height: 70))
-        footerView.addSubview(logoutButton)
-
-        NSLayoutConstraint.activate([
-            logoutButton.heightAnchor.constraint(equalToConstant: 70),
-            logoutButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor),
-            logoutButton.trailingAnchor.constraint(equalTo: footerView.trailingAnchor),
-            logoutButton.topAnchor.constraint(equalTo: footerView.topAnchor),
-            logoutButton.bottomAnchor.constraint(equalTo: footerView.bottomAnchor)
-        ])
-
-        tableView.tableFooterView = footerView
     }
 
     private func deleteUserSettingsData() {
@@ -125,12 +89,20 @@ class UserViewController: UIViewController {
         }
     }
 
+    private func configureLabel() {
+        if let displayName = Auth.auth().currentUser?.displayName {
+            userNameLabel.text = "Olá, \(displayName)"
+        } else {
+            userNameLabel.text = "Olá, tudo bem?"
+        }
+    }
+
     // MARK: - Initializers
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        setupTableFooterView()
+        configureLabel()
     }
 }
 
@@ -146,7 +118,6 @@ extension UserViewController: SetupView {
     func addSubviews() {
         view.addSubview(backButton)
         view.addSubview(userNameLabel)
-        view.addSubview(tableView)
         view.addSubview(logoutButton)
     }
 
@@ -159,53 +130,15 @@ extension UserViewController: SetupView {
             userNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             userNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
-            tableView.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 20),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            logoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            logoutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            logoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            logoutButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 }
 
-extension UserViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
-    }
-}
-
-extension UserViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserOptions.options.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserOptionButtonCell", for: indexPath) as? UserOptionButtonCell else {
-            return UITableViewCell()
-        }
-
-        let options = UserOptions.options
-        let option = options[indexPath.row]
-
-        cell.configureCell(icon: UIImage(systemName: option.icon),
-                           title: option.title,
-                           subtitle: option.subtitle,
-                           target: self,
-                           action: #selector(actionCell),
-                           index: indexPath.row)
-
-        return cell
-    }
-}
-
 extension UserViewController: UserCoordinator {
-    func navigateToUserDataView() {
-        // logic implemented in userOption
-    }
-    
-    func navigateToSuggestionView() {
-        // logic implemented in userOption
-    }
-    
     func navigateToLoginView() {
         coordinator?.navigateToLoginView()
     }

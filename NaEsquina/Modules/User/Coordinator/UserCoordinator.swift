@@ -6,7 +6,5 @@
 //
 
 protocol UserCoordinator {
-    func navigateToUserDataView()
-    func navigateToSuggestionView()
     func navigateToLoginView()
 }

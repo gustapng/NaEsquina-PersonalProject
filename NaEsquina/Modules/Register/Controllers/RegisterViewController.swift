@@ -138,7 +138,7 @@ class RegisterViewController: UIViewController {
 
         loadingSubject.onNext(true)
 
-        auth?.rx.createUser(withEmail: email, password: password)
+        auth?.rx.createUser(withEmail: email, password: password, username: username)
             .flatMap { authResult in
                 return self.auth?.rx.saveUserData(username: username, email: email) ?? .just(())
             }

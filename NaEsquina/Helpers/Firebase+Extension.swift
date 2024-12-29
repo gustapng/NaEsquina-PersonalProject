@@ -24,13 +24,21 @@ extension Reactive where Base: Auth {
         }
     }
 
-    func createUser(withEmail email: String, password: String) -> Single<AuthDataResult> {
+    func createUser(withEmail email: String, password: String, username: String) -> Single<AuthDataResult> {
         return Single.create { single in
             self.base.createUser(withEmail: email, password: password) { authResult, error in
                 if let error = error {
                     single(.failure(error))
                 } else if let authResult = authResult {
-                    single(.success(authResult))
+                    let changeRequest = authResult.user.createProfileChangeRequest()
+                    changeRequest.displayName = username
+                    changeRequest.commitChanges { error in
+                        if let error = error {
+                            single(.failure(error)) // Caso haja erro ao salvar o displayName
+                        } else {
+                            single(.success(authResult)) // Sucesso
+                        }
+                    }
                 }
             }
             return Disposables.create()
